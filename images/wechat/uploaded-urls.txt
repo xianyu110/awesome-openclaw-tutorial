@@ -1,0 +1,13 @@
+
+01-tencent-cloud-server.png|/file/1770742212222_01-tencent-cloud-server.png
+02-openclaw-image.png|/file/1770742213992_02-openclaw-image.png
+03-select-ai-provider.png|/file/1770742221938_03-select-ai-provider.png
+04-test-chat.png|/file/1770742223389_04-test-chat.png
+05-aliyun-server.png|/file/1770742237148_05-aliyun-server.png
+06-risk-warning.png|/file/1770742236672_06-risk-warning.png
+07-select-quickstart.png|/file/1770742238798_07-select-quickstart.png
+08-select-chat-tool.png|/file/1770742247561_08-select-chat-tool.png
+09-port-setting.png|/file/1770742247410_09-port-setting.png
+10-select-skills.png|/file/1770742255849_10-select-skills.png
+11-api-key-config.png|/file/1770742264976_11-api-key-config.png
+12-enable-hooks.png|/file/1770742261487_12-enable-hooks.png
