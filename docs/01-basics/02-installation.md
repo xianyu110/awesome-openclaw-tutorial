@@ -85,8 +85,6 @@ OpenClaw在Mac上体验最好，因为：
    - 带宽：20M
    - 价格：20元/月 或 99元/年
 
-![飞书界面](https://upload.maynor1024.live/file/1770176084594_640.png)
-
 3. **实名认证**：
    - 首次使用需要实名认证
    - 选择个人认证即可
@@ -97,6 +95,8 @@ OpenClaw在Mac上体验最好，因为：
    - 支付20元（建议先买1个月试用）
    - 等待服务器创建完成
 
+![腾讯云轻量服务器](https://mmbiz.qpic.cn/sz_mmbiz_png/AnF9mxjhgVibyCoiab81QUz3X7rPUanBnmAn9NicNm6QzsVOVy7NslAj79sp12icls0FSMEdBJZpgHxoxcknOETrZJ6PduGibUZB6HP60AuoBsdM/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
+
 #### 第二步：一键部署OpenClaw
 
 1. **进入控制台**：
@@ -106,6 +106,8 @@ OpenClaw在Mac上体验最好，因为：
 2. **选择OpenClaw镜像**：
    - 系统会自动选择OpenClaw应用镜像
    - 无需手动配置
+
+![OpenClaw镜像](https://mmbiz.qpic.cn/mmbiz_png/AnF9mxjhgVicuMCnkoIWcOFEK7vk93gvea7hR9sr0dAXSMkGgWB9sxTibQvywgcdR2tQuuOG63icHPg7QJrbgPAwQUc0GjdIyU1WJHVSGlw5gQ/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
 
 3. **等待部署完成**：
    - 部署过程约1-2分钟
@@ -120,6 +122,8 @@ OpenClaw在Mac上体验最好，因为：
 2. **选择模型**：
    - 推荐使用 **Kimi k2.5**（性价比最高）
    - 也可以选择其他国产大模型
+
+![选择AI供应商](https://mmbiz.qpic.cn/mmbiz_png/AnF9mxjhgVicSlrzibR2Nh1HJYygia6QRDxibZFVwLOwmu98y0Y2eQavVlmxzqY3rA6QIlaVYhqiaPJiathvWyI2BficT1NvFWvbRZS4TVpoAPBial8/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
 
 3. **获取API Key**：
    
@@ -148,6 +152,8 @@ OpenClaw在Mac上体验最好，因为：
    你好，能听到我说话吗？
    ```
 
+![测试对话](https://mmbiz.qpic.cn/mmbiz_png/AnF9mxjhgVicTX9onHRf1ibNeC8NKsaQJrSZeL0t6SG4VDJwiacasuu4zMLwHpUpIicCKB9PdzDtD0Zf5Eh6IQdmL1PoOqTkO9ibnozeTvgm9QPA/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
+
 3. **验证成功**：
    - 如果收到AI回复，说明配置成功
    - 右上角会显示使用的模型名称
@@ -174,6 +180,25 @@ OpenClaw在Mac上体验最好，因为：
 4. **部署流程**：
    - 与腾讯云类似
    - 按照页面提示操作即可
+
+### 阿里云部署（可选）
+
+阿里云也提供了OpenClaw一键部署方案：
+
+1. **访问活动页面**：
+   ```
+   https://www.aliyun.com/activity/ecs/clawdbot
+   ```
+
+2. **选择轻量应用服务器**：
+   - 使用OpenClaw镜像
+   - 一键安装配置
+
+![阿里云轻量服务器](https://mmbiz.qpic.cn/sz_mmbiz_png/AnF9mxjhgVic9JSGLb1JzPEa4dcHaeZRicNuGmKibaTfkIlxddWsyE21g3tzCRHOkibtlXYdy6F0hMHgGYYkj4ULWoOB3SzP0o4TSNia9pX8Dkeo/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
+
+3. **价格参考**：
+   - 与腾讯云类似
+   - 具体以活动页面为准
 
 ### 官方视频教程（强烈推荐）
 
@@ -275,28 +300,59 @@ openclaw onboard
 
 配置向导流程：
 
-1. **选择AI模型**：
-   - 默认：`anthropic/claude-opus-4-5`
-   - 可选：Claude Haiku、Sonnet、Opus系列
+**1. 风险提示**：
 
-2. **配置技能（Skills）**：
-   - 跳过可选依赖安装
-   - 跳过API key配置（稍后手动配置）
+OpenClaw 能力很强，但也有风险。选择 `yes` 继续安装：
 
-3. **启用Hooks**：
-   - 推荐启用`session-memory`（会话记忆）
+![风险提示](https://mmbiz.qpic.cn/mmbiz_png/AnF9mxjhgV8uNVHvZvOckQfOSCqicHOPs9EqXZS4lXJKT8f6kMTmATrBrhNkuR0cRcLQ2xRX1FYHRE30FDsiaItTnPwoHBCwKNM4jY7CL7pqU/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
 
-4. **Gateway运行时**：
-   - 自动选择Node.js 22+
-   - 安装为系统服务（macOS: LaunchAgent）
+**2. 选择启动模式**：
 
-5. **消息通道**：
-   - 可选配置Telegram、Discord等
-   - 建议先跳过，使用Web UI测试
+推荐选择 `QuickStart` 快速启动：
 
-6. **完成配置**：
-   - Gateway服务自动启动
-   - 获取Web UI访问链接
+![选择QuickStart](https://mmbiz.qpic.cn/mmbiz_png/AnF9mxjhgV9dBicNZFPSm16R2nIcp2baQzVgJhQ5ZM48xoQPyGMcHKJibMmDJeS0YPWAuB6yQ2yh4Zvz1nqlpjvL77VxfU7jj6TLnQhRctO9s/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
+
+**3. 选择AI模型**：
+
+选择你的AI供应商（支持国内外主流模型）：
+
+![选择AI供应商](https://mmbiz.qpic.cn/mmbiz_png/AnF9mxjhgVicSlrzibR2Nh1HJYygia6QRDxibZFVwLOwmu98y0Y2eQavVlmxzqY3rA6QIlaVYhqiaPJiathvWyI2BficT1NvFWvbRZS4TVpoAPBial8/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
+
+国内推荐：Qwen（通义千问）、MiniMax、智谱GLM
+
+**4. 选择聊天工具**：
+
+如果没有海外账号，选择最后一个 `None`：
+
+![选择聊天工具](https://mmbiz.qpic.cn/sz_mmbiz_png/AnF9mxjhgV9Dd4hkdiaqIAVvgtrib3CDnicrqgJyOywIEmkCGAl1W21CYt3LhX3jPruuGusHvCSCnhWiaKBvrPqIasdicBx4hdQHgYY5Uj3bT754/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
+
+**5. Gateway端口设置**：
+
+默认 `18789` 即可：
+
+![端口设置](https://mmbiz.qpic.cn/sz_mmbiz_png/AnF9mxjhgVibOrgEN24P26eIprYeYRDsuM7kEZRfJF42y2hqo39iaibJczklvEZ2YqE4ibeBzHHNnxOiaY6ECT9x9kUj0QvibG8VqY7YeIp8ia8icjY/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
+
+**6. 选择Skills**：
+
+使用空格键选择你需要的技能，也可以直接跳过：
+
+![选择Skills](https://mmbiz.qpic.cn/mmbiz_png/AnF9mxjhgV9kIC08IAvgibbZsckqTaicDibxHQnHUPyL7Wich64sruQPKKUqX2rGBYDaLf8aFg4u5Pxw6x1sSmLxI9oNhE5LBbnticEDkDUVhnM4/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
+
+**7. API Key配置**：
+
+没有的可以选择 `no` 跳过：
+
+![API Key配置](https://mmbiz.qpic.cn/mmbiz_png/AnF9mxjhgVib44tOoMmPpZN60paBPTQDhYOkOzQjsQSU2sEXG9deAzkibSoc7tURS8S525JgcJuKcWBn0DRRfrYEhaCjr9Xc1JfhsFv9F5Bkc/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
+
+**8. 启用Hooks**：
+
+推荐启用这三个钩子（用于内容引导、日志和会话记录）：
+
+![启用Hooks](https://mmbiz.qpic.cn/sz_mmbiz_png/AnF9mxjhgVic5TD3Woia5GPLnRDe63YjicyuExBweOOm3rmlJZx1pF30kCkyRvwouTyGQoM3zB5lEHWkdscicKcCiahhZqDicFZoDuxXKichdbBuTg/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1)
+
+**9. 完成配置**：
+
+配置完成后，会自动启动Gateway服务并打开Web UI（`http://127.0.0.1:18789/chat`）
 
 #### 第五步：验证安装
 

@@ -25,10 +25,13 @@
 这是一份**完全免费、持续更新**的OpenClaw中文教程，基于：
 - ✅ **251,000字完整内容**：16章正文 + 4个附录
 - ✅ **66个实战案例**：来自真实使用经验
+- ✅ **50+配置截图**：手把手图文教学
 - ✅ **43篇实战文章**：经过两万人社区验证
 - ✅ **20+篇官方教程**：腾讯云官方教程体系
 
 > **注意**：旧版ClawdBot已停止维护，本教程已全面更新为OpenClaw最新版本。
+> 
+> **项目名称演变**：Clawdbot → Moltbot → OpenClaw（2026年1月因商标问题更名，功能完全一致）
 
 ### 🎯 教程特色
 
@@ -69,13 +72,19 @@
 
 ### 云端一键部署（最简单）
 
-如果你是新手，强烈推荐使用**腾讯云一键部署**：
+如果你是新手，强烈推荐使用**云端一键部署**：
 - ⚡ **秒级部署**：点几下鼠标就完成
-- 💰 **成本低**：20元/月起
+- 💰 **成本低**：20元/月起（阿里云/腾讯云）
 - 📱 **手机可用**：随时随地访问
 - 🎥 **视频教程**：跟着视频操作
+- 🖼️ **图文教程**：10+张配置截图手把手教学
 
-👉 [查看云端部署教程](docs/01-basics/02-installation.md#云端一键部署)
+**支持平台**：
+- **腾讯云**：20元/月，20M带宽 👉 [查看教程](docs/01-basics/02-installation.md#腾讯云lighthouse部署推荐)
+- **阿里云**：价格相近，一键镜像 👉 [查看教程](docs/01-basics/02-installation.md#阿里云部署可选)
+- **火山引擎**：9.9元/月，适合飞书用户 👉 [查看教程](docs/01-basics/02-installation.md#火山引擎部署更便宜)
+
+👉 [查看完整云端部署教程](docs/01-basics/02-installation.md#云端一键部署)
 
 ## 📚 教程目录
 
@@ -203,7 +212,8 @@
 | 附录 | 4个 | 约21,000字 |
 | 总字数 | 251,000字 | 超额完成1,000字 |
 | 实战案例 | 66个 | 可直接应用 |
-| 配图 | 50+ | 第1-14章已添加 |
+| 配置截图 | 50+ | 手把手图文教学 |
+| 命令参考 | 100+ | 完整命令速查表 |
 
 ### 效率提升数据
 
@@ -234,10 +244,13 @@
 
 ## 🔗 官方资源
 
+- **OpenClaw官方网站**：https://openclaw.ai
 - **OpenClaw官方文档**：https://docs.openclaw.ai
+- **GitHub仓库**：https://github.com/openclaw/openclaw
 - **ClawHub技能广场**：https://clawhub.ai
+- **Awesome Skills合集**：https://github.com/VoltAgent/awesome-openclaw-skills
 - **Moltbook AI社交平台**：https://www.moltbook.com
-- **腾讯云官方教程**：[查看完整列表](docs/appendix/d-resources.md#腾讯云官方教程)
+- **腾讯云官方教程**：[查看完整列表](appendix/D-community-resources.md#腾讯云官方教程)
 
 ## 💡 实战案例精选
 
@@ -327,7 +340,8 @@
 ## 📈 项目进度
 
 - ✅ **v1.0**（2026-02-10）：全书完成，251,000字
-- 📝 **v1.1**（计划中）：补充第15-16章配图
+- ✅ **v1.0.1**（2026-02-10）：更新为OpenClaw最新版本，补充50+配置截图
+- 📝 **v1.1**（计划中）：补充更多实战案例
 - 📝 **v1.2**（计划中）：根据反馈优化内容
 - 📝 **v2.0**（计划中）：跟随OpenClaw版本更新
 
@@ -335,9 +349,10 @@
 
 ## 🔗 相关项目
 
-- **Clawbot项目**：https://github.com/xianyu110/clawbot（700+ Stars）
 - **OpenClaw官方**：https://github.com/openclaw/openclaw
 - **OpenClaw文档**：https://docs.openclaw.ai
+- **Awesome Skills**：https://github.com/VoltAgent/awesome-openclaw-skills
+- **Clawbot项目**：https://github.com/xianyu110/clawbot（700+ Stars，历史参考）
 
 ## 📄 许可证
 
@@ -346,9 +361,9 @@
 ---
 
 **最后更新**：2026年2月10日  
-**教程版本**：v1.0（已完成）  
+**教程版本**：v1.0.1（已更新为OpenClaw最新版本）  
 **总字数**：251,000字  
-**适用OpenClaw版本**：2026.1.25+
+**适用OpenClaw版本**：2026.1.30+
 
 ---
 

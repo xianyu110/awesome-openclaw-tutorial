@@ -57,23 +57,37 @@ openclaw -h
 openclaw config --help
 openclaw models --help
 openclaw skills --help
+
+# 健康检查
+openclaw health
+
+# 综合诊断与修复建议
+openclaw doctor
+openclaw doctor --yes  # 自动执行修复
+openclaw doctor --non-interactive  # 非交互模式
 ```
 
 ### A.1.3 配置管理
 
 ```bash
+# 交互式配置向导
+openclaw configure
+
 # 查看所有配置
 openclaw config list
 
 # 查看特定配置
+openclaw config get <path>
 openclaw config get model.apiKey
 openclaw config get model.name
 
-# 设置配置
+# 设置配置（支持JSON5/raw文本）
+openclaw config set <path> <value>
 openclaw config set model.apiKey "sk-xxx"
 openclaw config set model.name "claude-sonnet-4"
 
 # 删除配置
+openclaw config unset <path>
 openclaw config delete model.apiKey
 
 # 重置配置
@@ -86,7 +100,29 @@ openclaw config export > config-backup.json
 openclaw config import config-backup.json
 ```
 
-### A.1.4 对话管理
+### A.1.4 Gateway管理
+
+```bash
+# 安装系统服务（根据平台注册守护进程）
+openclaw gateway install
+
+# 启动Gateway服务
+openclaw gateway start
+
+# 停止Gateway服务
+openclaw gateway stop
+
+# 重启Gateway服务（配置变更后应用）
+openclaw gateway restart
+
+# 查看Gateway系统服务状态
+openclaw gateway status
+
+# 查看Gateway是否可达
+openclaw status
+```
+
+### A.1.5 对话管理
 
 ```bash
 # 发送消息
@@ -98,6 +134,39 @@ openclaw conversation list
 
 # 清空对话历史
 openclaw conversation clear
+```
+
+### A.1.6 通道管理
+
+```bash
+# 列出已登录通道（WhatsApp/Telegram等）
+openclaw channels list
+
+# 登录新的通道账号（扫描/授权链接）
+openclaw channels login
+
+# 查看通道状态
+openclaw channels status
+```
+
+### A.1.7 日志管理
+
+```bash
+# 显示日志
+openclaw logs
+
+# 实时跟踪日志
+openclaw logs --follow
+
+# JSON格式日志
+openclaw logs --json
+
+# 纯文本日志
+openclaw logs --plain
+
+# 限制日志行数
+openclaw logs --limit 100
+```
 
 # 清理旧对话（保留最近N条）
 openclaw conversation clean --keep 20
@@ -257,6 +326,9 @@ openclaw conversation import conversation.json
 # 列出可用Skills
 openclaw skills list
 
+# 查看技能详情
+openclaw skills info <skill>
+
 # 搜索Skills
 openclaw skills search "文件管理"
 
@@ -350,7 +422,52 @@ openclaw models test claude-sonnet-4
 openclaw models stats
 ```
 
-### A.5.2 日志管理
+### A.5.2 插件管理
+
+```bash
+# 列出插件
+openclaw plugins list
+
+# 安装插件
+openclaw plugins install <id>
+openclaw plugins install @openclaw/voice-call
+
+# 启用插件（需要重启网关）
+openclaw plugins enable <id>
+
+# 禁用插件
+openclaw plugins disable <id>
+
+# 卸载插件
+openclaw plugins uninstall <id>
+
+# 查看插件详情
+openclaw plugins info <id>
+```
+
+### A.5.3 卸载命令
+
+```bash
+# 官方推荐卸载方式
+openclaw uninstall
+
+# 全自动卸载（包含状态、workspace、插件等）
+openclaw uninstall --all --yes --non-interactive
+
+# 仅删除状态文件（不删除workspace/CLI）
+openclaw uninstall --state
+
+# 仅删除工作区（移除agent/workspace文件）
+openclaw uninstall --workspace
+
+# 仅卸载服务（不删除数据）
+openclaw uninstall --service
+
+# 模拟卸载（显示结果但不实际执行）
+openclaw uninstall --dry-run
+```
+
+### A.5.4 日志管理
 
 ```bash
 # 查看日志
@@ -372,7 +489,7 @@ openclaw logs clear
 openclaw logs export > logs.txt
 ```
 
-### A.5.3 性能优化
+### A.5.5 性能优化
 
 ```bash
 # 清理缓存
