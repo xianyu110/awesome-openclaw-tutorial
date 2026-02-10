@@ -1,0 +1,117 @@
+name: 同步官方文档
+
+on:
+  schedule:
+    # 每天北京时间上午10点检查（UTC 2:00）
+    - cron: '0 2 * * *'
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  check-updates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 仓库
+        uses: actions/checkout@v4
+
+      - name: 检查 OpenClaw 官方更新
+        id: check
+        run: |
+          # 获取最新版本
+          LATEST_VERSION=$(curl -s https://api.github.com/repos/openclaw/openclaw/releases/latest | jq -r .tag_name)
+          echo "latest_version=$LATEST_VERSION" >> $GITHUB_OUTPUT
+          
+          # 获取当前记录的版本（兼容 macOS 和 Linux）
+          CURRENT_VERSION=$(grep '适用OpenClaw版本' README.md | head -1 | sed 's/.*：//' | sed 's/+.*//' | sed 's/（.*//')
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          
+          # 比较版本
+          if [ "$LATEST_VERSION" != "v$CURRENT_VERSION" ]; then
+            echo "has_update=true" >> $GITHUB_OUTPUT
+            echo "发现新版本: $LATEST_VERSION (当前: v$CURRENT_VERSION)"
+          else
+            echo "has_update=false" >> $GITHUB_OUTPUT
+            echo "已是最新版本: $CURRENT_VERSION"
+          fi
+
+      - name: 创建更新提醒 Issue
+        if: steps.check.outputs.has_update == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const latestVersion = '${{ steps.check.outputs.latest_version }}';
+            const currentVersion = '${{ steps.check.outputs.current_version }}';
+            
+            // 获取 Release Notes
+            const release = await github.rest.repos.getLatestRelease({
+              owner: 'openclaw',
+              repo: 'openclaw'
+            });
+            
+            const issueTitle = `📢 OpenClaw 新版本发布: ${latestVersion}`;
+            const issueBody = `
+            ## 🆕 检测到 OpenClaw 新版本
+            
+            **当前教程版本**: v${currentVersion}  
+            **最新官方版本**: ${latestVersion}
+            
+            ### 📝 Release Notes
+            
+            ${release.data.body}
+            
+            ### ✅ 需要更新的内容
+            
+            - [ ] 更新 README.md 中的版本号
+            - [ ] 检查新功能并补充到教程
+            - [ ] 更新安装说明（如有变化）
+            - [ ] 更新命令参考（如有新命令）
+            - [ ] 检查配置项变化
+            
+            ### 🔗 相关链接
+            
+            - [Release 页面](${release.data.html_url})
+            - [官方文档](https://docs.openclaw.ai/)
+            - [GitHub 仓库](https://github.com/openclaw/openclaw)
+            
+            ---
+            
+            *此 Issue 由 GitHub Actions 自动创建*
+            `;
+            
+            // 检查是否已存在相同的 Issue
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'sync,auto-generated'
+            });
+            
+            const existingIssue = issues.data.find(issue => 
+              issue.title.includes(latestVersion)
+            );
+            
+            if (!existingIssue) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: issueTitle,
+                body: issueBody,
+                labels: ['sync', 'auto-generated', 'documentation']
+              });
+              console.log('✅ 已创建更新提醒 Issue');
+            } else {
+              console.log('ℹ️ Issue 已存在，跳过创建');
+            }
+
+      - name: 检查官方文档变化
+        run: |
+          # 获取官方文档的最新提交
+          DOCS_COMMIT=$(curl -s https://api.github.com/repos/openclaw/openclaw/commits?path=docs&per_page=1 | jq -r '.[0].sha')
+          echo "最新文档提交: $DOCS_COMMIT"
+          
+          # 保存到文件供后续使用
+          echo "$DOCS_COMMIT" > .last-docs-commit
+
+      - name: 发送通知（可选）
+        if: steps.check.outputs.has_update == 'true'
+        run: |
+          echo "🔔 发现新版本，已创建 Issue 提醒"
