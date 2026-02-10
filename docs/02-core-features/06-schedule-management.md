@@ -86,10 +86,13 @@ OpenClaw：已创建日历事件！
 - iPhone日历 ✅
 ```
 
+![创建日历事件](https://upload.maynor1024.live/file/1770176285839_image_20.jpg)
 
 **查看效果**：
 
 打开Mac日历，你会看到：
+
+![Mac日历显示](https://upload.maynor1024.live/file/1770176284226_image_21.jpg)
 
 ```
 2026年2月11日 星期二

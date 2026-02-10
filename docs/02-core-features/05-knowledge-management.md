@@ -79,9 +79,13 @@ OpenClaw：已经帮你总结完成并存到备忘录了！
 已保存到：备忘录 > AI学习 > 技术文章
 ```
 
+![保存文章到备忘录](https://upload.maynor1024.live/file/1770176257602_image_14.jpg)
+
 **实际效果**：
 
 打开Mac备忘录，你会看到：
+
+![备忘录中的文章](https://upload.maynor1024.live/file/1770176259365_image_15.jpg)
 
 ```markdown
 # AI技术发展趋势

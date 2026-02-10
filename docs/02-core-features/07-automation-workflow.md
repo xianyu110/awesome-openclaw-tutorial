@@ -89,6 +89,7 @@ OpenClaw：好的，我来设置定时提醒！
 首次执行：明天 08:00
 ```
 
+![设置定时提醒](https://upload.maynor1024.live/file/1770176300319_image_24.jpg)
 
 **第二天早上8点**：
 
@@ -381,6 +382,8 @@ OpenClaw：好的，我来设置博客监控！
 首次检查：明天 09:00
 ```
 
+![设置网站监控](https://upload.maynor1024.live/file/1770176318568_image_28.jpg)
+
 **发现更新时**：
 
 ```
@@ -650,7 +653,11 @@ OpenClaw：好的，我来设置AI日报！
 首次推送：明天 08:00
 ```
 
+![设置日报推送](https://upload.maynor1024.live/file/1770176303922_image_25.jpg)
+
 **第二天早上8点**：
+
+![日报推送示例](https://upload.maynor1024.live/file/1770176310383_image_27.jpg)
 
 ```
 OpenClaw：📊 AI行业日报（2026-02-11）

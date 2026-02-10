@@ -585,6 +585,8 @@ OpenClaw：已截图！
 是否需要OCR识别文字？
 ```
 
+![截图功能示例](https://upload.maynor1024.live/file/1770176353570_image_35.jpg)
+
 **12. translator（翻译助手）**
 
 ```
