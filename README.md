@@ -90,120 +90,146 @@
 
 ## 📚 教程目录
 
-### 第一部分：基础入门
+### 🎯 第一部分：零基础入门（3章）
 
-- [第1章：认识OpenClaw](docs/01-basics/01-introduction.md)
-  - 什么是OpenClaw
-  - 核心优势
-  - 与其他AI助手对比
-  - 适用场景分析
+#### [第1章：OpenClaw是什么？能帮你做什么？](docs/01-basics/01-introduction.md)
+> 5分钟了解OpenClaw核心价值，看看它如何让你效率提升10倍
+- 🤖 OpenClaw vs ChatGPT/Copilot：为什么选OpenClaw？
+- ⚡ 4大核心优势：本地文件、自动化、多平台、可扩展
+- 💼 5类人群的典型应用场景（知识工作者/程序员/创作者/学生/超级个体）
+- 📊 真实效率数据：文档处理提升81%，硬盘清理提升92%
 
-- [第2章：环境搭建](docs/01-basics/02-installation.md)
-  - 系统要求
-  - 云端一键部署（推荐）
-  - 本地安装教程
-  - API配置指南（国产大模型为主）
-  - 常见问题解决
+#### [第2章：5分钟完成部署（云端20元/月 vs 本地免费）](docs/01-basics/02-installation.md)
+> 手把手图文教程，新手也能轻松搞定，推荐云端部署随时随地用
+- ☁️ 云端一键部署：腾讯云20元/月、火山引擎9.9元/月（含视频教程）
+- 💻 本地安装：Mac/Windows/Linux完整教程
+- 🔑 API配置：国产大模型省95%成本（DeepSeek/Kimi/GLM-4）
+- 🎯 中转API：一个地址访问300+模型，统一计费更省钱
+- ⚠️ 10个常见安装问题及解决方案
 
-- [第3章：快速上手](docs/01-basics/03-quick-start.md)
-  - 第一次对话
-  - 基本命令使用
-  - 人设配置技巧
-  - 模型选择指南
+#### [第3章：发送第一条消息，配置你的专属AI助手](docs/01-basics/03-quick-start.md)
+> 从零开始对话，学会基本命令和人设配置，让AI更懂你
+- 💬 第一次对话：测试连接、基础问答
+- 📝 10个常用命令：文件搜索、日程创建、网页存档
+- 🎭 人设配置技巧：让AI成为你的专属助手
+- 🧠 模型选择指南：什么场景用什么模型最省钱
 
-### 第二部分：核心功能
+---
 
-- [第4章：本地文件管理](docs/02-core-features/04-file-management.md)
-  - 智能文件搜索
-  - 批量文件处理
-  - 文件自动整理
-  - 硬盘清理优化
+### 🚀 第二部分：4大核心功能（4章）
 
-- [第5章：知识库管理](docs/02-core-features/05-knowledge-management.md)
-  - 网页文章存档
-  - GitHub项目管理
-  - 论文笔记整理
-  - 跨设备同步方案
+#### [第4章：本地文件管理神器（效率提升81%）](docs/02-core-features/04-file-management.md)
+> 告别手动翻找文件，AI帮你秒找、批量处理、自动整理
+- 🔍 智能搜索：从1000张图片中找到跑步机发票（真实案例）
+- 📋 批量处理：自动填写报销单Excel，处理100+文件
+- 🗂️ 自动整理：根据内容智能分类和重命名
+- 🧹 硬盘清理：释放50GB空间，效率提升92%
 
-- [第6章：日程与任务管理](docs/02-core-features/06-schedule-management.md)
-  - 日历自动创建
-  - 微信截图识别
-  - 批量日程导入
-  - 提醒设置技巧
+#### [第5章：个人知识库（网页/论文/GitHub一键存档）](docs/02-core-features/05-knowledge-management.md)
+> 构建你的第二大脑，所有知识随时调用，跨设备同步
+- 📰 网页剪藏：技术文章自动总结并存储到备忘录
+- 📚 论文管理：PDF自动解析、提取关键信息
+- 💻 GitHub项目：自动追踪、生成学习笔记
+- ☁️ 跨设备同步：Mac、iPhone无缝衔接
 
-- [第7章：自动化工作流](docs/02-core-features/07-automation-workflow.md)
-  - 定时任务设置
-  - 网站监控实战
-  - 日报自动推送
-  - 循环任务配置
+#### [第6章：日程管理（微信截图秒变日历事件）](docs/02-core-features/06-schedule-management.md)
+> 告别手动输入，截图发给AI自动创建日历，同步到iPhone
+- 📸 微信截图识别：自动提取时间、地点、参与人
+- 📅 日历自动创建：支持Apple日历、Google日历
+- 📥 批量导入：Excel日程表一键导入
+- ⏰ 智能提醒：不错过任何重要事项
 
-### 第三部分：进阶应用
+#### [第7章：自动化工作流（定时任务/网站监控/AI日报）](docs/02-core-features/07-automation-workflow.md)
+> 让AI 24小时为你工作，监控网站、推送日报、执行定时任务
+- ⏰ 定时任务：每天9点自动推送AI行业日报
+- 🔔 网站监控：Claude 5发布立即通知（真实案例）
+- 📊 日报推送：聚合多个信息源，自动生成摘要
+- 🔄 循环任务：周报、月报自动生成
 
-- [第8章：Skills扩展](docs/03-advanced/08-skills-extension.md)
-  - ClawHub技能市场
-  - 必装Skills推荐
-  - 自定义Skills开发
-  - Skills管理技巧
+---
 
-- [第9章：多平台集成](docs/03-advanced/09-multi-platform-integration.md)
-  - 企业微信Bot配置
-  - 钉钉Bot配置
-  - 飞书Bot配置
-  - QQ Bot配置
+### 💎 第三部分：进阶技能（4章）
 
-- [第10章：API服务集成](docs/03-advanced/10-api-service-integration.md)
-  - Banana绘图集成
-  - Notion数据同步
-  - 视频生成服务
-  - 语音合成接入
+#### [第8章：Skills扩展（1715个技能让AI无所不能）](docs/03-advanced/08-skills-extension.md)
+> ClawHub技能市场，一键安装，让AI能力无限扩展
+- 🏪 ClawHub技能市场：1715个官方技能
+- ⭐ 必装Skills Top 10：文件管理、网页搜索、日历同步
+- 🛠️ 自定义Skills开发：打造专属技能
+- 📦 Skills管理技巧：安装、更新、卸载
 
-- [第11章：高级配置](docs/03-advanced/11-advanced-configuration.md)
-  - Antigravity Manager配置
-  - 多模型切换策略
-  - 成本优化方案
-  - 性能调优技巧
+#### [第9章：多平台集成（企微/钉钉/飞书/QQ一键接入）](docs/03-advanced/09-multi-platform-integration.md)
+> 团队协作必备，让OpenClaw接入你的工作平台
+- 💼 企业微信Bot：团队协作、自动回复
+- 📱 钉钉Bot：办公自动化、审批提醒
+- 🚀 飞书Bot：项目管理、文档协作
+- 💬 QQ Bot：个人助手、群管理
 
-### 第四部分：实战案例
+#### [第10章：高级配置（绘图/Notion/视频/语音）](docs/03-advanced/10-advanced-configuration.md)
+> 接入第三方服务，让AI能力更强大
+- 🎨 Banana绘图：AI生成图片、Logo、海报
+- 📝 Notion同步：自动更新数据库、创建页面
+- 🎬 视频生成：文字转视频、自动剪辑
+- 🔊 语音合成：文字转语音、多语言支持
 
-- [第12章：个人效率提升](docs/04-practical-cases/12-personal-productivity.md)
-  - 知识工作者的一天
-  - 程序员的开发助手
-  - 内容创作者的工作流
-  - 学生的学习助手
-  - **云上OpenClaw的5种正确打开方式**（新增）
+#### [第11章：个人效率实战（多模型切换/成本优化/性能调优）](docs/03-advanced/10-advanced-configuration.md)
+> 榨干OpenClaw性能，省钱又高效
+- 🎛️ Antigravity Manager：可视化配置管理
+- 🔄 多模型切换：不同任务用不同模型，省50%成本
+- 💰 成本优化：国产模型组合，月费用降至5-30元
+- ⚡ 性能调优：响应速度提升3倍
 
-- [第13章：个人效率进阶](docs/04-practical-cases/13-personal-efficiency-advanced.md)（重构）
-  - 高级自动化工作流
-  - 多Skills组合应用
-  - 个人知识图谱构建
-  - 效率优化策略
+---
 
-- [第14章：创意应用探索](docs/04-practical-cases/14-creative-applications.md)
-  - AI绘画工作流
-  - 视频脚本生成
-  - 多语言翻译助手
-  - 数据分析自动化
+### 🎯 第四部分：实战案例（3章）
 
-### 第五部分：问题解决
+#### [第11章：个人效率实战](docs/04-practical-cases/11-personal-productivity.md)
+> 真实案例，直接套用，立即提升效率
+- 👔 知识工作者：文档处理、会议记录、邮件管理（效率提升85%）
+- 👨‍💻 程序员：代码审查、Bug追踪、文档生成（效率提升78%）
+- ✍️ 内容创作者：选题策划、素材整理、多平台发布（效率提升92%）
+- 🎓 学生：论文阅读、笔记整理、作业辅导
+- 🚀 **云上OpenClaw的5种正确打开方式**（新增）
 
-- [第15章：常见问题与解决](docs/05-troubleshooting/15-common-problems.md)
-  - 安装配置问题
-  - API连接问题
-  - Skills加载问题
-  - 性能优化问题
+#### [第12章：个人效率进阶（多Skills组合/知识图谱）](docs/04-practical-cases/12-personal-efficiency-advanced.md)
+> 进阶玩法，打造个人效率系统
+- 🔗 多Skills组合：网站监控+自动化推送+日报生成
+- 🧠 个人知识图谱：构建你的知识网络
+- 📈 效率优化策略：从80%到95%的进阶之路
+- 💡 5个高级自动化案例（ROI 9000%-15900%）
 
-- [第16章：避坑指南](docs/05-troubleshooting/16-best-practices.md)
-  - 新手常犯的10个错误
-  - 模型选择避坑
-  - 成本控制避坑
-  - 安全隐私注意事项
+#### [第13章：创意应用探索（AI绘画/视频/翻译/数据分析）](docs/04-practical-cases/13-creative-applications.md)
+> 解锁OpenClaw的创意玩法
+- 🎨 AI绘画工作流：从创意到成品
+- 🎬 视频脚本生成：自动化内容创作
+- 🌍 多语言翻译：效率提升95%
+- 📊 数据分析自动化：Excel/CSV自动处理
 
-### 附录
+---
 
-- [附录A：命令速查表](appendix/A-command-reference.md) - 5大类常用命令
-- [附录B：常用Skills清单](appendix/B-skills-catalog.md) - 必装Skills Top 10
-- [附录C：API服务商对比](appendix/C-api-comparison.md) - 详细价格对比
-- [附录D：社区资源导航](appendix/D-community-resources.md) - 完整资源链接
+### 🛠️ 第五部分：问题解决（2章）
+
+#### [第14章：常见问题速查（安装/API/Skills/性能）](docs/05-troubleshooting/14-common-problems.md)
+> 遇到问题？这里有答案
+- ⚙️ 安装配置问题：10个常见错误及解决
+- 🔌 API连接问题：超时、限流、鉴权失败
+- 🧩 Skills加载问题：安装失败、版本冲突
+- 🚀 性能优化问题：响应慢、内存占用高
+
+#### [第15章：避坑指南（新手必看）](docs/05-troubleshooting/15-best-practices.md)
+> 前人踩过的坑，你不用再踩
+- ⚠️ 新手常犯的10个错误（附解决方案）
+- 🧠 模型选择避坑：什么场景用什么模型
+- 💰 成本控制避坑：如何避免API费用爆炸
+- 🔒 安全隐私注意事项：保护你的数据
+
+---
+
+### 📖 附录：速查手册
+
+- [附录A：命令速查表](appendix/A-command-reference.md) - 100+常用命令，5大类快速查找
+- [附录B：必装Skills清单](appendix/B-skills-catalog.md) - Top 10必装技能，附安装教程
+- [附录C：API服务商对比](appendix/C-api-comparison.md) - 10+服务商价格对比，帮你省钱
+- [附录D：社区资源导航](appendix/D-community-resources.md) - 官方文档、视频教程、交流群
 
 ## 📊 项目数据
 
