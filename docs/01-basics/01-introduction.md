@@ -4,6 +4,10 @@
 
 ## 1.1 什么是OpenClaw
 
+![img](https://upload.maynor1024.live/file/1770806852123_openclaw-logo-text-dark.png)
+
+
+
 ### OpenClaw的定义
 
 OpenClaw是一个**开源的本地AI助手**，它可以：
