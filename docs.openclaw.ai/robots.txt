@@ -1,3 +1,0 @@
-User-agent: *
-Disallow: /cdn-cgi/
-Sitemap: https://docs.openclaw.ai/sitemap.xml

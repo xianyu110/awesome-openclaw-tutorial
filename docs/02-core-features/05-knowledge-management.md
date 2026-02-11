@@ -79,13 +79,13 @@ OpenClaw：已经帮你总结完成并存到备忘录了！
 已保存到：备忘录 > AI学习 > 技术文章
 ```
 
-![保存文章到备忘录](https://upload.maynor1024.live/file/1770176257602_image_14.jpg)
+![image-20260211212230061](https://upload.maynor1024.live/file/1770816158161_image-20260211212230061.png)
 
 **实际效果**：
 
 打开Mac备忘录，你会看到：
 
-![备忘录中的文章](https://upload.maynor1024.live/file/1770176259365_image_15.jpg)
+![image-20260211212257745](https://upload.maynor1024.live/file/1770816185190_image-20260211212257745.png)
 
 ```markdown
 # AI技术发展趋势
@@ -319,8 +319,7 @@ OpenClaw可以帮你高效管理GitHub项目。
 **OpenClaw做法**：
 
 ```
-你：帮我分析这个GitHub项目，总结核心信息
-https://github.com/example/awesome-project
+你：帮我分析这个GitHub项目，总结核心信息：https://github.com/xianyu110/awesome-openclaw-tutorial ，
 
 OpenClaw：正在分析项目...
 
@@ -352,10 +351,9 @@ OpenClaw：正在分析项目...
 
 学习价值：⭐⭐⭐⭐⭐
 推荐指数：⭐⭐⭐⭐⭐
-
-已保存到：备忘录 > GitHub项目 > 数据处理
 ```
 
+![image-20260211212558294](https://upload.maynor1024.live/file/1770816367098_image-20260211212558294.png)
 
 ### 5.2.4 实战案例2：技术选型参考
 
