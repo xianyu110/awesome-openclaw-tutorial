@@ -4,102 +4,478 @@
 
 ## ⚙️ 本章内容
 
-- 11.1 Antigravity Manager配置
+- 11.1 Antigravity Manager完全配置指南
 - 11.2 多模型切换策略
 - 11.3 成本优化方案
 - 11.4 性能调优技巧
 
 ---
 
-## 11.1 Antigravity Manager配置
+## 11.1 Antigravity Manager完全配置指南
 
-### 10.1.1 什么是Antigravity Manager
+### 11.1.1 什么是Antigravity Manager？
 
 **定义**：
-Antigravity Manager是OpenClaw的API管理工具，用于：
-- 管理多个AI模型API
-- 统一API接口
-- 负载均衡
-- 成本控制
 
-**核心优势**：
-```
-✅ 统一管理：一个地方管理所有API
-✅ 灵活切换：随时切换不同模型
-✅ 成本优化：自动选择最优方案
-✅ 高可用：API故障自动切换
-```
+Antigravity Manager是一个AI API代理工具，可以让你通过本地服务访问多个AI模型（Claude、Gemini、GPT等），统一管理API密钥和请求。
 
-### 10.1.2 安装Antigravity Manager
+**项目地址**：https://github.com/lbjlaq/Antigravity-Manager
 
-**本地安装**：
-```bash
-# 克隆仓库
-git clone https://github.com/antigravity/manager.git
+**为什么要用Antigravity Manager？**
 
-# 进入目录
-cd manager
+把OpenClaw和Antigravity Manager结合使用，你可以：
 
-# 安装依赖
-npm install
+- ✅ **本地部署**：所有数据在本地处理，保护隐私
+- ✅ **统一管理**：一个工具管理所有AI模型
+- ✅ **成本控制**：使用自己的API密钥，避免中间商加价
+- ✅ **灵活切换**：随时切换不同的模型，无需修改代码
+- ✅ **技能扩展**：通过ClawHub安装各种实用技能
 
-# 启动服务
-npm start
-```
+![Antigravity Manager架构](https://upload.maynor1024.live/file/1770264626936_image-20260205121018123.png)
 
-**Docker安装（推荐）**：
-```bash
-# 拉取镜像
-docker pull antigravity/manager
+### 11.1.2 系统要求和前置准备
 
-# 运行容器
-docker run -d \
-  -p 3000:3000 \
-  -v ~/antigravity:/data \
-  antigravity/manager
-```
+**系统要求**：
+- macOS 10.15+、Windows 10+、或Linux
+- 至少4GB内存
+- 稳定的网络连接
 
+**需要准备的东西**：
+1. Antigravity Manager安装包
+2. AI模型的API Key（或独享账号）
+3. 基本的命令行操作能力
 
-### 10.1.3 配置API
+### 11.1.3 安装Antigravity Manager
 
-**添加Claude API**：
-```bash
-# 访问管理界面
-http://localhost:3000
+#### macOS用户
 
-# 添加API
-名称：Claude Sonnet 4.5
-类型：Anthropic
-API Key：your-api-key
-模型：claude-sonnet-4.5
-```
+1. 访问[Antigravity Manager Releases](https://github.com/lbjlaq/Antigravity-Manager/releases)
+2. 下载最新版本的`.dmg`文件
+3. 双击`.dmg`文件，将应用拖入`Applications`文件夹
+4. 打开应用（首次打开可能需要在「系统偏好设置 → 安全性与隐私」中允许）
 
-**添加GPT API**：
-```bash
-名称：GPT-5.2
-类型：OpenAI
-API Key：your-api-key
-模型：gpt-5.2
-```
+#### Windows用户
 
-**添加Gemini API**：
-```bash
-名称：Gemini 3 Pro
-类型：Google
-API Key：your-api-key
-模型：gemini-3-pro
-```
+1. 访问[Antigravity Manager Releases](https://github.com/lbjlaq/Antigravity-Manager/releases)
+2. 下载最新版本的`.exe`安装包
+3. 运行安装程序，按照提示完成安装
+4. 启动Antigravity Manager
 
-### 10.1.4 配置OpenClaw
+#### Linux用户
+
+1. 访问[Antigravity Manager Releases](https://github.com/lbjlaq/Antigravity-Manager/releases)
+2. 下载最新版本的`.AppImage`或`.deb`文件
+3. 给予执行权限并运行：
 
 ```bash
-# 配置Antigravity Manager地址
-openclaw config set api.baseUrl "http://localhost:3000"
+chmod +x Antigravity-Manager-*.AppImage
+./Antigravity-Manager-*.AppImage
+```
 
-# 配置User Token
-openclaw config set api.token "your-user-token"
+#### 验证安装
 
-# 测试连接
+启动后，应用会在本地运行一个API服务，默认地址：`http://127.0.0.1:8045`
+
+在浏览器中访问这个地址，如果能看到管理界面，说明安装成功。
+
+### 11.1.4 配置AI模型账号
+
+Antigravity Manager需要你提供AI模型的API密钥才能工作。
+
+#### 方案1：使用官方API
+
+**Claude API**
+1. 访问[Anthropic Console](https://console.anthropic.com/)
+2. 注册账号并绑定信用卡
+3. 创建API Key
+4. 复制保存
+
+**Gemini API**
+1. 访问[Google AI Studio](https://makersuite.google.com/app/apikey)
+2. 登录Google账号
+3. 创建API Key
+4. 复制保存
+
+**OpenAI API**
+1. 访问[OpenAI Platform](https://platform.openai.com/api-keys)
+2. 注册账号并绑定信用卡
+3. 创建API Key
+4. 复制保存
+
+#### 方案2：购买独享账号（推荐）
+
+如果你不想自己申请API，可以购买独享账号：
+
+🎁 **推荐**：Gemini 3 Pro独享账号12个月（支持反重力）
+
+**优势：**
+- ✅ 独享账号，无需担心限流
+- ✅ 支持Antigravity Manager
+- ✅ 12个月有效期
+- ✅ 性价比高
+- ✅ 即买即用
+
+#### 在Antigravity Manager中配置API Key
+
+1. 打开Antigravity Manager管理界面
+2. 点击「API Keys」
+3. 选择对应的AI服务商（Claude、Gemini、OpenAI）
+4. 输入API Key
+5. 点击「保存」
+
+### 11.1.5 生成User Token
+
+User Token是OpenClaw访问Antigravity Manager的凭证。
+
+1. 在Antigravity Manager界面中，点击右上角「User Tokens」
+2. 点击「创建新Token」
+3. 复制生成的Token（例如：`sk-82bc103b51f24af888af525a7835e87c`）
+4. ⚠️ **重要**：妥善保存这个Token，它只会显示一次！
+
+### 11.1.6 配置OpenClaw
+
+#### 配置Claude Sonnet 4.5（默认模型）
+
+这是最常用的模型，适合日常对话和代码生成。
+
+```bash
+# 添加local-anthropic provider
+cat ~/.openclaw/openclaw.json | jq '.models.providers["local-anthropic"] = {
+  "baseUrl": "http://127.0.0.1:8045",
+  "apiKey": "你的User_Token",
+  "auth": "api-key",
+  "api": "anthropic-messages",
+  "models": [
+    {
+      "id": "claude-sonnet-4-5-20250929",
+      "name": "Local Claude Sonnet 4.5",
+      "reasoning": false,
+      "input": ["text"],
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0
+      },
+      "contextWindow": 200000,
+      "maxTokens": 8192
+    }
+  ]
+}' > /tmp/openclaw-temp.json && mv /tmp/openclaw-temp.json ~/.openclaw/openclaw.json
+
+# 设置为默认模型
+openclaw config set agents.defaults.model.primary "local-anthropic/claude-sonnet-4-5-20250929"
+```
+
+**注意**：把`你的User_Token`替换成第三步生成的Token。
+
+#### 配置Claude Opus 4.5 Thinking（推理模型）
+
+这是Claude的推理模型，适合复杂问题和深度思考。
+
+```bash
+cat ~/.openclaw/openclaw.json | jq '.models.providers["local-anthropic-opus"] = {
+  "baseUrl": "http://127.0.0.1:8045",
+  "apiKey": "你的User_Token",
+  "auth": "api-key",
+  "api": "anthropic-messages",
+  "models": [
+    {
+      "id": "claude-opus-4-5-thinking",
+      "name": "Local Claude Opus 4.5 Thinking",
+      "reasoning": true,
+      "input": ["text"],
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0
+      },
+      "contextWindow": 200000,
+      "maxTokens": 8192
+    }
+  ]
+}' > /tmp/openclaw-temp.json && mv /tmp/openclaw-temp.json ~/.openclaw/openclaw.json
+```
+
+#### 配置Gemini 3 Pro Image（多模态模型）
+
+这是Google的多模态模型，支持图片识别和分析。
+
+```bash
+cat ~/.openclaw/openclaw.json | jq '.models.providers["local-google"] = {
+  "baseUrl": "http://127.0.0.1:8045/v1beta",
+  "apiKey": "你的User_Token",
+  "auth": "api-key",
+  "api": "google-generative-ai",
+  "models": [
+    {
+      "id": "gemini-3-pro-image",
+      "name": "Local Gemini 3 Pro Image",
+      "reasoning": false,
+      "input": ["text", "image"],
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0
+      },
+      "contextWindow": 2000000,
+      "maxTokens": 8192
+    }
+  ]
+}' > /tmp/openclaw-temp.json && mv /tmp/openclaw-temp.json ~/.openclaw/openclaw.json
+```
+
+### 11.1.7 验证配置
+
+#### 检查模型列表
+
+```bash
+openclaw models list
+```
+
+你应该看到：
+
+```
+Model                                      Input      Ctx      Local Auth  Tags
+local-anthropic/claude-sonnet-4-5-20250929 text       195k     yes   yes   default
+local-anthropic-opus/claude-opus-4-5-thinking text    195k     yes   yes   configured
+local-google/gemini-3-pro-image            text,image 1953k    yes   yes   configured
+```
+
+#### 重启Gateway
+
+```bash
+openclaw gateway restart
+```
+
+#### 测试连接
+
+```bash
+openclaw message send "你好，介绍一下你自己"
+```
+
+如果能正常返回回复，说明配置成功。
+
+### 11.1.8 使用方法
+
+#### 使用默认模型（Claude Sonnet 4.5）
+
+直接发送消息即可：
+
+```bash
+openclaw message send "写一个Python脚本，打印Hello World"
+```
+
+#### 切换到Opus Thinking模型
+
+适合需要深度思考的复杂问题：
+
+```bash
+openclaw config set agents.defaults.model.primary "local-anthropic-opus/claude-opus-4-5-thinking"
+openclaw gateway restart
+```
+
+#### 切换到Gemini Image模型
+
+适合需要图片识别的场景：
+
+```bash
+openclaw config set agents.defaults.model.primary "local-google/gemini-3-pro-image"
+openclaw gateway restart
+```
+
+#### 临时使用特定模型
+
+不修改默认配置，临时使用某个模型：
+
+```bash
+# 使用Opus Thinking
+openclaw agent --model "local-anthropic-opus/claude-opus-4-5-thinking" --message "解释量子计算的原理"
+
+# 使用Gemini Image
+openclaw agent --model "local-google/gemini-3-pro-image" --message "分析这张图片" --image ./photo.jpg
+```
+
+### 11.1.9 模型选择指南
+
+#### Claude Sonnet 4.5
+
+**适用场景：**
+- 日常对话
+- 代码生成
+- 文档编写
+- 快速问答
+
+**特点：**
+- 速度快
+- 成本低
+- 质量高
+- 上下文窗口：200k tokens
+
+#### Claude Opus 4.5 Thinking
+
+**适用场景：**
+- 复杂推理
+- 数学问题
+- 算法优化
+- 深度分析
+
+**特点：**
+- 推理能力强
+- 思考过程可见
+- 适合复杂问题
+- 上下文窗口：200k tokens
+
+#### Gemini 3 Pro Image
+
+**适用场景：**
+- 图片识别
+- 多模态任务
+- 文档分析
+- 设计评审
+
+**特点：**
+- 支持图片输入
+- 超大上下文窗口
+- 识别准确
+- 上下文窗口：2000k tokens
+
+### 11.1.10 高级配置
+
+#### 配置模型别名
+
+给模型起一个好记的名字：
+
+```bash
+openclaw config set agents.defaults.models."local-anthropic/claude-sonnet-4-5-20250929".alias "我的Claude"
+```
+
+#### 添加多个API Key
+
+如果你有多个Antigravity账号，可以配置多个provider：
+
+```bash
+cat ~/.openclaw/openclaw.json | jq '.models.providers["local-anthropic-2"] = {
+  "baseUrl": "http://127.0.0.1:8045",
+  "apiKey": "另一个User_Token",
+  "auth": "api-key",
+  "api": "anthropic-messages",
+  "models": [...]
+}' > /tmp/openclaw-temp.json && mv /tmp/openclaw-temp.json ~/.openclaw/openclaw.json
+```
+
+#### 配置成本追踪
+
+虽然本地API成本为0，但你可以设置虚拟成本来追踪使用量：
+
+```json
+{
+  "cost": {
+    "input": 0.003,
+    "output": 0.015,
+    "cacheRead": 0.0003,
+    "cacheWrite": 0.00375
+  }
+}
+```
+
+#### 备份配置
+
+```bash
+cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.backup
+```
+
+#### 恢复配置
+
+```bash
+cp ~/.openclaw/openclaw.json.backup ~/.openclaw/openclaw.json
+openclaw gateway restart
+```
+
+### 11.1.11 常用命令速查
+
+```bash
+# 查看模型列表
+openclaw models list
+
+# 查看当前默认模型
+openclaw config get agents.defaults.model.primary
+
+# 切换默认模型
+openclaw config set agents.defaults.model.primary "模型ID"
+
+# 重启Gateway
+openclaw gateway restart
+
+# 查看配置文件
+cat ~/.openclaw/openclaw.json | jq '.models.providers'
+
+# 发送消息
+openclaw message send "你的消息"
+
+# 临时使用特定模型
+openclaw agent --model "模型ID" --message "你的消息"
+```
+
+### 11.1.12 模型ID速查
+
+```
+local-anthropic/claude-sonnet-4-5-20250929
+local-anthropic-opus/claude-opus-4-5-thinking
+local-google/gemini-3-pro-image
+```
+
+### 11.1.13 故障排查
+
+#### 问题1：模型列表为空
+
+**原因**：配置文件格式错误或路径不对
+
+**解决方法**：
+```bash
+# 检查配置文件
+cat ~/.openclaw/openclaw.json | jq '.models.providers'
+
+# 如果返回错误，恢复备份
+cp ~/.openclaw/openclaw.json.backup ~/.openclaw/openclaw.json
+```
+
+#### 问题2：API连接失败
+
+**原因**：Antigravity Manager未启动或端口被占用
+
+**解决方法**：
+```bash
+# 检查API是否正常
+curl http://127.0.0.1:8045/v1/models
+
+# 检查端口占用（macOS/Linux）
+lsof -i :8045
+
+# 重启Antigravity Manager
+```
+
+#### 问题3：配置后模型不生效
+
+**原因**：忘记重启Gateway
+
+**解决方法**：
+```bash
+openclaw gateway restart
+```
+
+#### 问题4：User Token无效
+
+**原因**：Token过期或输入错误
+
+**解决方法**：
+1. 在Antigravity Manager中重新生成Token
+2. 更新配置文件中的apiKey
+3. 重启Gateway
+
+---# 测试连接
 openclaw test api
 ```
 
