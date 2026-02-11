@@ -1,0 +1,45 @@
+Banana Pro Image Generation Skill - 上传信息
+================================================
+
+Skill 名称: bananapro-image-gen
+显示名称: Banana Pro Image Generation
+版本: 1.0.0
+作者: xianyu110
+分类: Creativity
+
+描述:
+使用 Gemini 3 Pro Image 生成图片的 OpenClaw Skill，支持白板图、Logo设计、社交媒体配图等多种场景。
+
+特点:
+- 支持中文提示词
+- 多种分辨率（1K/2K/4K）
+- 快速响应（10-30秒）
+- 成本低廉（$0.04-0.16/张）
+
+标签:
+ai, image-generation, gemini, creative, whiteboard, logo-design, text-to-image
+
+GitHub 仓库:
+https://github.com/xianyu110/awesome-openclaw-tutorial
+
+文档链接:
+https://github.com/xianyu110/awesome-openclaw-tutorial/tree/main/.claude/.skills/bananapro-image-gen
+
+================================================
+
+上传步骤:
+
+1. 访问 https://skills.sh/
+2. 点击 "Submit a Skill" 或 "Add Skill"
+3. 填写上述信息
+4. 上传压缩包或提供 GitHub 链接
+5. 提交审核
+
+或者：
+
+创建独立 GitHub 仓库：
+1. 在 GitHub 创建新仓库：bananapro-image-gen-skill
+2. 上传 release/bananapro-image-gen/ 目录下的所有文件
+3. 在 skills.sh 提交 GitHub 链接
+
+================================================

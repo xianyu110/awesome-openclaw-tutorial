@@ -7,7 +7,7 @@
 ### 第1步：测试生成
 
 ```bash
-cd skills/nano-banana-image-gen
+cd skills/bananapro-image-gen
 
 # 生成一张图片
 python scripts/generate_image.py \

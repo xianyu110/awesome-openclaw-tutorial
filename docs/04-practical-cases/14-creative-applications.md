@@ -61,7 +61,7 @@
 - ⚠️ 超写实人像（建议用Midjourney）
 - ⚠️ 艺术创作（建议用Midjourney）
 
-### 14.1.2 安装nano-banana-image-gen Skill
+### 14.1.2 安装bananapro-image-gen Skill
 
 在开始使用之前，需要先安装绘图Skill。
 
@@ -72,24 +72,24 @@
 git clone https://github.com/xianyu110/awesome-openclaw-tutorial.git
 
 # 复制到OpenClaw的skills目录
-cp -r expert-skills-hub/skills/nano-banana-image-gen ~/.openclaw/skills/
+cp -r expert-skills-hub/skills/bananapro-image-gen ~/.openclaw/skills/
 
 # 安装依赖
-cd ~/.openclaw/skills/nano-banana-image-gen
+cd ~/.openclaw/skills/bananapro-image-gen
 pip3 install -r requirements.txt
 ```
 
 **方式2：使用npx命令安装**
 
 ```bash
-npx skills add https://github.com/xianyu110/awesome-openclaw-tutorial --skill nano-banana-image-gen
+npx skills add https://github.com/xianyu110/awesome-openclaw-tutorial --skill bananapro-image-gen
 ```
 
 **验证安装：**
 
 ```bash
 # 检查skill是否安装成功
-ls ~/.openclaw/skills/nano-banana-image-gen
+ls ~/.openclaw/skills/bananapro-image-gen
 
 # 应该看到以下文件：
 # SKILL.md - 完整文档
@@ -222,7 +222,7 @@ OpenClaw：好的，正在修改...
 
 ```bash
 # 使用提供的测试脚本
-cd ~/.openclaw/skills/nano-banana-image-gen
+cd ~/.openclaw/skills/bananapro-image-gen
 bash test_chapters.sh
 ```
 

@@ -27,7 +27,7 @@ OpenClaw支持多种AI绘图服务：
 - ✅ 中文支持好
 - ✅ 适合教程配图、白板图
 
-### 10.1.2 安装nano-banana-image-gen Skill
+### 10.1.2 安装bananapro-image-gen Skill
 
 **方式1：从GitHub安装（推荐）**
 
@@ -36,23 +36,23 @@ OpenClaw支持多种AI绘图服务：
 git clone https://github.com/xianyu110/awesome-openclaw-tutorial.git
 
 # 复制到OpenClaw的skills目录
-cp -r expert-skills-hub/skills/nano-banana-image-gen ~/.openclaw/skills/
+cp -r expert-skills-hub/skills/bananapro-image-gen ~/.openclaw/skills/
 
 # 安装依赖
-cd ~/.openclaw/skills/nano-banana-image-gen
+cd ~/.openclaw/skills/bananapro-image-gen
 pip3 install -r requirements.txt
 ```
 
 **方式2：使用npx命令**
 
 ```bash
-npx skills add https://github.com/xianyu110/awesome-openclaw-tutorial --skill nano-banana-image-gen
+npx skills add https://github.com/xianyu110/awesome-openclaw-tutorial --skill bananapro-image-gen
 ```
 
 **验证安装：**
 
 ```bash
-ls ~/.openclaw/skills/nano-banana-image-gen
+ls ~/.openclaw/skills/bananapro-image-gen
 # 应该看到：SKILL.md, README.md, scripts/, test.sh 等文件
 ```
 
@@ -87,7 +87,7 @@ nano ~/.openclaw/openclaw.json
 **步骤3：测试连接**
 
 ```bash
-cd ~/.openclaw/skills/nano-banana-image-gen
+cd ~/.openclaw/skills/bananapro-image-gen
 bash test.sh
 ```
 
@@ -149,7 +149,7 @@ OpenClaw会自动调用绘图Skill，生成Logo并保存到本地。
 **基础用法：**
 
 ```bash
-cd ~/.openclaw/skills/nano-banana-image-gen
+cd ~/.openclaw/skills/bananapro-image-gen
 
 # 生成图片（OpenAI格式）
 python3 scripts/generate_image.py \
@@ -292,7 +292,7 @@ chmod +x batch_generate.sh
 
 ```bash
 # 使用提供的测试脚本
-cd ~/.openclaw/skills/nano-banana-image-gen
+cd ~/.openclaw/skills/bananapro-image-gen
 bash test_chapters.sh
 ```
 

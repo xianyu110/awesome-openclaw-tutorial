@@ -341,7 +341,7 @@ Authorization: Bearer {API_KEY}
 ## 文件结构
 
 ```
-skills/nano-banana-image-gen/
+skills/bananapro-image-gen/
 ├── SKILL.md                    # 本文档
 ├── README.md                   # 快速开始
 ├── scripts/

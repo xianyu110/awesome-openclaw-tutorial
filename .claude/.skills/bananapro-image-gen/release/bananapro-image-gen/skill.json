@@ -1,0 +1,70 @@
+{
+  "name": "bananapro-image-gen",
+  "displayName": "Banana Pro Image Generation",
+  "version": "1.0.0",
+  "description": "使用 Gemini 3 Pro Image 生成图片的 OpenClaw Skill，支持白板图、Logo设计、社交媒体配图等多种场景",
+  "author": {
+    "name": "xianyu110",
+    "github": "https://github.com/xianyu110",
+    "email": "your-email@example.com"
+  },
+  "keywords": [
+    "image-generation",
+    "ai-art",
+    "gemini",
+    "whiteboard",
+    "logo-design",
+    "social-media",
+    "text-to-image"
+  ],
+  "category": "creativity",
+  "license": "MIT",
+  "repository": "https://github.com/xianyu110/awesome-openclaw-tutorial",
+  "homepage": "https://github.com/xianyu110/awesome-openclaw-tutorial/tree/main/.claude/.skills/bananapro-image-gen",
+  "bugs": "https://github.com/xianyu110/awesome-openclaw-tutorial/issues",
+  "main": "scripts/generate_image.py",
+  "dependencies": {
+    "python": ">=3.8",
+    "requests": ">=2.28.0"
+  },
+  "config": {
+    "apiKey": {
+      "type": "string",
+      "description": "API Key for image generation service",
+      "required": true,
+      "env": "NEXTAI_API_KEY"
+    },
+    "baseUrl": {
+      "type": "string",
+      "description": "API base URL",
+      "default": "https://apipro.maynor1024.live",
+      "required": false
+    },
+    "model": {
+      "type": "string",
+      "description": "Model name",
+      "default": "gemini-3-pro-image-preview",
+      "required": false
+    }
+  },
+  "commands": [
+    {
+      "name": "generate",
+      "description": "Generate an image from text prompt",
+      "usage": "generate <prompt> [options]",
+      "examples": [
+        "generate '画一只可爱的猫咪'",
+        "generate '生成白板图，展示OpenClaw架构' --resolution 2K"
+      ]
+    }
+  ],
+  "tags": [
+    "ai",
+    "image",
+    "generation",
+    "gemini",
+    "creative",
+    "whiteboard",
+    "logo"
+  ]
+}

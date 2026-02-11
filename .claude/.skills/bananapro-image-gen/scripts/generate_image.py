@@ -15,7 +15,9 @@ from datetime import datetime
 import re
 
 # API 配置
-DEFAULT_API_KEY = "sk-HoyC9xe8aB0CRC6j4EvuM0zRcN9TTYnIMjACMCeGvd95tuhQ"
+# 请通过环境变量或命令行参数提供 API Key
+# export NEXTAI_API_KEY="your-api-key-here"
+DEFAULT_API_KEY = ""  # 不要在代码中硬编码 API Key
 DEFAULT_BASE_URL = "https://apipro.maynor1024.live"
 DEFAULT_MODEL = "gemini-3-pro-image-preview"
 DEFAULT_API_FORMAT = "openai"  # "openai" 或 "gemini"
@@ -33,8 +35,12 @@ def get_api_key(args_key=None):
     if api_key:
         return api_key
     
-    print("⚠️  使用默认 API Key")
-    return DEFAULT_API_KEY
+    # 如果没有提供 API Key，提示用户
+    print("❌ 错误：未找到 API Key")
+    print("请通过以下方式之一提供 API Key：")
+    print("  1. 环境变量：export NEXTAI_API_KEY='your-api-key'")
+    print("  2. 命令行参数：--api-key 'your-api-key'")
+    sys.exit(1)
 
 
 def generate_filename(prompt):
