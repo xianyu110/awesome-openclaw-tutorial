@@ -1,31 +1,32 @@
-# 第13章 创意应用探索
+# 第14章 创意应用探索（AI绘画/视频/翻译/数据分析）
 
 > 💡 **本章目标**：探索OpenClaw在创意领域的应用，包括AI绘画工作流、视频脚本生成、多语言翻译和数据分析自动化。
 
 ## 🎯 本章内容
 
-- 13.1 AI绘画工作流
-- 13.2 视频脚本生成
-- 13.3 多语言翻译助手
-- 13.4 数据分析自动化
-- 13.5 多Agent头脑风暴
+- 14.1 AI绘画工作流
+- 14.2 视频脚本生成
+- 14.3 多语言翻译助手
+- 14.4 数据分析自动化
+- 14.5 多Agent头脑风暴
 
 ---
 
-## 13.1 AI绘画工作流
+## 14.1 AI绘画工作流
 
-### 13.1.1 场景描述
+### 14.1.1 场景描述
 
-**用户**：内容创作者、设计师、自媒体运营
-**需求**：快速生成配图、修改图片、批量处理
-**工具**：Banana Pro、Midjourney、Stable Diffusion
+**用户**：内容创作者、设计师、自媒体运营、教程作者
+**需求**：快速生成配图、白板图、Logo设计、批量处理
+**工具**：Gemini图像生成、Banana Pro、Midjourney、Stable Diffusion
 
 **痛点**：
 ```
-❌ 手机无法使用：Banana Pro等工具只有网页版
+❌ 手机无法使用：专业绘图工具只有网页版
 ❌ 切换麻烦：需要在多个工具间切换
 ❌ 修改困难：每次修改都要重新上传
 ❌ 批量处理慢：一张一张处理效率低
+❌ 成本高昂：专业工具订阅费贵
 ```
 
 **目标**：
@@ -34,16 +35,113 @@
 ✅ 统一入口操作
 ✅ 语音修改图片
 ✅ 批量自动处理
+✅ 成本可控
 ```
 
-### 13.1.2 手机上用Banana画图
+**为什么选择Gemini图像生成？**
+
+与传统绘图工具相比，Gemini有独特优势：
+
+| 特性 | Gemini | DALL-E 3 | Midjourney | Banana Pro |
+|------|--------|----------|------------|------------|
+| 集成方式 | Chat API | 专用API | Discord Bot | 网页 |
+| 成本 | 低（0.05-0.4元/张） | 中 | 高 | 中 |
+| 中文支持 | ✅ 优秀 | ⚠️ 一般 | ⚠️ 一般 | ✅ 好 |
+| 白板图 | ✅ 擅长 | ❌ 不擅长 | ❌ 不擅长 | ⚠️ 一般 |
+| 手写风格 | ✅ 支持 | ⚠️ 有限 | ⚠️ 有限 | ⚠️ 有限 |
+| 分辨率 | 1K/2K/4K | 1024x1024 | 可变 | 可变 |
+| OpenClaw集成 | ✅ 完美 | ⚠️ 需配置 | ❌ 困难 | ⚠️ 需配置 |
+
+**适用场景：**
+- ✅ 教程配图、白板图、手写笔记风格
+- ✅ 社交媒体配图、海报设计
+- ✅ Logo设计、图标生成
+- ✅ 概念图、架构图、流程图
+- ✅ 章节总结图、思维导图
+- ⚠️ 超写实人像（建议用Midjourney）
+- ⚠️ 艺术创作（建议用Midjourney）
+
+### 14.1.2 安装nano-banana-image-gen Skill
+
+在开始使用之前，需要先安装绘图Skill。
+
+**方式1：从GitHub安装（推荐）**
+
+```bash
+# 克隆技能仓库
+git clone https://github.com/xianyu110/awesome-openclaw-tutorial.git
+
+# 复制到OpenClaw的skills目录
+cp -r expert-skills-hub/skills/nano-banana-image-gen ~/.openclaw/skills/
+
+# 安装依赖
+cd ~/.openclaw/skills/nano-banana-image-gen
+pip3 install -r requirements.txt
+```
+
+**方式2：使用npx命令安装**
+
+```bash
+npx skills add https://github.com/xianyu110/awesome-openclaw-tutorial --skill nano-banana-image-gen
+```
+
+**验证安装：**
+
+```bash
+# 检查skill是否安装成功
+ls ~/.openclaw/skills/nano-banana-image-gen
+
+# 应该看到以下文件：
+# SKILL.md - 完整文档
+# README.md - 快速开始
+# scripts/generate_image.py - 生成脚本
+# test.sh - 测试脚本
+# test_chapters.sh - 章节测试脚本
+```
+
+**配置API密钥：**
+
+编辑OpenClaw配置文件：
+
+```bash
+nano ~/.openclaw/openclaw.json
+```
+
+添加以下配置：
+
+```json
+{
+  "api": {
+    "gemini": {
+      "apiKey": "your-api-key-here",
+      "baseUrl": "https://apipro.maynor1024.live",
+      "model": "gemini-3-pro-image-preview"
+    }
+  }
+}
+```
+
+**获取API密钥：**
+1. 访问中转API服务商（推荐使用支持Gemini的中转服务）
+2. 注册账号并充值（建议先充值10-20元测试）
+3. 获取API Key
+4. 配置到OpenClaw中
+
+**成本参考：**
+- 生成1张1K图片：约0.05-0.1元
+- 生成1张2K图片：约0.1-0.2元
+- 生成1张4K图片：约0.2-0.4元
+
+💡 **省钱技巧：** 日常使用1K分辨率即可，只有需要打印或高清展示时才用2K/4K。
+
+### 14.1.3 手机上用OpenClaw画图
 
 **场景：在飞书上直接画图**
 
 ```
 你：帮我画一个可爱的小龙虾，赛博朋克风格
 
-OpenClaw：好的，正在使用Banana Pro生成...
+OpenClaw：好的，正在使用Gemini生成...
 
 🎨 【绘画任务】可爱的小龙虾
 
@@ -110,9 +208,288 @@ OpenClaw：好的，正在修改...
 
 ![修改后的绘画](https://upload.maynor1024.live/file/1770176332471_image_30.jpg)
 
-### 13.1.3 批量生成配图
+### 14.1.4 实战案例：生成教程章节总结图
+
+这是一个真实的使用案例：为OpenClaw教程的每一章生成手写白板风格的总结图。
+
+**场景描述：**
+- 需求：为教程的16章内容生成配图
+- 风格：手写白板风格，易于理解
+- 要求：包含核心要点、框图、箭头等手绘元素
+- 数量：每章1张，共16张
+
+**实际操作：**
+
+```bash
+# 使用提供的测试脚本
+cd ~/.openclaw/skills/nano-banana-image-gen
+bash test_chapters.sh
+```
+
+**脚本会自动生成4张示例图片：**
+
+**示例1：第1章总结（OpenAI格式）**
+
+提示词：
+```
+生成一张白板图片，手写字体风格，内容是OpenClaw第1章核心要点总结：
+
+标题：OpenClaw 是什么？
+
+核心定义：
+• 开源本地AI助手
+• 完全本地部署，数据隐私有保障
+• 可访问本地文件和系统
+
+4大核心优势：
+1️⃣ 本地部署 - 保护隐私
+2️⃣ 文件访问 - 智能搜索
+3️⃣ Skills扩展 - 无限可能
+4️⃣ 多平台支持 - 随时随地
+
+vs ChatGPT对比：
+OpenClaw ✓          ChatGPT ✗
+本地部署            在线服务
+文件访问            无法访问
+Skills扩展          固定功能
+按需付费            订阅制
+
+成本对比：
+OpenClaw + DeepSeek: 5-30元/月
+ChatGPT Plus: 140元/月
+省钱70%！
+
+用手写字体，添加箭头、框图、下划线等手绘元素
+```
+
+生成结果：
+- 文件名：`test_output/chapters/chapter1_summary.png`
+- 分辨率：1K
+- 成本：约0.08元
+- 生成时间：约30秒
+
+**示例2：核心架构图（Gemini格式，2K分辨率）**
+
+提示词：
+```
+生成一张白板图片，手写字体风格，内容是OpenClaw核心组件架构图：
+
+标题：OpenClaw 核心架构
+
+三大组件：
+
+📦 OpenClaw Core
+• AI引擎
+• 理解和执行指令
+• 核心处理逻辑
+
+🌐 Gateway 网关
+• 会话管理
+• 消息路由
+• 多平台连接
+• 地址：127.0.0.1:18789
+
+🔧 Skills 技能系统
+• 扩展功能
+• ClawHub市场
+• 1715+技能
+
+工作流程（用箭头连接）：
+用户消息 → Gateway → OpenClaw Core → Skills → 返回结果
+
+用手写字体，添加框图、箭头、图标等手绘元素
+```
+
+生成结果：
+- 文件名：`test_output/chapters/architecture.png`
+- 分辨率：2K（高清）
+- 成本：约0.15元
+- 生成时间：约40秒
+
+**示例3：第2章部署对比**
+
+提示词：
+```
+生成一张白板图片，手写字体风格，内容是OpenClaw部署方式对比：
+
+标题：OpenClaw 部署方式
+
+云端部署（推荐）：
+✓ 腾讯云：20元/月，20M带宽
+✓ 火山引擎：9.9元/月
+✓ 阿里云：价格相近
+优势：随时随地访问，手机可用
+
+本地部署：
+✓ Mac/Windows/Linux
+✓ Docker部署
+优势：完全免费，数据本地
+
+API配置：
+• 国产模型省95%成本
+• DeepSeek：性价比之王
+• Kimi：长文档专家
+• 中转API：一个地址访问300+模型
+
+用手写字体，添加对比表格、箭头、图标
+```
+
+**示例4：第3章人设配置**
+
+提示词：
+```
+生成一张白板图片，手写字体风格，内容是OpenClaw人设配置：
+
+标题：配置你的专属AI助手
+
+工作区结构：
+📁 ~/.openclaw/workspace/
+├── SOUL.md - 人格/语气
+├── USER.md - 偏好设置
+├── AGENTS.md - 指令说明
+├── MEMORY.md - 长期记忆
+└── HEARTBEAT.md - 检查清单
+
+配置方法：
+方式1：Web UI（推荐）
+• Agent → Files → 编辑
+
+方式2：命令行（进阶）
+• nano ~/.openclaw/workspace/SOUL.md
+
+核心配置：
+SOUL.md：AI的性格和行为准则
+USER.md：你的信息和偏好
+
+效果：
+配置前：冷冰冰的工具
+配置后：懂你的伙伴
+
+用手写字体，添加文件夹图标、箭头、对比框
+```
+
+**效果数据：**
+
+| 指标 | 手动绘制 | AI生成 | 提升 |
+|------|---------|--------|------|
+| 单张耗时 | 30分钟 | 1分钟 | 96.7% |
+| 单张成本 | 人工成本高 | 0.05-0.2元 | 99%+ |
+| 批量4张 | 120分钟 | 4分钟 | 96.7% |
+| 修改成本 | 10分钟 | 30秒 | 95% |
+
+**实际使用体验：**
+```
+✅ 优点：
+• 生成速度快：1分钟/张
+• 成本极低：0.05-0.2元/张
+• 风格统一：所有图片风格一致
+• 易于修改：调整提示词即可重新生成
+• 批量处理：可以一次生成多张
+
+⚠️ 注意：
+• 提示词要详细：越详细效果越好
+• 多次尝试：可能需要生成2-3次选最好的
+• 人工审核：生成后需要检查内容准确性
+• 格式调整：可能需要微调尺寸和格式
+```
+
+**命令行批量生成：**
+
+如果你需要为整本教程生成配图，可以创建批量脚本：
+
+```bash
+#!/bin/bash
+# batch_generate_chapters.sh
+
+chapters=(
+    "第1章:OpenClaw是什么"
+    "第2章:部署方式对比"
+    "第3章:人设配置"
+    "第4章:文件管理"
+    "第5章:知识库管理"
+    # ... 更多章节
+)
+
+for chapter in "${chapters[@]}"; do
+    IFS=':' read -r num title <<< "$chapter"
+    
+    echo "生成 ${num} - ${title}"
+    
+    python3 scripts/generate_image.py \
+        --prompt "生成一张白板图片，手写字体风格，总结${title}的核心要点..." \
+        --filename "output/${num}_summary.png" \
+        --api-format openai
+    
+    echo "✅ ${num} 完成"
+    sleep 2  # 避免API限流
+done
+
+echo "🎉 所有章节配图生成完成！"
+```
+
+**查看生成的图片：**
+
+```bash
+# 查看生成的图片
+ls -lh test_output/chapters/
+
+# 输出示例：
+# -rw-r--r--  1 user  staff   788K  chapter1_summary.png
+# -rw-r--r--  1 user  staff   2.7M  architecture.png
+# -rw-r--r--  1 user  staff   856K  chapter2_deployment.png
+# -rw-r--r--  1 user  staff   923K  chapter3_persona.png
+
+# 在macOS上打开查看
+open test_output/chapters/
+```
+
+### 14.1.5 批量生成配图
 
 **场景：为文章批量生成配图**
+#!/bin/bash
+# batch_generate_chapters.sh
+
+chapters=(
+    "第1章:OpenClaw是什么"
+    "第2章:部署方式对比"
+    "第3章:人设配置"
+    "第4章:文件管理"
+    "第5章:知识库管理"
+    # ... 更多章节
+)
+
+for chapter in "${chapters[@]}"; do
+    IFS=':' read -r num title <<< "$chapter"
+    
+    echo "生成 ${num} - ${title}"
+    
+    python3 scripts/generate_image.py \
+        --prompt "生成一张白板图片，手写字体风格，总结${title}的核心要点..." \
+        --filename "output/${num}_summary.png" \
+        --api-format openai
+    
+    echo "✅ ${num} 完成"
+    sleep 2  # 避免API限流
+done
+
+echo "🎉 所有章节配图生成完成！"
+```
+
+**查看生成的图片：**
+
+```bash
+# 查看生成的图片
+ls -lh test_output/chapters/
+
+# 输出示例：
+# -rw-r--r--  1 user  staff   788K  chapter1_summary.png
+# -rw-r--r--  1 user  staff   2.7M  architecture.png
+# -rw-r--r--  1 user  staff   856K  chapter2_deployment.png
+# -rw-r--r--  1 user  staff   923K  chapter3_persona.png
+
+# 在macOS上打开查看
+open test_output/chapters/
+```
 
 ```
 你：我有一篇文章需要配图，帮我生成5张配图
@@ -184,9 +561,9 @@ OpenClaw：正在分析文章...
 ```
 
 
-### 13.1.4 图片风格转换
+### 14.1.5 批量生成配图
 
-**场景：将照片转换为不同风格**
+**场景：为文章批量生成配图**
 
 ```
 你：把这张照片转换成水彩画风格
@@ -267,7 +644,7 @@ OpenClaw：好的，正在批量处理...
 • 平均每张：27秒
 ```
 
-### 13.1.5 配置方法
+### 14.1.5 配置方法
 
 ```bash
 # 1. 安装Banana Pro Skills
@@ -292,7 +669,7 @@ openclaw config set image.prompt-enhance true
 openclaw config set image.prompt-language "en"
 ```
 
-### 13.1.6 效率提升数据
+### 14.1.6 效率提升数据
 
 **使用前后对比**：
 
@@ -316,9 +693,9 @@ openclaw config set image.prompt-language "en"
 
 ---
 
-## 13.2 视频脚本生成
+## 14.2 视频脚本生成
 
-### 13.2.1 场景描述
+### 14.2.1 场景描述
 
 **用户**：视频创作者、UP主、短视频运营
 **需求**：快速生成脚本、优化文案、批量生产
@@ -340,7 +717,7 @@ openclaw config set image.prompt-language "en"
 ✅ 批量生产内容
 ```
 
-### 13.2.2 短视频脚本生成
+### 14.2.2 短视频脚本生成
 
 **场景：生成抖音短视频脚本**
 
@@ -430,7 +807,7 @@ OpenClaw：好的，正在生成...
 🎬 脚本已导出为PDF
 ```
 
-### 13.2.3 长视频脚本生成
+### 14.2.3 长视频脚本生成
 
 **场景：生成B站长视频脚本**
 
@@ -602,7 +979,7 @@ OpenClaw：好的，正在生成...
 📊 已生成分镜头脚本
 ```
 
-### 13.2.4 批量生成系列脚本
+### 14.2.4 批量生成系列脚本
 
 **场景：生成系列视频脚本**
 
@@ -744,7 +1121,7 @@ OpenClaw：好的，正在规划...
 ```
 
 
-### 13.2.5 配置方法
+### 14.2.5 配置方法
 
 ```bash
 # 1. 配置脚本生成
@@ -760,7 +1137,7 @@ openclaw config set script.batch-mode true
 openclaw config set script.series-planning true
 ```
 
-### 13.2.6 效率提升数据
+### 14.2.6 效率提升数据
 
 | 任务类型 | 使用前 | 使用后 | 节省时间 | 提升比例 |
 |---------|--------|--------|----------|----------|
@@ -771,9 +1148,9 @@ openclaw config set script.series-planning true
 
 ---
 
-## 13.3 多语言翻译助手
+## 14.3 多语言翻译助手
 
-### 13.3.1 场景描述
+### 14.3.1 场景描述
 
 **用户**：跨国团队、外贸从业者、留学生
 **需求**：文档翻译、实时沟通、术语管理
@@ -796,7 +1173,7 @@ openclaw config set script.series-planning true
 ```
 
 
-### 13.3.2 文档翻译
+### 14.3.2 文档翻译
 
 **场景：翻译技术文档**
 
@@ -862,7 +1239,7 @@ personal settings and other functions...
 ```
 
 
-### 13.3.3 实时对话翻译
+### 14.3.3 实时对话翻译
 
 **场景：跨国会议实时翻译**
 
@@ -915,7 +1292,7 @@ Regarding the timeline, we plan to complete the first phase next month...
 • 会议纪要已生成（中英双语）
 ```
 
-### 13.3.4 批量翻译
+### 14.3.4 批量翻译
 
 **场景：批量翻译产品文档**
 
@@ -983,7 +1360,7 @@ OpenClaw：好的，正在批量翻译...
 ```
 
 
-### 13.3.5 配置方法
+### 14.3.5 配置方法
 
 ```bash
 # 1. 配置翻译引擎
@@ -1004,7 +1381,7 @@ openclaw config set translate.keep-format true
 openclaw config set translate.keep-links true
 ```
 
-### 13.3.6 效率提升数据
+### 14.3.6 效率提升数据
 
 | 任务类型 | 使用前 | 使用后 | 节省时间 | 提升比例 |
 |---------|--------|--------|----------|----------|
@@ -1015,9 +1392,9 @@ openclaw config set translate.keep-links true
 
 ---
 
-## 13.4 数据分析自动化
+## 14.4 数据分析自动化
 
-### 13.4.1 场景描述
+### 14.4.1 场景描述
 
 **用户**：数据分析师、运营人员、管理者
 **需求**：数据清洗、可视化、报告生成
@@ -1040,7 +1417,7 @@ openclaw config set translate.keep-links true
 ```
 
 
-### 13.4.2 数据清洗
+### 14.4.2 数据清洗
 
 **场景：清洗销售数据**
 
@@ -1104,7 +1481,7 @@ OpenClaw：好的，正在分析数据...
 • 提升：+13%
 ```
 
-### 13.4.3 数据可视化
+### 14.4.3 数据可视化
 
 **场景：生成销售分析图表**
 
@@ -1175,7 +1552,7 @@ OpenClaw：好的，正在分析...
 ```
 
 
-### 13.4.4 自动生成报告
+### 14.4.4 自动生成报告
 
 **场景：生成周报**
 
@@ -1290,7 +1667,7 @@ Subject: 【销售周报】2026-02-03 至 2026-02-09
 Attachment: 销售周报.pdf
 ```
 
-### 13.4.5 配置方法
+### 14.4.5 配置方法
 
 ```bash
 # 1. 配置数据分析
@@ -1311,7 +1688,7 @@ openclaw config set data.source "sales_system"
 openclaw config set data.auto-sync true
 ```
 
-### 13.4.6 效率提升数据
+### 14.4.6 效率提升数据
 
 | 任务类型 | 使用前 | 使用后 | 节省时间 | 提升比例 |
 |---------|--------|--------|----------|----------|
@@ -1338,7 +1715,7 @@ openclaw config set data.auto-sync true
 每月节省：42.4小时 ≈ 5.3个工作日
 ```
 
-### 13.5.3 进阶使用：多轮深度讨论
+### 14.5.3 进阶使用：多轮深度讨论
 
 **场景：AI时代的一人公司战略规划**
 
@@ -1403,7 +1780,7 @@ openclaw config set data.auto-sync true
 
 ![深度讨论记录](https://upload.maynor1024.live/file/1770782774452_image_31.jpg)
 
-### 13.5.4 配置方法
+### 14.5.4 配置方法
 
 **基础配置**：
 
@@ -1434,7 +1811,7 @@ openclaw config set multi-agent.rules '{
 }'
 ```
 
-### 13.5.5 使用技巧
+### 14.5.5 使用技巧
 
 **技巧1：选择合适的专家**
 ```
@@ -1475,7 +1852,7 @@ openclaw config set multi-agent.rules '{
 • 深度讨论：15-20分钟
 ```
 
-### 13.5.6 应用场景
+### 14.5.6 应用场景
 
 **场景1：战略规划**
 - 公司发展方向
@@ -1501,7 +1878,7 @@ openclaw config set multi-agent.rules '{
 - 广告创意
 - 内容策划
 
-### 13.5.7 效率提升数据
+### 14.5.7 效率提升数据
 
 **使用多Agent头脑风暴前后对比**：
 
@@ -1545,7 +1922,7 @@ openclaw config set multi-agent.rules '{
 ROI：($5,500 - $5) / $5 = 109,900%
 ```
 
-### 13.5.8 注意事项
+### 14.5.8 注意事项
 
 **1. AI的局限性**
 ```
@@ -1575,7 +1952,7 @@ ROI：($5,500 - $5) / $5 = 109,900%
 • 复用讨论结果
 ```
 
-### 13.5.9 最佳实践
+### 14.5.9 最佳实践
 
 **实践1：定期头脑风暴**
 ```bash
@@ -1607,7 +1984,7 @@ openclaw config set brainstorm.mindmap true
 openclaw config set brainstorm.sync-to "notion,feishu"
 ```
 
-### 13.5.10 总结
+### 14.5.10 总结
 
 多Agent头脑风暴是OpenClaw最具创意的功能之一：
 
@@ -1702,9 +2079,9 @@ openclaw config set brainstorm.sync-to "notion,feishu"
 
 ---
 
-## 13.5 多Agent头脑风暴
+## 14.5 多Agent头脑风暴
 
-### 13.5.1 场景描述
+### 14.5.1 场景描述
 
 **核心理念**：
 - 模拟多位专家进行头脑风暴
@@ -1730,7 +2107,7 @@ openclaw config set brainstorm.sync-to "notion,feishu"
 ✅ 可重复执行：多次迭代优化
 ```
 
-### 13.5.2 基础使用：简单头脑风暴
+### 14.5.2 基础使用：简单头脑风暴
 
 **场景：产品命名讨论**
 

@@ -16,12 +16,13 @@ title: 首页
 
 **教程已完成，正在持续优化中！** 🎊
 
-- ✅ **16章正文**：约230,000字
-- ✅ **4个附录**：约21,000字
-- ✅ **总字数**：约247,500字（优化后）
+- ✅ **16章正文**：约247,500字
+- ✅ **4个附录**：约25,000字
+- ✅ **总字数**：约272,500字
 - ✅ **66个实战案例**：可直接应用
 - ✅ **完整配图**：50+张配置截图
 - 🔄 **持续优化**：删除重复内容，提升质量
+- 🆕 **新增内容**：AI绘图实战案例（第10章、第14章）
 
 ## 💡 超级个体理念
 
@@ -88,7 +89,7 @@ title: 首页
 - [第9章：多平台集成（企微/钉钉/飞书/QQ一键接入）](docs/03-advanced/09-multi-platform-integration.md)
   > 团队协作必备，让OpenClaw接入你的工作平台
   
-- [第10章：API服务集成（绘图/Notion/视频/语音）](docs/03-advanced/10-api-service-integration.md)
+- [第10章：API服务集成（绘图/Notion/视频/语音）](docs/03-advanced/10-api-integration.md)
   > 接入第三方服务，让AI能力更强大
   
 - [第11章：高级配置（多模型切换/成本优化/性能调优）](docs/03-advanced/11-advanced-configuration.md)
@@ -99,7 +100,7 @@ title: 首页
 - [第12章：5类人群的效率提升实战](docs/04-practical-cases/12-personal-productivity.md)
   > 真实案例，直接套用，立即提升效率
   
-- [第13章：高级自动化工作流（多Skills组合/知识图谱）](docs/04-practical-cases/13-personal-efficiency-advanced.md)
+- [第13章：高级自动化工作流（多Skills组合/知识图谱）](docs/04-practical-cases/13-advanced-automation.md)
   > 进阶玩法，打造个人效率系统
   
 - [第14章：创意应用探索（AI绘画/视频/翻译/数据分析）](docs/04-practical-cases/14-creative-applications.md)
@@ -192,7 +193,8 @@ title: 首页
 </div>
 
 **最后更新**：2026年2月11日  
-**教程版本**：v1.1（优化中）  
+**教程版本**：v1.2（优化中）  
 **书名**：一本书玩转OpenClaw：超级个体实战指南  
-**总字数**：247,500字  
+**总字数**：272,500字  
+**章节数**：16章 + 4附录  
 **适用OpenClaw版本**：2026.2.9+（最新版本）
