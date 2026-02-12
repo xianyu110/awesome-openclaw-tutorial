@@ -443,127 +443,69 @@ ls -lh test_output/chapters/
 open test_output/chapters/
 ```
 
-### 14.1.5 批量生成配图
+### 14.1.5 更多AI绘画Skills推荐
 
-**场景：为文章批量生成配图**
-#!/bin/bash
-# batch_generate_chapters.sh
+根据ClawHub技能市场，以下是推荐的AI绘画相关Skills：
 
-chapters=(
-    "第1章:OpenClaw是什么"
-    "第2章:部署方式对比"
-    "第3章:人设配置"
-    "第4章:文件管理"
-    "第5章:知识库管理"
-    # ... 更多章节
-)
-
-for chapter in "${chapters[@]}"; do
-    IFS=':' read -r num title <<< "$chapter"
-    
-    echo "生成 ${num} - ${title}"
-    
-    python3 scripts/generate_image.py \
-        --prompt "生成一张白板图片，手写字体风格，总结${title}的核心要点..." \
-        --filename "output/${num}_summary.png" \
-        --api-format openai
-    
-    echo "✅ ${num} 完成"
-    sleep 2  # 避免API限流
-done
-
-echo "🎉 所有章节配图生成完成！"
-```
-
-**查看生成的图片：**
-
+**1. fal-ai - 多功能AI生成**
 ```bash
-# 查看生成的图片
-ls -lh test_output/chapters/
+# 安装
+npx clawhub@latest install fal-ai
 
-# 输出示例：
-# -rw-r--r--  1 user  staff   788K  chapter1_summary.png
-# -rw-r--r--  1 user  staff   2.7M  architecture.png
-# -rw-r--r--  1 user  staff   856K  chapter2_deployment.png
-# -rw-r--r--  1 user  staff   923K  chapter3_persona.png
-
-# 在macOS上打开查看
-open test_output/chapters/
+# 功能
+• 图像生成（FLUX、SDXL等）
+• 视频生成
+• 音频生成
+• 支持多种模型
 ```
 
-```
-你：我有一篇文章需要配图，帮我生成5张配图
+**2. nvidia-image-gen - NVIDIA FLUX模型**
+```bash
+# 安装
+npx clawhub@latest install nvidia-image-gen
 
-OpenClaw：好的，请发送文章内容
-
-你：[发送文章]
-
-OpenClaw：正在分析文章...
-
-📄 【文章分析】OpenClaw使用指南
-
-📊 文章结构：
-• 标题：OpenClaw使用指南
-• 字数：3,000字
-• 段落：10个
-• 关键主题：5个
-
-🎨 配图方案：
-
-1. 封面图
-   • 主题：OpenClaw Logo + 科技感背景
-   • 风格：现代简约
-   • 用途：文章封面
-
-2. 安装步骤图
-   • 主题：电脑屏幕 + 代码界面
-   • 风格：技术风
-   • 用途：安装教程配图
-
-3. 功能展示图
-   • 主题：OpenClaw界面 + 功能图标
-   • 风格：扁平化
-   • 用途：功能介绍配图
-
-4. 使用场景图
-   • 主题：办公场景 + AI助手
-   • 风格：插画风
-   • 用途：场景说明配图
-
-5. 总结图
-   • 主题：数据图表 + 效率提升
-   • 风格：信息图
-   • 用途：文章总结配图
-
-⏳ 开始批量生成...
-
-✅ 生成进度：
-[████████████████████] 100%
-
-✅ 全部完成！
-
-📁 文件已保存：
-• 封面图.png
-• 安装步骤图.png
-• 功能展示图.png
-• 使用场景图.png
-• 总结图.png
-
-已打包为：文章配图.zip
-已上传到：飞书云盘
-下载链接：[点击下载]
-
-💡 使用建议：
-• 封面图建议放在文章开头
-• 其他图片按顺序插入对应段落
-• 所有图片已优化为网页尺寸
-• 支持直接复制到公众号编辑器
+# 特点
+• 使用NVIDIA FLUX模型
+• 高质量图像生成
+• 支持图像编辑
 ```
 
+**3. pollinations - 多模态生成**
+```bash
+# 安装
+npx clawhub@latest install pollinations
 
-### 14.1.5 批量生成配图
+# 功能
+• 文本生成
+• 图像生成
+• 视频生成
+• 完全免费
+```
 
-**场景：为文章批量生成配图**
+**4. venice-ai - 图像视频一体化**
+```bash
+# 安装
+npx clawhub@latest install venice-ai
+
+# 功能
+• 图像生成、编辑、放大
+• 从图像创建视频
+• 多种风格支持
+```
+
+**5. recraft - 专业设计工具**
+```bash
+# 安装
+npx clawhub@latest install recraft
+
+# 功能
+• 图像生成
+• 矢量化
+• 图像放大
+• 背景替换
+```
+
+### 14.1.6 批量生成配图实战
 
 ```
 你：把这张照片转换成水彩画风格
@@ -1121,7 +1063,77 @@ OpenClaw：好的，正在规划...
 ```
 
 
-### 14.2.5 配置方法
+### 14.2.5 更多视频创作Skills推荐
+
+根据ClawHub技能市场，以下是推荐的视频创作相关Skills：
+
+**1. video-agent - HeyGen视频生成**
+```bash
+# 安装
+npx clawhub@latest install video-agent
+
+# 功能
+• 使用HeyGen API生成AI头像视频
+• 支持多种语言
+• 专业级视频质量
+```
+
+**2. sora-video-gen - OpenAI Sora**
+```bash
+# 安装
+npx clawhub@latest install sora-video-gen
+
+# 功能
+• 使用OpenAI Sora API
+• 文本生成视频
+• 高质量视频输出
+```
+
+**3. veo3-video-gen - Google Veo**
+```bash
+# 安装
+npx clawhub@latest install veo3-video-gen
+
+# 功能
+• 使用Google Veo 3.x
+• 生成和拼接短视频
+• 支持多种风格
+```
+
+**4. tube-cog - YouTube内容创作**
+```bash
+# 安装
+npx clawhub@latest install tube-cog
+
+# 功能
+• YouTube内容创作
+• 由CellCog提供支持
+• 完整视频制作流程
+```
+
+**5. video-cog - 长篇视频制作**
+```bash
+# 安装
+npx clawhub@latest install video-cog
+
+# 功能
+• 长篇AI视频制作
+• 多智能体协作
+• 专业级视频输出
+```
+
+**6. youtube-title-generator - 标题生成**
+```bash
+# 安装
+npx clawhub@latest install youtube-title-generator
+
+# 功能
+• 生成吸引人的YouTube标题
+• 基于内容分析
+• 提高点击率
+```
+
+### 14.2.6 配置方法
 
 ```bash
 # 1. 配置脚本生成
@@ -1360,7 +1372,78 @@ OpenClaw：好的，正在批量翻译...
 ```
 
 
-### 14.3.5 配置方法
+### 14.3.5 更多翻译Skills推荐
+
+根据ClawHub技能市场，以下是推荐的翻译相关Skills：
+
+**1. translator - 通用翻译助手**
+```bash
+# 安装
+npx clawhub@latest install translator
+
+# 功能
+• 多语言翻译
+• 实时翻译
+• 文档翻译
+• 术语库管理
+```
+
+**2. straker-verify - 专业翻译**
+```bash
+# 安装
+npx clawhub@latest install straker-verify
+
+# 功能
+• 专业AI驱动翻译
+• 可选人工审核
+• 高质量保证
+```
+
+**3. japanese-translation-and-tutor - 日英翻译**
+```bash
+# 安装
+npx clawhub@latest install japanese-translation-and-tutor
+
+# 功能
+• 日英双向翻译
+• 日语学习辅导
+• 文化背景解释
+```
+
+**4. lyric-translator - 歌词翻译**
+```bash
+# 安装
+npx clawhub@latest install lyric-translator
+
+# 功能
+• 将印尼歌曲歌词翻译成英语
+• 保持韵律和意境
+• 自然流畅的翻译
+```
+
+**5. tamil-whatsapp - 泰米尔语处理**
+```bash
+# 安装
+npx clawhub@latest install tamil-whatsapp
+
+# 功能
+• 处理WhatsApp上的泰米尔语消息
+• 音译支持
+• 实时翻译
+```
+
+**6. language-learning - 语言学习助手**
+```bash
+# 安装
+npx clawhub@latest install language-learning
+
+# 功能
+• AI语言导师
+• 学习任何语言
+• 个性化学习计划
+```
+
+### 14.3.6 配置方法
 
 ```bash
 # 1. 配置翻译引擎
@@ -1667,7 +1750,118 @@ Subject: 【销售周报】2026-02-03 至 2026-02-09
 Attachment: 销售周报.pdf
 ```
 
-### 14.4.5 配置方法
+### 14.4.5 更多数据分析Skills推荐
+
+根据ClawHub技能市场，以下是推荐的数据分析相关Skills：
+
+**1. data-analyst - 综合数据分析**
+```bash
+# 安装
+npx clawhub@latest install data-analyst
+
+# 功能
+• 数据可视化
+• 报告生成
+• SQL查询
+• 电子表格分析
+```
+
+**2. senior-data-scientist - 高级数据科学**
+```bash
+# 安装
+npx clawhub@latest install senior-data-scientist
+
+# 功能
+• 世界级数据科学技能
+• 机器学习模型
+• 统计分析
+• 预测建模
+```
+
+**3. senior-data-engineer - 数据工程**
+```bash
+# 安装
+npx clawhub@latest install senior-data-engineer
+
+# 功能
+• 构建可扩展数据管道
+• ETL流程设计
+• 数据仓库管理
+• 性能优化
+```
+
+**4. csv-pipeline - CSV数据处理**
+```bash
+# 安装
+npx clawhub@latest install csv-pipeline
+
+# 功能
+• 处理CSV和JSON数据
+• 数据转换
+• 数据分析
+• 报告生成
+```
+
+**5. duckdb-en - DuckDB分析**
+```bash
+# 安装
+npx clawhub@latest install duckdb-en
+
+# 功能
+• DuckDB CLI专家
+• SQL分析
+• 数据处理
+• 高性能查询
+```
+
+**6. google-analytics-api - GA4分析**
+```bash
+# 安装
+npx clawhub@latest install google-analytics-api
+
+# 功能
+• Google Analytics 4集成
+• 托管认证
+• 数据查询
+• 报告生成
+```
+
+**7. supabase - 数据库操作**
+```bash
+# 安装
+npx clawhub@latest install supabase
+
+# 功能
+• 连接Supabase
+• 数据库操作
+• 向量搜索
+• 存储管理
+```
+
+**8. excel - Excel处理**
+```bash
+# 安装
+npx clawhub@latest install excel
+
+# 功能
+• 读写编辑Excel文件
+• 格式化
+• 公式计算
+• 数据分析
+```
+
+**9. data-lineage-tracker - 数据血缘追踪**
+```bash
+# 安装
+npx clawhub@latest install data-lineage-tracker
+
+# 功能
+• 跟踪数据来源
+• 转换记录
+• 数据质量监控
+```
+
+### 14.4.6 配置方法
 
 ```bash
 # 1. 配置数据分析
@@ -2283,5 +2477,236 @@ Logo设计方向：
 
 ---
 
-**下一章预告**：第14章将学习常见问题与解决方案，包括安装配置、API连接、Skills加载和性能优化等问题的完整解决方案。
+## 📦 本章Skills完整安装指南
+
+### 一键安装所有创意Skills
+
+```bash
+# AI绘画工作流 Skills
+npx clawhub@latest install fal-ai
+npx clawhub@latest install nvidia-image-gen
+npx clawhub@latest install pollinations
+npx clawhub@latest install venice-ai
+npx clawhub@latest install recraft
+
+# 视频脚本生成 Skills
+npx clawhub@latest install video-agent
+npx clawhub@latest install sora-video-gen
+npx clawhub@latest install veo3-video-gen
+npx clawhub@latest install tube-cog
+npx clawhub@latest install video-cog
+npx clawhub@latest install youtube-title-generator
+
+# 多语言翻译 Skills
+npx clawhub@latest install translator
+npx clawhub@latest install straker-verify
+npx clawhub@latest install japanese-translation-and-tutor
+npx clawhub@latest install language-learning
+
+# 数据分析自动化 Skills
+npx clawhub@latest install data-analyst
+npx clawhub@latest install senior-data-scientist
+npx clawhub@latest install senior-data-engineer
+npx clawhub@latest install csv-pipeline
+npx clawhub@latest install duckdb-en
+npx clawhub@latest install google-analytics-api
+npx clawhub@latest install supabase
+npx clawhub@latest install excel
+
+# 多Agent头脑风暴（内置功能，无需安装）
+```
+
+### 分场景安装建议
+
+**场景1：内容创作者**
+```bash
+npx clawhub@latest install fal-ai
+npx clawhub@latest install video-agent
+npx clawhub@latest install translator
+```
+
+**场景2：视频UP主**
+```bash
+npx clawhub@latest install video-agent
+npx clawhub@latest install tube-cog
+npx clawhub@latest install youtube-title-generator
+```
+
+**场景3：跨国团队**
+```bash
+npx clawhub@latest install translator
+npx clawhub@latest install straker-verify
+npx clawhub@latest install language-learning
+```
+
+**场景4：数据分析师**
+```bash
+npx clawhub@latest install data-analyst
+npx clawhub@latest install csv-pipeline
+npx clawhub@latest install excel
+npx clawhub@latest install google-analytics-api
+```
+
+**场景5：创业者/管理者**
+```bash
+npx clawhub@latest install fal-ai
+npx clawhub@latest install video-agent
+npx clawhub@latest install translator
+npx clawhub@latest install data-analyst
+```
+
+### 配置优先级
+
+**必装Skills（优先级：⭐⭐⭐⭐⭐）**
+- translator - 翻译助手
+- data-analyst - 数据分析
+- fal-ai - AI绘画
+
+**推荐Skills（优先级：⭐⭐⭐⭐）**
+- video-agent - 视频生成
+- excel - Excel处理
+- csv-pipeline - CSV处理
+
+**可选Skills（优先级：⭐⭐⭐）**
+- 根据具体需求选择安装
+
+### 成本预算参考
+
+**月度成本估算**：
+
+| 使用场景 | Skills组合 | API成本 | 总成本 |
+|---------|-----------|---------|--------|
+| 轻度使用 | 基础3个 | $5-10 | $5-10 |
+| 中度使用 | 推荐6个 | $20-50 | $20-50 |
+| 重度使用 | 全部安装 | $50-100 | $50-100 |
+
+**成本优化建议**：
+```
+✅ 使用国产模型（DeepSeek、Kimi）
+✅ 批量处理任务
+✅ 复用生成结果
+✅ 设置Token限制
+✅ 选择合适的分辨率/质量
+```
+
+### 常见问题
+
+**Q1：Skills安装失败怎么办？**
+```bash
+# 检查网络连接
+ping github.com
+
+# 使用国内镜像
+npm config set registry https://registry.npmmirror.com
+
+# 重试安装
+npx clawhub@latest install <skill-name>
+```
+
+**Q2：Skills加载失败怎么办？**
+```bash
+# 查看Skills列表
+openclaw skills list
+
+# 重新加载Skills
+openclaw skills reload
+
+# 重启OpenClaw
+openclaw restart
+```
+
+**Q3：API调用失败怎么办？**
+```bash
+# 检查API配置
+openclaw config get api
+
+# 测试API连接
+openclaw api test
+
+# 查看错误日志
+openclaw logs --tail 50
+```
+
+**Q4：如何更新Skills？**
+```bash
+# 更新单个Skill
+npx clawhub@latest update <skill-name>
+
+# 更新所有Skills
+npx clawhub@latest update --all
+
+# 查看可更新的Skills
+npx clawhub@latest list --outdated
+```
+
+### 最佳实践
+
+**1. 渐进式安装**
+```
+第1周：安装基础Skills，熟悉使用
+第2周：根据需求添加专业Skills
+第3周：优化配置，提升效率
+第4周：建立自动化工作流
+```
+
+**2. 定期维护**
+```bash
+# 每周检查更新
+npx clawhub@latest list --outdated
+
+# 每月清理无用Skills
+openclaw skills cleanup
+
+# 每季度备份配置
+openclaw backup create
+```
+
+**3. 性能优化**
+```bash
+# 只加载需要的Skills
+openclaw config set skills.lazy-load true
+
+# 设置并发限制
+openclaw config set skills.max-concurrent 3
+
+# 启用缓存
+openclaw config set skills.cache.enabled true
+```
+
+### 进阶技巧
+
+**技巧1：创建Skills组合**
+```bash
+# 创建内容创作组合
+openclaw skills group create "content-creation" \
+  --skills "fal-ai,video-agent,translator"
+
+# 使用组合
+openclaw skills group enable "content-creation"
+```
+
+**技巧2：自定义快捷命令**
+```bash
+# 创建快捷命令
+openclaw alias create "画图" "使用fal-ai生成图片"
+openclaw alias create "翻译" "使用translator翻译"
+openclaw alias create "分析" "使用data-analyst分析数据"
+```
+
+**技巧3：批量操作**
+```bash
+# 批量生成图片
+openclaw batch run "fal-ai" \
+  --input "prompts.txt" \
+  --output "images/"
+
+# 批量翻译文档
+openclaw batch run "translator" \
+  --input "docs/" \
+  --output "translated/"
+```
+
+---
+
+**下一章预告**：第15章将学习常见问题与解决方案，包括安装配置、API连接、Skills加载和性能优化等问题的完整解决方案。
 
