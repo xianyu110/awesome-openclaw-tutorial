@@ -4,6 +4,8 @@
 
 > ⚠️ **版本说明**：由于 OpenClaw 仍在快速开发中，本教程基于 **2026.2.9** 版本编写。该版本经过充分验证，稳定可靠。
 
+> 💡 **重要前提**：OpenClaw 预装了 **49个内置技能（Skills）**，本教程中的大部分功能演示都基于这些内置技能。这些技能涵盖文件管理、知识管理、日程管理、自动化等核心场景，开箱即用。如果某些功能无法使用，请先确认相关技能是否已启用（详见[第8章：Skills扩展](../03-advanced/08-skills-extension.md)）。
+
 ## 1.1 什么是OpenClaw
 
 ![img](https://upload.maynor1024.live/file/1770806852123_openclaw-logo-text-dark.png)
