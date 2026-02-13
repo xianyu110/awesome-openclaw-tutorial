@@ -5,6 +5,24 @@
 ## 📱 本章内容
 
 - 9.1 飞书Bot配置
+  - 9.1.1 飞书机器人介绍
+  - 9.1.2 快速开始
+  - 9.1.3 创建飞书应用
+  - 9.1.4 配置 OpenClaw
+  - 9.1.5 启动并测试
+  - 9.1.6 访问控制
+  - 9.1.7 群组配置
+  - 9.1.8 获取群组/用户 ID
+  - 9.1.9 高级配置
+  - 9.1.10 多账号配置
+  - 9.1.11 多 Agent 配置
+    - 9.1.11.1 配合飞书使用
+    - 9.1.11.2 实战案例：4个专业助手
+    - 9.1.11.3 配置注意事项
+    - 9.1.11.4 故障排查
+    - 9.1.11.5 配置对比
+    - 9.1.11.6 使用建议
+    - 9.1.11.7 本地多 Agent 管理（无需绑定 IM 平台）⭐新增
 - 9.2 企业微信Bot配置
 - 9.3 钉钉Bot配置
 - 9.4 QQ Bot配置
@@ -2850,5 +2868,406 @@ openclaw doctor --fix
 - ✅ 所有机器人使用相同模型
 - ✅ 不需要隔离工作空间
 - ✅ 快速开始使用
+
+---
+
+## 9.11.7 本地多 Agent 管理（无需绑定 IM 平台）
+
+> 💡 **重要提示**：多 Agent 管理不仅可以用于飞书等 IM 平台，也完全支持本地使用。如果你不需要绑定飞书机器人，可以通过 Web UI、命令行或 TUI 界面直接使用多个 Agent。
+
+![本地多 Agent 管理](https://upload.maynor1024.live/file/1770944487857_image-20260213090121654.png)
+
+### 本地使用方式
+
+OpenClaw 提供了多种本地使用方式，无需配置任何 IM 平台：
+
+#### 方式一：Web UI（推荐）
+
+```bash
+# 打开 Web 界面
+openclaw dashboard
+
+# 或直接访问
+http://127.0.0.1:18789/?token=你的token
+```
+
+**优势**：
+- ✅ 图形化界面，操作直观
+- ✅ 支持文件上传和下载
+- ✅ 实时显示 Token 消耗
+- ✅ 支持多轮对话历史
+
+#### 方式二：命令行对话
+
+```bash
+# 直接发送消息
+openclaw chat "你好，帮我分析一下这个项目"
+
+# 使用管道输入
+echo "帮我总结这个文件的内容" | openclaw chat
+
+# 指定输出文件
+openclaw chat "生成项目文档" --output docs.md
+```
+
+**优势**：
+- ✅ 快速执行单次任务
+- ✅ 适合脚本自动化
+- ✅ 可以集成到工作流中
+
+#### 方式三：TUI 终端界面
+
+```bash
+# 启动终端交互界面
+openclaw tui
+```
+
+**优势**：
+- ✅ 终端内交互式对话
+- ✅ 支持多轮对话
+- ✅ 适合服务器环境使用
+
+### 本地多 Agent 配置
+
+配置文件位置：`~/.openclaw/openclaw.json`
+
+**配置示例**：
+
+```json
+{
+  "agents": {
+    "list": [
+      {
+        "id": "main-agent",
+        "workspace": "/Users/username/work",
+        "model": { "primary": "anthropic/claude-sonnet-4" }
+      },
+      {
+        "id": "content-agent",
+        "workspace": "/Users/username/content",
+        "model": { "primary": "anthropic/claude-sonnet-4" }
+      },
+      {
+        "id": "code-agent",
+        "workspace": "/Users/username/code",
+        "model": { "primary": "deepseek/deepseek-chat" }
+      },
+      {
+        "id": "research-agent",
+        "workspace": "/Users/username/research",
+        "model": { "primary": "google/gemini-2-flash" }
+      }
+    ],
+    "defaults": {
+      "compaction": { "mode": "safeguard" },
+      "maxConcurrent": 4,
+      "subagents": { "maxConcurrent": 8 }
+    }
+  }
+}
+```
+
+**配置说明**：
+
+1. **agents.list**：定义所有可用的 Agent
+   - `id`：Agent 标识符（必填）
+   - `workspace`：工作空间路径（必填）
+   - `model.primary`：使用的模型（可选）
+
+2. **agents.defaults**：所有 Agent 共享的配置
+   - `compaction`：上下文压缩策略
+   - `maxConcurrent`：最大并发数
+   - `subagents`：子 Agent 配置
+
+### Agent 管理命令
+
+#### 列出所有 Agent
+
+```bash
+openclaw agents list
+
+# 输出示例：
+# Available agents:
+# - main-agent (default)
+#   Workspace: /Users/username/work
+#   Model: anthropic/claude-sonnet-4
+# - content-agent
+#   Workspace: /Users/username/content
+#   Model: anthropic/claude-sonnet-4
+# - code-agent
+#   Workspace: /Users/username/code
+#   Model: deepseek/deepseek-chat
+# - research-agent
+#   Workspace: /Users/username/research
+#   Model: google/gemini-2-flash
+```
+
+#### 切换 Agent
+
+```bash
+# 切换到指定 Agent
+openclaw agents switch content-agent
+
+# 输出：
+# Switched to agent: content-agent
+# Workspace: /Users/username/content
+# Model: anthropic/claude-sonnet-4
+```
+
+#### 查看当前 Agent
+
+```bash
+# 查看当前使用的 Agent
+openclaw agents current
+
+# 输出：
+# Current agent: content-agent
+# Workspace: /Users/username/content
+# Model: anthropic/claude-sonnet-4
+```
+
+#### 查看 Agent 配置
+
+```bash
+# 查看指定 Agent 的配置
+openclaw agents config content-agent
+
+# 查看当前 Agent 的配置
+openclaw agents config
+```
+
+#### 查看 Agent 状态
+
+```bash
+# 查看所有 Agent 的状态
+openclaw doctor
+
+# 输出示例：
+# ✅ Config valid
+# ✅ 4 agents configured
+# ✅ Gateway running
+# ✅ Session store: 12 entries
+```
+
+### 实战案例：4个专业助手
+
+**场景**：个人开发者，需要不同的专业助手处理不同任务。
+
+**配置步骤**：
+
+**步骤1：创建工作空间目录**
+
+```bash
+mkdir -p ~/work/main
+mkdir -p ~/work/content
+mkdir -p ~/work/code
+mkdir -p ~/work/research
+```
+
+**步骤2：编辑配置文件**
+
+```bash
+# 备份现有配置
+cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.backup
+
+# 编辑配置
+nano ~/.openclaw/openclaw.json
+```
+
+将上面的配置示例粘贴进去，修改路径为你的实际路径。
+
+**步骤3：验证配置**
+
+```bash
+# 验证配置是否正确
+openclaw doctor
+
+# 应该看到：
+# ✅ Config valid
+# ✅ 4 agents configured
+```
+
+**步骤4：重启网关**
+
+```bash
+# 重启网关使配置生效
+openclaw gateway restart
+
+# 查看状态
+openclaw gateway status
+```
+
+**步骤5：使用不同的 Agent**
+
+```bash
+# 使用主助手处理通用任务
+openclaw agents switch main-agent
+openclaw chat "帮我整理今天的待办事项"
+
+# 使用内容助手创作文章
+openclaw agents switch content-agent
+openclaw chat "帮我写一篇关于 AI 的文章"
+
+# 使用代码助手开发项目
+openclaw agents switch code-agent
+openclaw chat "帮我优化这段 Python 代码"
+
+# 使用研究助手搜集资料
+openclaw agents switch research-agent
+openclaw chat "帮我搜集关于量子计算的最新研究"
+```
+
+### 使用场景对比
+
+| 场景 | 推荐方式 | Agent 配置 | 优势 |
+|------|---------|-----------|------|
+| 个人本地使用 | Web UI + 多 Agent | 不同任务用不同 Agent | 工作空间隔离，模型灵活 |
+| 团队协作 | 飞书 + 多 Agent | 不同机器人绑定不同 Agent | 团队成员各用各的助手 |
+| 快速测试 | 命令行 + 单 Agent | 使用默认 Agent | 配置简单，快速上手 |
+| 服务器环境 | TUI + 多 Agent | 不同项目用不同 Agent | 终端内交互，资源隔离 |
+
+### 典型工作流
+
+**场景：一人公司的日常工作流**
+
+```bash
+# 早上：使用主助手查看日程
+openclaw agents switch main-agent
+openclaw chat "显示今天的日程安排"
+
+# 上午：使用代码助手开发项目
+openclaw agents switch code-agent
+openclaw chat "帮我实现用户登录功能"
+
+# 中午：使用研究助手学习新技术
+openclaw agents switch research-agent
+openclaw chat "搜集 Rust 语言的学习资料"
+
+# 下午：使用内容助手写文章
+openclaw agents switch content-agent
+openclaw chat "写一篇关于今天开发经验的博客"
+
+# 晚上：使用主助手总结一天
+openclaw agents switch main-agent
+openclaw chat "生成今日工作总结"
+```
+
+### 配置技巧
+
+**技巧1：为不同任务使用不同模型**
+
+```json
+{
+  "agents": {
+    "list": [
+      {
+        "id": "chat-agent",
+        "workspace": "/Users/username/chat",
+        "model": { "primary": "anthropic/claude-sonnet-4" }
+      },
+      {
+        "id": "code-agent",
+        "workspace": "/Users/username/code",
+        "model": { "primary": "deepseek/deepseek-chat" }
+      },
+      {
+        "id": "fast-agent",
+        "workspace": "/Users/username/fast",
+        "model": { "primary": "google/gemini-2-flash" }
+      }
+    ]
+  }
+}
+```
+
+**说明**：
+- Claude Sonnet 4：通用对话和复杂任务
+- DeepSeek：代码生成和技术问题
+- Gemini Flash：快速响应和简单任务
+
+**技巧2：使用别名简化切换**
+
+```bash
+# 在 ~/.zshrc 或 ~/.bashrc 中添加别名
+alias oc-main='openclaw agents switch main-agent'
+alias oc-code='openclaw agents switch code-agent'
+alias oc-content='openclaw agents switch content-agent'
+alias oc-research='openclaw agents switch research-agent'
+
+# 使用别名快速切换
+oc-code
+openclaw chat "帮我写一个排序算法"
+```
+
+**技巧3：为每个 Agent 配置独立的 Skills**
+
+```bash
+# 为代码助手安装开发相关的 Skills
+openclaw agents switch code-agent
+openclaw skill install github-integration
+openclaw skill install code-review
+
+# 为内容助手安装写作相关的 Skills
+openclaw agents switch content-agent
+openclaw skill install grammar-check
+openclaw skill install seo-optimizer
+```
+
+### 常见问题
+
+**问题1：切换 Agent 后工作空间没变**
+
+```bash
+# 检查当前 Agent
+openclaw agents current
+
+# 检查配置
+openclaw agents config
+
+# 重启网关
+openclaw gateway restart
+```
+
+**问题2：找不到 Agent**
+
+```bash
+# 列出所有 Agent
+openclaw agents list
+
+# 检查配置文件
+cat ~/.openclaw/openclaw.json | grep -A 5 "agents"
+```
+
+**问题3：Agent 配置验证失败**
+
+```bash
+# 运行诊断
+openclaw doctor
+
+# 自动修复
+openclaw doctor --fix
+```
+
+### 最佳实践
+
+1. **工作空间隔离**
+   - 为每个 Agent 创建独立的工作空间
+   - 避免不同任务的文件混在一起
+
+2. **模型选择**
+   - 根据任务类型选择合适的模型
+   - 代码任务用 DeepSeek，通用任务用 Claude
+
+3. **定期备份**
+   - 定期备份配置文件
+   - 使用版本控制管理配置
+
+4. **命名规范**
+   - Agent ID 使用有意义的名称
+   - 工作空间路径清晰明确
+
+5. **资源管理**
+   - 合理设置 maxConcurrent
+   - 定期清理不用的会话
 
 ---

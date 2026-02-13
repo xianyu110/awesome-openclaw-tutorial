@@ -6,8 +6,12 @@
 
 - 11.1 Antigravity Manager完全配置指南
 - 11.2 多模型切换策略
-- 11.3 成本优化方案
-- 11.4 性能调优技巧
+- 11.3 记忆搜索配置（Memory Search）
+- 11.4 成本优化方案
+- 11.5 性能调优技巧
+- 11.6 模型提供商配置详解
+- 11.7 工具系统详解
+- 11.8 CLI 命令完整参考
 
 ---
 
@@ -106,7 +110,7 @@ Antigravity Manager需要你提供AI模型的API密钥才能工作。
 
 如果你不想自己申请API，可以购买独享账号：
 
-🎁 **推荐**：Gemini 3 Pro独享账号12个月（支持反重力）
+**推荐**：学生账号Gemini 3 Pro独享账号12个月（支持反重力）
 
 **优势：**
 - ✅ 独享账号，无需担心限流
@@ -511,9 +515,9 @@ OpenClaw（Claude Sonnet）：你好！我是Claude...
 
 ---
 
-## 10.2 多模型切换策略
+## 11.2 多模型切换策略
 
-### 10.2.1 模型特点对比
+### 11.2.1 模型特点对比
 
 | 模型 | 优势 | 劣势 | 适用场景 |
 |------|------|------|----------|
@@ -523,10 +527,10 @@ OpenClaw（Claude Sonnet）：你好！我是Claude...
 | Gemini 3 Pro | 免费额度大 | 能力一般 | 简单任务 |
 | DeepSeek-V3 | 性价比高 | 中文优化 | 编程任务 |
 
-### 10.2.2 场景化选择策略
+### 11.2.2 场景化选择策略
 
 **日常对话**：
-```
+```text
 推荐：Claude Sonnet 4.5
 理由：
 - 响应速度快
@@ -535,7 +539,7 @@ OpenClaw（Claude Sonnet）：你好！我是Claude...
 ```
 
 **复杂推理**：
-```
+```text
 推荐：Claude Opus 4.6
 理由：
 - 推理能力最强
@@ -544,7 +548,7 @@ OpenClaw（Claude Sonnet）：你好！我是Claude...
 ```
 
 **图片识别**：
-```
+```text
 推荐：Gemini 3 Pro
 理由：
 - 多模态能力强
@@ -553,7 +557,7 @@ OpenClaw（Claude Sonnet）：你好！我是Claude...
 ```
 
 **编程任务**：
-```
+```text
 推荐：DeepSeek-V3
 理由：
 - 代码能力强
@@ -561,12 +565,423 @@ OpenClaw（Claude Sonnet）：你好！我是Claude...
 - 中文友好
 ```
 
+### 11.2.3 模型容灾机制（Fallback）
 
-### 10.2.3 自动切换配置
+> 🛡️ **高可用保障**：通过配置主模型和备用模型，确保服务不中断。
+
+#### 什么是模型容灾？
+
+当主模型（primary）出现以下情况时，系统会自动切换到备用模型（fallbacks）：
+- API 调用失败
+- 请求超时
+- 速率限制（Rate Limit）
+- 服务不可用
+
+#### 基础容灾配置
+
+**配置文件路径**：`~/.openclaw/openclaw.json`
+
+```json
+{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-opus-4-6",
+        "fallbacks": [
+          "openai-codex/gpt-5.3-codex",
+          "google-antigravity/claude-opus-4-6-thinking"
+        ]
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "model": {
+          "primary": "anthropic/claude-opus-4-6",
+          "fallbacks": [
+            "openai-codex/gpt-5.3-codex",
+            "google-antigravity/claude-opus-4-6-thinking"
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+**工作流程**：
+```text
+1. 尝试使用主模型：anthropic/claude-opus-4-6
+   ↓ 失败
+2. 切换到备用模型1：openai-codex/gpt-5.3-codex
+   ↓ 失败
+3. 切换到备用模型2：google-antigravity/claude-opus-4-6-thinking
+   ↓ 失败
+4. 返回错误信息
+```
+
+#### 实战案例1：成本优化型容灾
+
+**场景**：优先使用便宜模型，失败后使用高质量模型
+
+```json
+{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "deepseek/deepseek-chat",
+        "fallbacks": [
+          "anthropic/claude-sonnet-4-5",
+          "anthropic/claude-opus-4-6"
+        ]
+      }
+    }
+  }
+}
+```
+
+**优势**：
+- ✅ 日常使用 DeepSeek（极低成本）
+- ✅ DeepSeek 限流时自动切换到 Claude Sonnet
+- ✅ 重要任务失败时使用 Claude Opus 兜底
+- ✅ 成本节省 80%+
+
+#### 实战案例2：性能优先型容灾
+
+**场景**：优先使用最强模型，失败后降级
+
+```json
+{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-opus-4-6",
+        "fallbacks": [
+          "anthropic/claude-sonnet-4-5",
+          "deepseek/deepseek-chat"
+        ]
+      }
+    }
+  }
+}
+```
+
+**优势**：
+- ✅ 保证最佳质量
+- ✅ 高峰期自动降级
+- ✅ 确保服务不中断
+
+#### 实战案例3：多提供商容灾
+
+**场景**：跨提供商容灾，避免单点故障
+
+```json
+{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-sonnet-4-5",
+        "fallbacks": [
+          "openai/gpt-4o",
+          "google/gemini-2.0-flash-exp",
+          "deepseek/deepseek-chat"
+        ]
+      }
+    }
+  }
+}
+```
+
+**优势**：
+- ✅ Anthropic 故障时切换到 OpenAI
+- ✅ OpenAI 故障时切换到 Google
+- ✅ 最后使用 DeepSeek 兜底
+- ✅ 最大化服务可用性
+
+#### 配置命令行方式
+
+```bash
+# 设置主模型
+openclaw config set agents.defaults.model.primary "anthropic/claude-opus-4-6"
+
+# 设置备用模型（需要手动编辑 JSON）
+# 或使用 jq 命令
+cat ~/.openclaw/openclaw.json | jq '.agents.defaults.model.fallbacks = [
+  "openai-codex/gpt-5.3-codex",
+  "google-antigravity/claude-opus-4-6-thinking"
+]' > /tmp/openclaw-temp.json && mv /tmp/openclaw-temp.json ~/.openclaw/openclaw.json
+
+# 重启 Gateway 使配置生效
+openclaw gateway restart
+```
+
+#### 验证容灾配置
+
+```bash
+# 查看当前配置
+openclaw config get agents.defaults.model
+
+# 输出示例：
+{
+  "primary": "anthropic/claude-opus-4-6",
+  "fallbacks": [
+    "openai-codex/gpt-5.3-codex",
+    "google-antigravity/claude-opus-4-6-thinking"
+  ]
+}
+```
+
+#### 容灾最佳实践
+
+**1. 选择不同提供商**：
+```text
+✅ 推荐：Anthropic → OpenAI → Google
+❌ 不推荐：Claude Opus → Claude Sonnet（同提供商）
+```
+
+**2. 按能力梯度配置**：
+```text
+✅ 推荐：高能力 → 中能力 → 低能力
+❌ 不推荐：低能力 → 高能力（浪费资源）
+```
+
+**3. 考虑成本因素**：
+```text
+✅ 推荐：便宜 → 中等 → 昂贵（成本优化）
+✅ 推荐：昂贵 → 中等 → 便宜（质量优先）
+```
+
+**4. 限制备用数量**：
+```text
+✅ 推荐：2-3 个备用模型
+❌ 不推荐：5+ 个备用模型（过度复杂）
+```
+
+### 11.2.4 多认证 Profile + Token 轮换
+
+> 🔐 **账号管理**：配置多个认证配置，实现账号轮换和负载均衡。
+
+#### 什么是认证 Profile？
+
+认证 Profile 允许你为同一个提供商配置多个账号，系统会按照指定顺序轮换使用，避免单账号限流。
+
+#### 基础配置
+
+**配置文件路径**：`~/.openclaw/openclaw.json`
+
+```json
+{
+  "auth": {
+    "profiles": {
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      },
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "token"
+      },
+      "anthropic:manual": {
+        "provider": "anthropic",
+        "mode": "token"
+      },
+      "google-antigravity:mail1@gmail.com": {
+        "provider": "google-antigravity",
+        "mode": "oauth",
+        "email": "mail1@gmail.com"
+      },
+      "google-antigravity:mail2@gmail.com": {
+        "provider": "google-antigravity",
+        "mode": "oauth"
+      }
+    },
+    "order": {
+      "anthropic": [
+        "anthropic:default",
+        "anthropic:manual"
+      ],
+      "google-antigravity": [
+        "google-antigravity:mail1@gmail.com",
+        "google-antigravity:mail2@gmail.com"
+      ]
+    }
+  }
+}
+```
+
+#### 配置说明
+
+**profiles 字段**：
+- 定义所有可用的认证配置
+- 格式：`"提供商:标识符"`
+- `mode`：认证方式（`oauth` 或 `token`）
+- `email`：OAuth 账号邮箱（可选）
+
+**order 字段**：
+- 定义每个提供商的账号使用顺序
+- 系统会按顺序轮换使用
+- 当前账号限流时自动切换到下一个
+
+#### 实战案例1：Anthropic 双账号轮换
+
+**场景**：配置 2 个 Claude API Key，避免限流
+
+```json
+{
+  "auth": {
+    "profiles": {
+      "anthropic:account1": {
+        "provider": "anthropic",
+        "mode": "token"
+      },
+      "anthropic:account2": {
+        "provider": "anthropic",
+        "mode": "token"
+      }
+    },
+    "order": {
+      "anthropic": [
+        "anthropic:account1",
+        "anthropic:account2"
+      ]
+    }
+  }
+}
+```
+
+**配置 API Key**：
+```bash
+# 在 Antigravity Manager 中分别配置两个 API Key
+# 或在 OpenClaw 配置中添加：
+{
+  "models": {
+    "providers": {
+      "anthropic": {
+        "apiKey": "sk-ant-api-key-1",
+        ...
+      },
+      "anthropic-2": {
+        "apiKey": "sk-ant-api-key-2",
+        ...
+      }
+    }
+  }
+}
+```
+
+**工作流程**：
+```text
+1. 使用 account1 发送请求
+2. account1 达到限流 → 自动切换到 account2
+3. account2 达到限流 → 等待 account1 恢复
+4. 循环往复
+```
+
+#### 实战案例2：Google 多邮箱轮换
+
+**场景**：使用多个 Google 账号访问 Gemini
+
+```json
+{
+  "auth": {
+    "profiles": {
+      "google-antigravity:work@gmail.com": {
+        "provider": "google-antigravity",
+        "mode": "oauth",
+        "email": "work@gmail.com"
+      },
+      "google-antigravity:personal@gmail.com": {
+        "provider": "google-antigravity",
+        "mode": "oauth",
+        "email": "personal@gmail.com"
+      },
+      "google-antigravity:backup@gmail.com": {
+        "provider": "google-antigravity",
+        "mode": "oauth",
+        "email": "backup@gmail.com"
+      }
+    },
+    "order": {
+      "google-antigravity": [
+        "google-antigravity:work@gmail.com",
+        "google-antigravity:personal@gmail.com",
+        "google-antigravity:backup@gmail.com"
+      ]
+    }
+  }
+}
+```
+
+**优势**：
+- ✅ 3 个账号轮换，限流概率降低 66%
+- ✅ 免费额度叠加（3 倍免费额度）
+- ✅ 高峰期自动负载均衡
+
+#### 实战案例3：混合认证模式
+
+**场景**：同时使用 OAuth 和 API Token
+
+```json
+{
+  "auth": {
+    "profiles": {
+      "anthropic:oauth-account": {
+        "provider": "anthropic",
+        "mode": "oauth"
+      },
+      "anthropic:token-account": {
+        "provider": "anthropic",
+        "mode": "token"
+      }
+    },
+    "order": {
+      "anthropic": [
+        "anthropic:oauth-account",
+        "anthropic:token-account"
+      ]
+    }
+  }
+}
+```
+
+**使用场景**：
+- OAuth 账号：日常使用（更安全）
+- Token 账号：备用（更稳定）
+
+#### 配置最佳实践
+
+**1. 账号数量建议**：
+```text
+✅ 推荐：2-3 个账号
+❌ 不推荐：5+ 个账号（管理复杂）
+```
+
+**2. 认证方式选择**：
+```text
+OAuth：更安全，适合个人账号
+Token：更稳定，适合 API 密钥
+```
+
+**3. 轮换策略**：
+```text
+✅ 按使用频率排序（高频 → 低频）
+✅ 按账号等级排序（付费 → 免费）
+```
+
+**4. 监控和维护**：
+```bash
+# 查看当前使用的认证配置
+openclaw config get auth.profiles
+
+# 测试认证是否有效
+openclaw test api
+```
+
+### 11.2.5 自动切换配置
 
 **基于任务类型切换**：
-```javascript
-// 配置规则
+```json
 {
   "rules": [
     {
@@ -590,7 +1005,7 @@ OpenClaw（Claude Sonnet）：你好！我是Claude...
 ```
 
 **基于成本切换**：
-```javascript
+```json
 {
   "rules": [
     {
@@ -607,9 +1022,435 @@ OpenClaw（Claude Sonnet）：你好！我是Claude...
 
 ---
 
-## 10.3 成本优化方案
+## 11.3 记忆搜索配置（Memory Search）
 
-### 10.3.1 Token消耗分析
+> 🧠 **智能记忆**：配置 Memory Search 让 OpenClaw 记住历史对话，提供更智能的上下文感知。
+
+### 11.3.1 什么是 Memory Search？
+
+Memory Search 是 OpenClaw 的记忆系统，可以：
+- 记住历史对话内容
+- 搜索相关会话记录
+- 提供上下文感知
+- 支持混合检索（向量 + 文本）
+
+### 11.3.2 基础配置
+
+**配置文件路径**：`~/.openclaw/openclaw.json`
+
+```json
+{
+  "agents": {
+    "defaults": {
+      "memorySearch": {
+        "sources": ["memory", "sessions"],
+        "experimental": {
+          "sessionMemory": true
+        },
+        "provider": "gemini",
+        "remote": {
+          "apiKey": "AIzaSy**************************"
+        },
+        "fallback": "gemini",
+        "model": "gemini-embedding-001",
+        "query": {
+          "hybrid": {
+            "enabled": true,
+            "vectorWeight": 0.7,
+            "textWeight": 0.3
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### 11.3.3 配置项详解
+
+#### sources（数据源）
+
+```json
+{
+  "sources": ["memory", "sessions"]
+}
+```
+
+**可选值**：
+- `memory`：长期记忆（跨会话）
+- `sessions`：会话记录（当前会话）
+
+**推荐配置**：
+```json
+// 只使用长期记忆
+"sources": ["memory"]
+
+// 同时使用长期记忆和会话记录
+"sources": ["memory", "sessions"]
+```
+
+#### experimental（实验性功能）
+
+```json
+{
+  "experimental": {
+    "sessionMemory": true
+  }
+}
+```
+
+**sessionMemory**：
+- `true`：启用会话记忆（推荐）
+- `false`：禁用会话记忆
+
+#### provider（嵌入模型提供商）
+
+```json
+{
+  "provider": "gemini"
+}
+```
+
+**支持的提供商**：
+- `gemini`：Google Gemini（推荐，免费）
+- `openai`：OpenAI Embeddings
+- `local`：本地嵌入模型
+
+**推荐**：使用 Gemini（免费且效果好）
+
+#### remote（远程 API 配置）
+
+```json
+{
+  "remote": {
+    "apiKey": "AIzaSy**************************"
+  }
+}
+```
+
+**获取 Gemini API Key**：
+1. 访问 [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. 登录 Google 账号
+3. 创建 API Key
+4. 复制并粘贴到配置中
+
+#### fallback（备用提供商）
+
+```json
+{
+  "fallback": "gemini"
+}
+```
+
+当主提供商失败时，使用备用提供商。
+
+#### model（嵌入模型）
+
+```json
+{
+  "model": "gemini-embedding-001"
+}
+```
+
+**Gemini 嵌入模型**：
+- `gemini-embedding-001`：标准模型（推荐）
+- `text-embedding-004`：高级模型
+
+**OpenAI 嵌入模型**：
+- `text-embedding-3-small`：小模型（便宜）
+- `text-embedding-3-large`：大模型（效果好）
+
+#### query（查询配置）
+
+```json
+{
+  "query": {
+    "hybrid": {
+      "enabled": true,
+      "vectorWeight": 0.7,
+      "textWeight": 0.3
+    }
+  }
+}
+```
+
+**hybrid（混合检索）**：
+- `enabled`：是否启用混合检索
+- `vectorWeight`：向量搜索权重（0-1）
+- `textWeight`：文本搜索权重（0-1）
+
+**权重建议**：
+```text
+语义搜索优先：vectorWeight: 0.7, textWeight: 0.3
+关键词搜索优先：vectorWeight: 0.3, textWeight: 0.7
+平衡模式：vectorWeight: 0.5, textWeight: 0.5
+```
+
+### 11.3.4 实战案例1：基础配置（Gemini）
+
+**场景**：使用免费的 Gemini 嵌入模型
+
+```json
+{
+  "agents": {
+    "defaults": {
+      "memorySearch": {
+        "sources": ["memory", "sessions"],
+        "experimental": {
+          "sessionMemory": true
+        },
+        "provider": "gemini",
+        "remote": {
+          "apiKey": "你的Gemini_API_Key"
+        },
+        "model": "gemini-embedding-001",
+        "query": {
+          "hybrid": {
+            "enabled": true,
+            "vectorWeight": 0.7,
+            "textWeight": 0.3
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+**优势**：
+- ✅ 完全免费
+- ✅ 效果优秀
+- ✅ 配置简单
+
+### 11.3.5 实战案例2：高级配置（OpenAI）
+
+**场景**：使用 OpenAI 嵌入模型（更高精度）
+
+```json
+{
+  "agents": {
+    "defaults": {
+      "memorySearch": {
+        "sources": ["memory", "sessions"],
+        "experimental": {
+          "sessionMemory": true
+        },
+        "provider": "openai",
+        "remote": {
+          "apiKey": "sk-your-openai-api-key"
+        },
+        "fallback": "gemini",
+        "model": "text-embedding-3-large",
+        "query": {
+          "hybrid": {
+            "enabled": true,
+            "vectorWeight": 0.8,
+            "textWeight": 0.2
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+**优势**：
+- ✅ 精度更高
+- ✅ 支持更多语言
+- ✅ 有备用方案
+
+**成本**：
+- text-embedding-3-small：$0.02/百万 tokens
+- text-embedding-3-large：$0.13/百万 tokens
+
+### 11.3.6 实战案例3：本地部署（隐私优先）
+
+**场景**：使用本地嵌入模型，保护隐私
+
+```json
+{
+  "agents": {
+    "defaults": {
+      "memorySearch": {
+        "sources": ["memory", "sessions"],
+        "experimental": {
+          "sessionMemory": true
+        },
+        "provider": "local",
+        "model": "all-MiniLM-L6-v2",
+        "query": {
+          "hybrid": {
+            "enabled": true,
+            "vectorWeight": 0.6,
+            "textWeight": 0.4
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+**优势**：
+- ✅ 完全本地，保护隐私
+- ✅ 无需 API Key
+- ✅ 无使用限制
+
+**劣势**：
+- ❌ 需要本地计算资源
+- ❌ 精度略低于云端模型
+
+### 11.3.7 配置命令行方式
+
+```bash
+# 启用 Memory Search
+openclaw config set agents.defaults.memorySearch.experimental.sessionMemory true
+
+# 设置提供商
+openclaw config set agents.defaults.memorySearch.provider "gemini"
+
+# 设置 API Key（需要手动编辑 JSON）
+# 或使用 jq 命令
+cat ~/.openclaw/openclaw.json | jq '.agents.defaults.memorySearch.remote.apiKey = "你的API_Key"' > /tmp/openclaw-temp.json && mv /tmp/openclaw-temp.json ~/.openclaw/openclaw.json
+
+# 重启 Gateway
+openclaw gateway restart
+```
+
+### 11.3.8 验证配置
+
+```bash
+# 查看当前配置
+openclaw config get agents.defaults.memorySearch
+
+# 测试记忆搜索
+openclaw message send "记住：我喜欢喝咖啡"
+openclaw message send "我喜欢喝什么？"
+
+# 应该返回：根据我的记忆，你喜欢喝咖啡。
+```
+
+### 11.3.9 使用场景
+
+**场景1：个人助手**
+```text
+你：记住我的生日是 1990 年 1 月 1 日
+OpenClaw：好的，已记住。
+
+（几天后）
+你：我的生日是什么时候？
+OpenClaw：根据我的记忆，你的生日是 1990 年 1 月 1 日。
+```
+
+**场景2：项目管理**
+```text
+你：项目 A 的截止日期是 2026 年 3 月 1 日
+OpenClaw：已记录。
+
+（一周后）
+你：项目 A 什么时候截止？
+OpenClaw：项目 A 的截止日期是 2026 年 3 月 1 日。
+```
+
+**场景3：知识积累**
+```text
+你：DeepSeek API 的价格是 $0.001/千 tokens
+OpenClaw：已记住。
+
+（下次对话）
+你：哪个模型最便宜？
+OpenClaw：根据我的记忆，DeepSeek 最便宜，价格是 $0.001/千 tokens。
+```
+
+### 11.3.10 最佳实践
+
+**1. 选择合适的提供商**：
+```text
+免费用户：Gemini（免费且效果好）
+付费用户：OpenAI（精度更高）
+隐私优先：Local（完全本地）
+```
+
+**2. 调整混合检索权重**：
+```text
+语义理解为主：vectorWeight: 0.7-0.8
+关键词匹配为主：textWeight: 0.6-0.7
+平衡模式：各 0.5
+```
+
+**3. 定期清理记忆**：
+```bash
+# 清理过期记忆
+openclaw memory clean --older-than 30d
+
+# 查看记忆使用情况
+openclaw memory stats
+```
+
+**4. 备份重要记忆**：
+```bash
+# 导出记忆
+openclaw memory export --output memory-backup.json
+
+# 导入记忆
+openclaw memory import memory-backup.json
+```
+
+### 11.3.11 故障排查
+
+**问题1：记忆搜索不工作**
+
+**原因**：API Key 无效或未配置
+
+**解决方法**：
+```bash
+# 检查配置
+openclaw config get agents.defaults.memorySearch
+
+# 测试 API Key
+curl -H "Content-Type: application/json" \
+  -d '{"contents":[{"parts":[{"text":"test"}]}]}' \
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent?key=你的API_Key"
+```
+
+**问题2：搜索结果不准确**
+
+**原因**：混合检索权重不合适
+
+**解决方法**：
+```json
+// 调整权重
+{
+  "query": {
+    "hybrid": {
+      "vectorWeight": 0.8,  // 提高语义搜索权重
+      "textWeight": 0.2
+    }
+  }
+}
+```
+
+**问题3：记忆占用空间过大**
+
+**原因**：长期积累未清理
+
+**解决方法**：
+```bash
+# 查看记忆大小
+openclaw memory stats
+
+# 清理旧记忆
+openclaw memory clean --older-than 60d
+
+# 压缩记忆数据库
+openclaw memory compact
+```
+
+---
+
+## 11.4 成本优化方案
+
+### 11.4.1 Token消耗分析
 
 **查看消耗统计**：
 ```bash
@@ -641,7 +1482,7 @@ openclaw stats today
 - 优化提示词
 ```
 
-### 10.3.2 缓存策略
+### 11.4.2 缓存策略
 
 **启用缓存**：
 ```bash
@@ -669,7 +1510,7 @@ openclaw config set cache.maxSize 1000
 - 节省：100%
 ```
 
-### 10.3.3 模型降级方案
+### 11.4.3 模型降级方案
 
 **降级策略**：
 ```
@@ -689,7 +1530,7 @@ openclaw config set cache.maxSize 1000
 }
 ```
 
-### 10.3.4 成本控制实战
+### 11.4.4 成本控制实战
 
 **案例1：降低50%成本**
 ```
@@ -721,9 +1562,9 @@ openclaw config set cache.maxSize 1000
 
 ---
 
-## 10.4 性能调优技巧
+## 11.5 性能调优技巧
 
-### 10.4.1 响应速度优化
+### 11.5.1 响应速度优化
 
 **优化前**：
 ```
@@ -746,7 +1587,7 @@ openclaw config set cache.maxSize 1000
 提升：60%
 ```
 
-### 10.4.2 并发处理优化
+### 11.5.2 并发处理优化
 
 **配置并发数**：
 ```bash
@@ -757,7 +1598,7 @@ openclaw config set concurrency.max 5
 openclaw config set concurrency.queueSize 100
 ```
 
-### 10.4.3 内存管理
+### 11.5.3 内存管理
 
 **监控内存使用**：
 ```bash
@@ -796,11 +1637,11 @@ openclaw stats memory
 
 ---
 
-## 10.5 模型提供商配置详解
+## 11.6 模型提供商配置详解
 
 > 🤖 **多模型支持**：OpenClaw 支持 20+ 主流 AI 模型提供商，灵活配置满足不同需求。
 
-### 10.5.1 支持的模型提供商
+### 11.6.1 支持的模型提供商
 
 #### 国际模型
 
@@ -832,7 +1673,7 @@ openclaw stats memory
 | **Ollama** | Llama 3.1, Qwen2.5 | 完全本地、隐私保护 | 免费 |
 | **LM Studio** | 各种开源模型 | 图形界面、易用 | 免费 |
 
-### 10.5.2 配置 OpenAI
+### 11.6.2 配置 OpenAI
 
 ```json
 {
@@ -864,7 +1705,7 @@ openclaw stats memory
 }
 ```
 
-### 10.5.3 配置 Anthropic (Claude)
+### 11.6.3 配置 Anthropic (Claude)
 
 ```json
 {
@@ -896,7 +1737,7 @@ openclaw stats memory
 }
 ```
 
-### 10.5.4 配置 Google Gemini
+### 11.6.4 配置 Google Gemini
 
 ```json
 {
@@ -928,7 +1769,7 @@ openclaw stats memory
 }
 ```
 
-### 10.5.5 配置 DeepSeek（推荐）
+### 11.6.5 配置 DeepSeek（推荐）
 
 ```json
 {
@@ -960,7 +1801,7 @@ openclaw stats memory
 }
 ```
 
-### 10.5.6 配置 Kimi（月之暗面）
+### 11.6.6 配置 Kimi（月之暗面）
 
 ```json
 {
@@ -998,7 +1839,7 @@ openclaw stats memory
 }
 ```
 
-### 10.5.7 配置 Ollama（本地模型）
+### 11.6.7 配置 Ollama（本地模型）
 
 ```json
 {
@@ -1029,7 +1870,7 @@ openclaw stats memory
 }
 ```
 
-### 10.5.8 多提供商配置示例
+### 11.6.8 多提供商配置示例
 
 ```json
 {
@@ -1093,7 +1934,7 @@ openclaw stats memory
 }
 ```
 
-### 10.5.9 模型选择策略
+### 11.6.9 模型选择策略
 
 **按任务类型选择**：
 
@@ -1129,11 +1970,11 @@ openclaw stats memory
 
 ---
 
-## 10.6 工具系统详解
+## 11.7 工具系统详解
 
 > 🔧 **扩展能力**：OpenClaw 的工具系统让 AI 能够执行各种操作，从文件管理到 API 调用。
 
-### 10.6.1 内置工具列表
+### 11.7.1 内置工具列表
 
 #### 文件系统工具
 
@@ -1169,7 +2010,7 @@ openclaw stats memory
 | `parse_csv` | 解析 CSV | 处理表格数据 |
 | `extract_text` | 提取文本 | 从 PDF 提取 |
 
-### 10.6.2 启用和禁用工具
+### 11.7.2 启用和禁用工具
 
 **查看可用工具**：
 ```bash
@@ -1204,7 +2045,7 @@ openclaw tools disable execute_command
 }
 ```
 
-### 10.6.3 工具权限控制
+### 11.7.3 工具权限控制
 
 **设置工具权限**：
 ```json
@@ -1237,7 +2078,7 @@ openclaw tools disable execute_command
 }
 ```
 
-### 10.6.4 自定义工具开发
+### 11.7.4 自定义工具开发
 
 **创建自定义工具**：
 
@@ -1271,7 +2112,7 @@ export default {
 openclaw tools register ~/.openclaw/tools/my-tool.js
 ```
 
-### 10.6.5 工具使用示例
+### 11.7.5 工具使用示例
 
 **文件搜索**：
 ```
@@ -1307,7 +2148,7 @@ OpenClaw 使用工具：
 3. 分析数据并生成报告
 ```
 
-### 10.6.6 工具链（Tool Chaining）
+### 11.7.6 工具链（Tool Chaining）
 
 OpenClaw 可以自动组合多个工具完成复杂任务：
 
@@ -1321,7 +2162,7 @@ OpenClaw 可以自动组合多个工具完成复杂任务：
 4. write_file(path, content) → 保存文件
 ```
 
-### 10.6.7 工具安全最佳实践
+### 11.7.7 工具安全最佳实践
 
 **1. 最小权限原则**：
 ```json
@@ -1363,11 +2204,11 @@ OpenClaw 可以自动组合多个工具完成复杂任务：
 
 ---
 
-## 10.7 CLI 命令完整参考
+## 11.8 CLI 命令完整参考
 
 > 📟 **命令行工具**：OpenClaw 提供强大的 CLI 工具，方便管理和操作。
 
-### 10.7.1 核心命令
+### 11.8.1 核心命令
 
 #### 版本和帮助
 
@@ -1406,7 +2247,7 @@ openclaw config set gateway.port 18790
 openclaw config delete models.providers.test
 ```
 
-### 10.7.2 Gateway 管理
+### 11.8.2 Gateway 管理
 
 ```bash
 # 安装/启动 Gateway
@@ -1430,7 +2271,7 @@ openclaw logs --tail 100
 openclaw logs clear
 ```
 
-### 10.7.3 渠道管理
+### 11.8.3 渠道管理
 
 ```bash
 # 列出所有渠道
@@ -1449,7 +2290,7 @@ openclaw channels remove feishu
 openclaw channels test feishu
 ```
 
-### 10.7.4 配对管理
+### 11.8.4 配对管理
 
 ```bash
 # 列出配对请求
@@ -1466,7 +2307,7 @@ openclaw pairing reject feishu <CODE>
 openclaw pairing cleanup
 ```
 
-### 10.7.5 插件管理
+### 11.8.5 插件管理
 
 ```bash
 # 列出已安装插件
@@ -1488,7 +2329,7 @@ openclaw plugins update @openclaw/feishu
 openclaw plugins update --all
 ```
 
-### 10.7.6 工具管理
+### 11.8.6 工具管理
 
 ```bash
 # 列出所有工具
@@ -1507,7 +2348,7 @@ openclaw tools register ~/my-tool.js
 openclaw tools test read_file
 ```
 
-### 10.7.7 Agent 管理
+### 11.8.7 Agent 管理
 
 ```bash
 # 列出 Agents
@@ -1526,7 +2367,7 @@ openclaw agents switch my-agent
 openclaw agents config my-agent
 ```
 
-### 10.7.8 会话管理
+### 11.8.8 会话管理
 
 ```bash
 # 列出会话
@@ -1548,7 +2389,7 @@ openclaw sessions export <session-id> --output session.json
 openclaw sessions import session.json
 ```
 
-### 10.7.9 统计和监控
+### 11.8.9 统计和监控
 
 ```bash
 # 查看统计信息
@@ -1570,7 +2411,7 @@ openclaw stats memory
 openclaw stats performance
 ```
 
-### 10.7.10 测试和诊断
+### 11.8.10 测试和诊断
 
 ```bash
 # 测试 API 连接
@@ -1592,7 +2433,7 @@ openclaw validate config
 openclaw health check
 ```
 
-### 10.7.11 数据管理
+### 11.8.11 数据管理
 
 ```bash
 # 备份数据
@@ -1617,7 +2458,7 @@ openclaw export --output data.json
 openclaw import data.json
 ```
 
-### 10.7.12 更新和维护
+### 11.8.12 更新和维护
 
 ```bash
 # 检查更新
@@ -1636,7 +2477,7 @@ openclaw rollback
 openclaw uninstall
 ```
 
-### 10.7.13 开发和调试
+### 11.8.13 开发和调试
 
 ```bash
 # 开发模式启动
@@ -1658,7 +2499,7 @@ openclaw build
 openclaw clean
 ```
 
-### 10.7.14 常用命令组合
+### 11.8.14 常用命令组合
 
 **快速重启**：
 ```bash
@@ -1685,7 +2526,7 @@ openclaw cache clear && openclaw gateway restart
 openclaw diagnose && openclaw health check && openclaw test api
 ```
 
-### 10.7.15 环境变量
+### 11.8.15 环境变量
 
 ```bash
 # 设置日志级别
@@ -1702,7 +2543,7 @@ export DEEPSEEK_API_KEY=sk-xxx
 export MOONSHOT_API_KEY=sk-xxx
 ```
 
-### 10.7.16 配置文件位置
+### 11.8.16 配置文件位置
 
 ```bash
 # 主配置文件
@@ -1726,21 +2567,25 @@ export MOONSHOT_API_KEY=sk-xxx
 
 ---
 
-## 📝 本章小结（更新）
+## 📝 本章小结
 
 学习了OpenClaw的高级配置：
 
 ### 核心内容
 1. **Antigravity Manager配置** - API 统一管理
-2. **多模型切换策略** - 场景化选择
-3. **成本优化方案** - 降低 50%+ 成本
-4. **性能调优技巧** - 提升 60% 响应速度
-5. **模型提供商配置** - 20+ 主流模型支持
-6. **工具系统详解** - 扩展 AI 能力
-7. **CLI 命令完整参考** - 100+ 命令详解
+2. **多模型切换策略** - 场景化选择 + 模型容灾机制
+3. **记忆搜索配置** - 智能上下文感知
+4. **成本优化方案** - 降低 50%+ 成本
+5. **性能调优技巧** - 提升 60% 响应速度
+6. **模型提供商配置** - 20+ 主流模型支持
+7. **工具系统详解** - 扩展 AI 能力
+8. **CLI 命令完整参考** - 100+ 命令详解
 
 ### 实战技能
 - ✅ 配置多个 AI 模型提供商
+- ✅ 配置模型容灾机制（primary + fallbacks）
+- ✅ 配置多认证 Profile 实现账号轮换
+- ✅ 配置记忆搜索系统
 - ✅ 根据任务选择最优模型
 - ✅ 使用工具系统扩展功能
 - ✅ 掌握 CLI 命令高效管理
@@ -1751,7 +2596,9 @@ export MOONSHOT_API_KEY=sk-xxx
 - **长文档**：Kimi（200万字上下文）
 - **复杂任务**：Claude 3.5 Sonnet（推理能力强）
 - **本地隐私**：Ollama（完全本地）
+- **容灾方案**：DeepSeek → Claude Sonnet → Claude Opus
+- **记忆搜索**：Gemini Embedding（免费且效果好）
 
 ---
 
-**下一章预告**：第11章将进入实战案例部分，学习个人效率提升的完整工作流。
+**下一章预告**：第12章将进入实战案例部分，学习个人效率提升的完整工作流。
