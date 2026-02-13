@@ -2009,63 +2009,201 @@ tokens 25k/200k (13%)
 
 ### 9.4.2 创建QQ机器人
 
-**方式1：QQ频道机器人（推荐）**
+> ⚠️ **重要提示**：QQ开放平台需要先注册账号，不是直接用QQ登录！请务必先完成注册。
 
-参考腾讯云官方教程：
+**步骤1：注册QQ开放平台账号**
 
-```text
-https://cloud.tencent.com/developer/article/2626045
-```
+1. **访问QQ开放平台**：
+   ```
+   https://q.qq.com/
+   ```
 
-**步骤1：注册QQ开放平台**
+2. **注册新账号**：
+   - ⚠️ 不是QQ登录，需要单独注册
+   - 点击"注册"按钮
+   - 填写注册信息
+   - 完成邮箱/手机验证
 
-```text
-https://q.qq.com/
-```
+3. **登录平台**：
+   - 使用刚注册的账号登录
+   - 不要使用QQ扫码登录
 
 **步骤2：创建机器人**
 
-```text
-1. 登录QQ开放平台
-2. 点击"创建机器人"
-3. 填写机器人信息
-4. 提交审核
-```
+1. **进入机器人管理**：
+   - 登录后点击"机器人"
+   - 点击"创建机器人"
 
-**步骤3：获取凭证**
+2. **填写机器人信息**：
+   - 机器人名称：自定义（如：我的AI助手）
+   - 机器人头像：上传图片
+   - 机器人简介：简单描述功能
+   - 点击"创建"
 
-```text
-记录以下信息：
-- AppID：应用ID
-- Token：机器人令牌
-- AppSecret：应用密钥
-```
+3. **等待审核**：
+   - 提交后等待审核（通常几分钟）
+   - 审核通过后即可使用
+
+**步骤3：配置机器人**
+
+1. **获取机器人凭证**：
+   - 进入机器人详情页
+   - 点击"开发管理"
+   - 记录以下信息：
+     - **机器人ID**（BotAppID）
+     - **机器人密钥**（Bot Secret）
+
+2. **配置IP白名单**：
+   - 在"开发管理"页面
+   - 找到"IP白名单"设置
+   - 添加你的服务器公网IP地址
+   - 点击"保存"
+
+3. **添加测试用户**：
+   - 在"管理" → "成员管理"
+   - 点击"添加成员"
+   - 输入你的QQ号
+   - 将自己添加为测试用户
+
+4. **扫码添加机器人好友**：
+   - 在机器人详情页找到二维码
+   - 用手机QQ扫码
+   - 添加机器人为好友
+
+**步骤4：配置OpenClaw连接**
+
+1. **获取服务器IP地址**：
+   - 如果使用腾讯云，在控制台查看公网IP
+   - 记录这个IP地址
+
+2. **在腾讯云Lighthouse配置**（如果使用腾讯云）：
+   - 登录腾讯云：https://console.cloud.tencent.com/lighthouse
+   - 进入实例详情
+   - 点击"应用管理"标签
+   - 找到"QQ机器人配置"区域
+   - 填入：
+     - 机器人ID（BotAppID）
+     - 机器人密钥（Bot Secret）
+   - 点击"应用配置"
+
+3. **本地配置方式**：
+   ```bash
+   # 运行配置向导
+   openclaw onboard
+   
+   # 选择 QuickStart
+   # 选择模型（如 Kimi 2.5）
+   # 输入模型 API Key
+   # 选择通道：QQ
+   # 输入机器人ID和密钥
+   ```
 
 
 ### 9.4.3 配置OpenClaw
 
 > 💡 **前置要求**：请先完成 OpenClaw 的基础安装和配置，详见 [第2章：环境搭建](../01-basics/02-installation.md)。
 
-**云端部署（推荐）**
+**方式一：使用腾讯云Lighthouse（推荐）**
 
-参考官方教程可一键完成QQ接入：
+如果你使用腾讯云Lighthouse部署OpenClaw，配置非常简单：
 
-```text
-https://cloud.tencent.com/developer/article/2626045
+1. **进入应用管理**：
+   - 登录腾讯云控制台
+   - 进入轻量应用服务器
+   - 点击实例 → "应用管理"
 
-完整视频教程：
-https://cloud.tencent.com/developer/video/85003
-```
+2. **配置QQ机器人**：
+   - 找到"QQ机器人配置"区域
+   - 填入机器人ID和密钥
+   - 点击"应用配置"
+   - 等待配置生效
 
-**本地配置**
+3. **验证连接**：
+   - 打开手机QQ
+   - 给机器人发送消息："你好"
+   - 如果收到回复，说明配置成功
+
+**方式二：本地配置**
+
+如果你是本地部署或其他云服务器，使用命令行配置：
 
 ```bash
-# 安装QQ Skills并配置
-openclaw skill install qq-bot
-openclaw config set qq.appId "your-app-id"
-openclaw config set qq.token "your-token"
-openclaw config set qq.appSecret "your-app-secret"
-openclaw qq start
+# 1. 运行配置向导
+openclaw onboard
+
+# 2. 选择配置选项
+# - 选择 Yes 接受风险
+# - 选择 QuickStart（快速开始）
+
+# 3. 配置模型
+# - 选择模型供应商（如 Moonshot AI）
+# - 输入 API Key
+# - 选择默认模型（如 kimi-code/kimi-for-codi）
+
+# 4. 配置通道
+# - 选择通道：QQ
+# - 输入机器人ID（BotAppID）
+# - 输入机器人密钥（Bot Secret）
+
+# 5. 配置Skills和Hooks
+# - Skills：选择 Yes，可以先不安装
+# - Hooks：选择 session-memory
+
+# 6. 重启服务
+# - 选择 Yes 重启 gateway 服务
+
+# 7. 测试连接
+# - 选择打开 TUI（终端界面）
+# - 或直接在QQ中测试
+```
+
+**方式三：手动编辑配置文件**
+
+```bash
+# 编辑配置文件
+nano ~/.openclaw/config.json
+
+# 添加QQ配置
+{
+  "channels": {
+    "qq": {
+      "enabled": true,
+      "botAppId": "你的机器人ID",
+      "botSecret": "你的机器人密钥",
+      "profiles": ["default"]
+    }
+  }
+}
+
+# 重启服务
+systemctl --user restart openclaw-gateway.service
+```
+
+**启动Gateway服务**
+
+```bash
+# 方式1：前台运行（用于测试）
+openclaw gateway --port 18789 --verbose
+
+# 方式2：后台运行（推荐）
+nohup openclaw gateway --port 18789 --verbose > /dev/null 2>&1 &
+
+# 方式3：使用systemd（最稳定）
+systemctl --user enable openclaw-gateway.service
+systemctl --user start openclaw-gateway.service
+```
+
+**验证配置**
+
+```bash
+# 查看服务状态
+systemctl --user status openclaw-gateway.service
+
+# 查看日志
+journalctl --user -u openclaw-gateway.service -f
+
+# 测试连接
+# 在QQ中给机器人发送消息："你好"
 ```
 
 ### 9.4.4 实战案例
@@ -2127,6 +2265,7 @@ OpenClaw：什么东西...
 - 功能权限限制
 - 审核要求严格
 - 部分API需要申请
+- 目前不支持主动发送消息（2026.2.6测试）
 ```
 
 **注意事项**：
@@ -2135,7 +2274,188 @@ OpenClaw：什么东西...
 ✅ 不发送违规内容
 ✅ 合理使用API
 ✅ 及时响应用户
+✅ 定期检查服务状态
 ```
+
+**常见问题**：
+
+1. **机器人不回复消息**：
+   - 检查IP白名单是否正确
+   - 检查机器人ID和密钥是否正确
+   - 查看Gateway服务是否运行
+   - 检查服务器日志
+
+2. **配置后无法连接**：
+   - 确认已添加为测试用户
+   - 确认已添加机器人好友
+   - 重启Gateway服务
+   - 检查防火墙设置
+
+3. **消息延迟**：
+   - 检查网络连接
+   - 检查服务器负载
+   - 考虑升级服务器配置
+
+---
+
+## 9.5 Discord Bot配置（参考）
+
+> ⚠️ **过时提示**：本节内容编写于2026年1月，当时OpenClaw还叫Clawbot/Moltbot。虽然部分命令已过时，但配置流程仍可作为参考。
+
+### 9.5.1 Discord机器人介绍
+
+**Discord的优势**：
+
+1. **国际化平台**
+   - 全球用户基础
+   - 多语言支持
+   - 社区活跃
+
+2. **开发友好**
+   - API完善
+   - 文档详细
+   - 权限灵活
+
+3. **功能丰富**
+   - 支持语音频道
+   - 支持富文本
+   - 支持自定义表情
+
+**适用场景**：
+- ✅ 国际团队协作
+- ✅ 游戏社区
+- ✅ 开源项目
+- ✅ 技术交流
+
+### 9.5.2 创建Discord机器人
+
+**步骤1：访问开发者门户**
+
+```
+https://discord.com/developers/applications
+```
+
+**步骤2：创建应用**
+
+1. 点击"New Application"
+2. 输入应用名称（如：My OpenClaw Bot）
+3. 点击"Create"
+
+**步骤3：创建Bot**
+
+1. 在左侧菜单选择"Bot"
+2. 点击"Add Bot"
+3. 点击"Reset Token" → "Copy"
+4. ⚠️ **保存Token**，后续无法再查看
+
+**步骤4：配置Bot权限**
+
+1. 在Bot页面下滑
+2. 开启"Message Content Intent"
+3. 点击"Save Changes"
+
+**步骤5：生成邀请链接**
+
+1. 在左侧菜单选择"OAuth2" → "URL Generator"
+2. 在"Scopes"中勾选：`bot`
+3. 在"Bot Permissions"中勾选：
+   - Send Messages
+   - Read Message History
+4. 复制生成的URL
+
+**步骤6：邀请Bot到服务器**
+
+1. 在浏览器中打开刚才复制的URL
+2. 选择你的Discord服务器
+3. 点击"授权"
+4. 完成验证
+
+### 9.5.3 配置OpenClaw（旧版命令参考）
+
+> ⚠️ **注意**：以下命令使用的是旧版本的`clawdbot`命令，新版本应使用`openclaw`。
+
+**配置步骤**（需要更新为新命令）：
+
+```bash
+# 旧版命令（仅供参考）
+clawdbot onboard
+
+# 新版命令（推荐）
+openclaw onboard
+
+# 配置流程：
+# 1. 选择 Yes 接受风险
+# 2. 选择 QuickStart
+# 3. 配置模型（如 GLM 4.7）
+# 4. 选择通道：Discord
+# 5. 输入 Bot Token
+# 6. 配置 Skills 和 Hooks
+```
+
+**启动服务**：
+
+```bash
+# 旧版命令
+clawdbot gateway --port 18789 --verbose
+
+# 新版命令
+openclaw gateway --port 18789 --verbose
+
+# 后台运行
+nohup openclaw gateway --port 18789 --verbose > /dev/null 2>&1 &
+```
+
+**配对连接**：
+
+```bash
+# 1. 在Discord中私聊Bot，获取配对码
+# 2. 停止Gateway服务（Ctrl+C）
+# 3. 运行配对命令（旧版）
+clawdbot pairing approve discord <Pairing code>
+
+# 新版命令（需要确认）
+openclaw pairing approve discord <Pairing code>
+
+# 4. 重新启动Gateway
+openclaw gateway --port 18789 --verbose
+```
+
+### 9.5.4 使用Discord Bot
+
+**私聊模式**：
+```
+1. 在Discord中找到你的Bot
+2. 点击Bot头像
+3. 点击"发送消息"
+4. 直接发送消息即可
+```
+
+**群聊模式**：
+```
+1. 在频道中@Bot
+2. 输入你的问题
+3. Bot会回复你
+
+示例：
+@MyBot 今天天气怎么样？
+```
+
+### 9.5.5 注意事项
+
+**命令更新**：
+- 本节使用的`clawdbot`命令已过时
+- 新版本统一使用`openclaw`命令
+- 配置流程基本相同，但命令需要更新
+
+**配置参考**：
+- Discord的配置流程仍然有效
+- Bot创建步骤没有变化
+- 主要是OpenClaw命令需要更新
+
+**推荐做法**：
+- 优先使用国内平台（飞书、QQ、企微）
+- Discord适合国际团队
+- 如需使用Discord，请参考最新官方文档
 
 
 ---

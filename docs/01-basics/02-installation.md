@@ -87,6 +87,7 @@ OpenClaw在Mac上体验最好，因为：
 2. **选择配置**：
    - 配置：2核2G
    - 带宽：20M
+   - 地域：建议选择**硅谷**（国外地域访问AI模型更稳定）
    - 价格：20元/月 或 99元/年
 
 3. **实名认证**：
@@ -98,24 +99,69 @@ OpenClaw在Mac上体验最好，因为：
    - 点击"立即购买"
    - 支付20元（建议先买1个月试用）
    - 等待服务器创建完成
+   - **可选**：关闭自动续费
+
+5. **获取服务器信息**：
+   - 购买完成后，点击头像 → "站内信"
+   - 查看并记录：
+     - 公网IP地址
+     - 默认用户名（通常是 `lighthouse`）
+     - 初始密码
 
 ![腾讯云轻量服务器](https://upload.maynor1024.live/file/1770742212222_01-tencent-cloud-server.png)
 
-#### 第二步：一键部署OpenClaw
+#### 💡 免费白嫖方案（可选）
 
-1. **进入控制台**：
-   - 购买成功后，点击"查看实例"
-   - 进入轻量应用服务器控制台
+> 如果你想免费试用3个月，可以通过 CodeBuddy 活动获取免费服务器。
 
-2. **选择OpenClaw镜像**：
-   - 系统会自动选择OpenClaw应用镜像
-   - 无需手动配置
+**步骤**：
+
+1. **注册 CodeBuddy**：
+   - 国际版：https://www.codebuddy.ai/promotion/?ref=lweelxalgm（谷歌/GitHub账户）
+   - 国内版：https://www.codebuddy.cn/promotion/?ref=7zucxaz7zvqi（手机号）
+   - 建议使用新账号注册
+
+2. **领取奖励**：
+   - 登录后点击"实战礼" → "立刻领奖"
+   - 获得1个月免费使用权
+   - **累计活跃7日可再延长2个月**（每天在CodeBuddy中问候即可）
+
+3. **重装系统为OpenClaw**：
+   - 登录腾讯云控制台：https://console.cloud.tencent.com/
+   - 进入"轻量应用服务器"
+   - 点击"重装系统"
+   - 选择"使用应用模板" → "OpenClaw"
+   - 选择"无需备份"，点击"确定"
+
+4. **后续操作**：
+   - 重装完成后，按照下面的步骤继续配置
+
+#### 第二步：连接服务器
+
+1. **使用SSH客户端连接**：
+   
+   **方式一：使用SSH客户端（推荐）**
+   - 下载SSH客户端（如 Xterminal、Termius、FinalShell）
+   - 新建SSH连接：
+     - 名称：随便取
+     - 地址：公网IP地址
+     - 端口：22
+     - 用户名：lighthouse（或站内信中的用户名）
+     - 密码：购买时设置的密码
+   
+   **方式二：使用网页终端**
+   - 在腾讯云控制台，点击实例卡片
+   - 点击"登录"按钮
+   - 直接在浏览器中打开终端
+
+2. **验证OpenClaw安装**：
+   ```bash
+   openclaw --version
+   ```
+   
+   如果显示版本号（如 `2026.2.9`），说明OpenClaw已预装成功。
 
 ![OpenClaw镜像](https://upload.maynor1024.live/file/1770742213992_02-openclaw-image.png)
-
-3. **等待部署完成**：
-   - 部署过程约1-2分钟
-   - 完成后会显示访问地址
 
 #### 第三步：配置大模型
 
@@ -184,6 +230,84 @@ OpenClaw在Mac上体验最好，因为：
 4. **部署流程**：
    - 与腾讯云类似
    - 按照页面提示操作即可
+
+### 百度智能云部署（0.01元试用）
+
+> 💰 **超值试用**：百度智能云提供0.01元/月的特惠活动，适合想要低成本试用的用户。
+
+#### 活动信息
+
+1. **访问活动页面**：
+   ```
+   https://cloud.baidu.com/product/BCC/moltbot.html
+   ```
+
+2. **活动规则**：
+   - 首月仅需 **0.01元**
+   - 需要注册并绑定个人身份证
+   - 每个账号限购一次
+
+#### 部署步骤
+
+**第一步：购买服务器**
+
+1. 注册百度智能云账号
+2. 完成个人实名认证（绑定身份证）
+3. 抢购特惠LS实例（0.01元/月）
+4. 如果售罄，可以原价购买轻量应用服务器
+
+**第二步：创建实例**
+
+1. 进入轻量应用服务器LS控制台
+2. 点击"创建实例"：
+   - 名称：随机生成或自定义
+   - 密码：**务必记住**，后续登录需要
+3. 等待实例创建完成
+
+**第三步：一键配置OpenClaw**
+
+1. **进入实例详情页**：
+   - 点击实例卡片
+   - 进入"应用管理"标签
+
+2. **应用配置**：
+   - 点击"一键开通"
+   - 点击"一键放行"（开放防火墙端口）
+   - 等待显示"已放行"
+
+3. **模型配置**：
+   - 下拉选择模型（如：文心一言、千帆大模型）
+   - 点击"应用模型配置"
+   - 系统会自动创建千帆APIKey并配置
+
+4. **接入方式配置**（可选）：
+   - 支持接入：飞书、钉钉、企业微信、QQ
+   - 选择你常用的通讯工具
+   - 按照提示完成配置（详见后续章节）
+
+5. **Skills配置**（可选）：
+   - 默认提供：百度搜索、百度百科
+   - 可以按需选择并点击"应用"
+   - 更多Skills可访问OpenClaw官网获取
+
+**第四步：访问WebUI**
+
+1. 点击"获取网站地址"
+2. 复制访问链接
+3. 在浏览器中打开，即可与OpenClaw对话
+
+#### 优势与限制
+
+**优势**：
+- ✅ 价格极低（首月0.01元）
+- ✅ 一键配置，无需手动安装
+- ✅ 集成百度千帆大模型
+- ✅ 自动配置APIKey
+
+**限制**：
+- ⚠️ 仅限首月优惠
+- ⚠️ 需要实名认证
+- ⚠️ 活动可能售罄
 
 ### 阿里云部署（可选）
 
@@ -1774,7 +1898,514 @@ OpenClaw本身不包含AI模型，需要连接第三方API：
 - 官方API：价格贵、国内访问困难
 - 第三方API：价格便宜、国内直连
 
-### 国产大模型配置（推荐）
+### API模型分类
+
+OpenClaw支持两种类型的API模型配置：
+
+#### 1. 内置 API 模型（推荐新手）
+
+**什么是内置API模型？**
+
+OpenClaw已经预先配置好了多个主流AI模型的连接方式，你只需要：
+- ✅ 获取API Key
+- ✅ 在配置向导中选择对应模型
+- ✅ 粘贴API Key即可使用
+
+**支持的内置模型**：
+
+OpenClaw内置支持非常多的API模型，包括但不限于：
+
+![内置API模型列表](https://upload.maynor1024.live/file/1770957195044__null_)
+
+**国内模型**（推荐）：
+- 🌙 **Moonshot AI (Kimi)**：长文本专家，200万字上下文
+- 🧠 **DeepSeek**：性价比之王，推理能力强
+- 🎯 **智谱GLM**：中文理解好，多模态支持
+- 🚀 **通义千问 (Qwen)**：阿里出品，稳定可靠
+- 🎨 **MiniMax**：对话自然，创意能力强
+- 📚 **百度文心**：中文语料丰富
+- 🔥 **字节豆包**：性价比高
+
+**国外模型**：
+- 🤖 **OpenAI (GPT-4/GPT-3.5)**：最强大但价格贵
+- 🦙 **Anthropic (Claude)**：推理能力强，安全性高
+- 🔷 **Google (Gemini)**：多模态能力强
+- 🌐 **Groq**：推理速度快
+
+**优势**：
+- ✅ 配置简单，无需手动编写配置文件
+- ✅ 参数已优化，开箱即用
+- ✅ 自动更新，跟随OpenClaw版本
+- ✅ 适合新手，降低使用门槛
+
+**使用场景**：
+- 🎯 新手用户快速上手
+- 🎯 使用主流大模型
+- 🎯 不想折腾配置文件
+
+#### 2. 自定义 API（进阶用户）
+
+**什么是自定义API？**
+
+如果你想使用：
+- 🔧 OpenClaw未内置的模型
+- 🔧 自己搭建的模型服务
+- 🔧 第三方API代理服务
+- 🔧 企业内部的模型接口
+
+就需要使用自定义API配置。
+
+**配置方式**：
+
+需要手动编辑配置文件 `~/.openclaw/openclaw.json`，指定：
+- `baseUrl`：API服务地址
+- `apiKey`：认证密钥
+- `api`：API协议类型（如 `openai-chat`、`anthropic-messages`）
+- `models`：模型列表和参数
+
+**优势**：
+- ✅ 灵活性高，支持任何兼容的API
+- ✅ 可以使用小众模型
+- ✅ 可以自定义模型参数
+- ✅ 适合企业定制化需求
+
+**劣势**：
+- ⚠️ 配置复杂，需要了解JSON格式
+- ⚠️ 需要手动维护配置
+- ⚠️ 参数错误可能导致无法使用
+
+**使用场景**：
+- 🎯 进阶用户
+- 🎯 使用非主流模型
+- 🎯 企业内部部署
+- 🎯 需要精细控制参数
+
+### 配置方式对比
+
+| 特性 | 内置API模型 | 自定义API |
+|------|------------|-----------|
+| 配置难度 | ⭐ 简单 | ⭐⭐⭐⭐ 复杂 |
+| 适用人群 | 新手 | 进阶用户 |
+| 模型选择 | 主流模型 | 任意模型 |
+| 配置方式 | 向导选择 | 手动编辑 |
+| 维护成本 | 低 | 高 |
+| 灵活性 | 中 | 高 |
+
+### 推荐配置路径
+
+**新手推荐**：
+```
+1. 使用内置API模型
+2. 选择国产模型（如 Kimi、DeepSeek）
+3. 通过 openclaw onboard 向导配置
+4. 先体验，熟悉后再考虑自定义
+```
+
+**进阶用户**：
+```
+1. 先用内置API模型熟悉OpenClaw
+2. 了解配置文件结构
+3. 根据需求添加自定义API
+4. 测试验证后投入使用
+```
+
+---
+
+### 自定义API配置（进阶用户）
+
+> ⚠️ **适合人群**：进阶用户、需要使用非主流模型、企业定制化需求
+
+#### 什么时候需要自定义API？
+
+如果你遇到以下情况，需要使用自定义API配置：
+
+1. **使用非内置模型**：
+   - OpenClaw未内置的小众模型
+   - 新发布的模型（OpenClaw还未更新）
+   - 区域限定的模型
+
+2. **使用第三方代理**：
+   - API代理服务（如 OpenRouter、API2D）
+   - 企业内部的API网关
+   - 自建的模型服务
+
+3. **精细控制参数**：
+   - 自定义模型参数
+   - 调整上下文窗口大小
+   - 修改默认配置
+
+#### 配置文件位置
+
+```bash
+# 配置文件路径
+~/.openclaw/openclaw.json
+
+# 编辑配置文件
+nano ~/.openclaw/openclaw.json
+```
+
+#### 配置文件结构
+
+```json
+{
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "你的供应商名称": {
+        "baseUrl": "API服务地址",
+        "apiKey": "你的API密钥",
+        "auth": "认证方式",
+        "api": "API协议类型",
+        "models": [
+          {
+            "id": "模型ID",
+            "name": "模型显示名称",
+            "contextWindow": 上下文窗口大小,
+            "maxTokens": 最大输出tokens
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "供应商名称/模型ID"
+      }
+    }
+  }
+}
+```
+
+#### 示例1：配置DeepSeek（自定义方式）
+
+```json
+{
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "deepseek": {
+        "baseUrl": "https://api.deepseek.com",
+        "apiKey": "sk-你的API密钥",
+        "auth": "api-key",
+        "api": "openai-chat",
+        "models": [
+          {
+            "id": "deepseek-chat",
+            "name": "DeepSeek Chat",
+            "contextWindow": 64000,
+            "maxTokens": 4096
+          },
+          {
+            "id": "deepseek-coder",
+            "name": "DeepSeek Coder",
+            "contextWindow": 64000,
+            "maxTokens": 4096
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "deepseek/deepseek-chat"
+      }
+    }
+  }
+}
+```
+
+#### 示例2：配置第三方API代理
+
+如果你使用API代理服务（如OpenRouter），配置如下：
+
+```json
+{
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "apiKey": "sk-or-v1-你的密钥",
+        "auth": "api-key",
+        "api": "openai-chat",
+        "models": [
+          {
+            "id": "anthropic/claude-3.5-sonnet",
+            "name": "Claude 3.5 Sonnet",
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "openai/gpt-4",
+            "name": "GPT-4",
+            "contextWindow": 128000,
+            "maxTokens": 4096
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openrouter/anthropic/claude-3.5-sonnet"
+      }
+    }
+  }
+}
+```
+
+#### 示例3：配置多个模型供应商
+
+你可以同时配置多个供应商，根据需要切换：
+
+```json
+{
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "deepseek": {
+        "baseUrl": "https://api.deepseek.com",
+        "apiKey": "sk-你的DeepSeek密钥",
+        "auth": "api-key",
+        "api": "openai-chat",
+        "models": [
+          {
+            "id": "deepseek-chat",
+            "name": "DeepSeek Chat",
+            "contextWindow": 64000,
+            "maxTokens": 4096
+          }
+        ]
+      },
+      "moonshot": {
+        "baseUrl": "https://api.moonshot.cn/v1",
+        "apiKey": "sk-你的Kimi密钥",
+        "auth": "api-key",
+        "api": "openai-chat",
+        "models": [
+          {
+            "id": "moonshot-v1-128k",
+            "name": "Kimi 128K",
+            "contextWindow": 128000,
+            "maxTokens": 4096
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "deepseek/deepseek-chat",
+        "fallback": "moonshot/moonshot-v1-128k"
+      }
+    }
+  }
+}
+```
+
+#### 配置参数说明
+
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| `baseUrl` | API服务地址 | `https://api.deepseek.com` |
+| `apiKey` | API密钥 | `sk-xxx` |
+| `auth` | 认证方式 | `api-key` 或 `bearer` |
+| `api` | API协议 | `openai-chat`、`anthropic-messages` |
+| `id` | 模型ID | `deepseek-chat` |
+| `name` | 显示名称 | `DeepSeek Chat` |
+| `contextWindow` | 上下文窗口 | `64000` |
+| `maxTokens` | 最大输出 | `4096` |
+
+#### 常见API协议类型
+
+- `openai-chat`：OpenAI兼容接口（最常用）
+- `anthropic-messages`：Anthropic Claude接口
+- `google-generative-ai`：Google Gemini接口
+- `azure-openai`：Azure OpenAI接口
+
+#### 配置后重启服务
+
+```bash
+# 方式1：重启Gateway
+openclaw gateway restart
+
+# 方式2：停止后重新启动
+systemctl --user stop openclaw-gateway.service
+systemctl --user start openclaw-gateway.service
+
+# 方式3：完全重启
+systemctl --user restart openclaw-gateway.service
+```
+
+#### 验证配置
+
+```bash
+# 查看当前配置的模型
+openclaw models list
+
+# 测试模型连接
+openclaw models test deepseek/deepseek-chat
+```
+
+#### 常见问题
+
+**Q1：配置后无法连接？**
+```
+检查项：
+✅ baseUrl是否正确
+✅ apiKey是否有效
+✅ 网络是否能访问API地址
+✅ 配置文件JSON格式是否正确
+```
+
+**Q2：如何切换模型？**
+```bash
+# 临时切换
+openclaw chat --model deepseek/deepseek-chat
+
+# 永久切换：修改配置文件中的 primary 字段
+```
+
+**Q3：如何添加多个模型？**
+```
+在 models 数组中添加多个模型对象即可
+每个模型需要有唯一的 id
+```
+
+---
+
+### 内置API模型配置（推荐新手）
+
+> 💡 **适合人群**：新手用户、想要快速上手的用户
+
+以下是几个常用的内置API模型配置教程，选择一个你喜欢的即可。
+
+#### 1. Kimi 2.5 配置（推荐）
+
+**特点**：
+- 📚 **超长上下文**：支持200万字
+- 📄 **长文档处理**：论文、报告分析专家
+- 🎯 **中文理解好**：适合中文场景
+- 💰 **套餐划算**：重度使用建议购买套餐
+
+**配置步骤**：
+
+**第一步：访问Kimi Code平台**
+
+访问：https://www.kimi.com/code
+
+![Kimi Code平台](https://upload.maynor1024.live/file/1770957261204__null_-20260213123415103._null_)
+
+**第二步：购买套餐（可选）**
+
+> 💡 **提示**：OpenClaw消耗token较大，建议购买套餐更划算。
+
+推荐套餐：
+- **Allegretto套餐**：适合日常使用
+- 按需选择其他套餐
+
+![购买套餐](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=Mzk3ODdjZjE0NDY3Y2NkMTU1ZDZmMzg4YTAwYTg3ZDdfV3haZXdRMEU5OENVN0RCTzBwbmp2U2M5dU1XSm9MMWdfVG9rZW46Q0dYQWJ5NzRVbzB4MWt4b09QRmNwckUybm1lXzE3NzA5NTcyMzY6MTc3MDk2MDgzNl9WNA)
+
+**第三步：创建API Key**
+
+1. 打开控制台
+2. 创建API Key
+3. 名称随便取
+
+![创建API Key](https://upload.maynor1024.live/file/1770957262024__null_-20260213123418045._null_)
+
+**第四步：保存API Key**
+
+⚠️ **重要**：这个API Key一定要复制并保存！点击"完成"后就无法再查看了。
+
+![保存API Key](https://upload.maynor1024.live/file/1770957271422__null_-20260213123420103._null_)
+
+**第五步：配置到OpenClaw**
+
+```bash
+# 运行配置向导
+openclaw onboard
+
+# 配置流程：
+# 1. 选择 QuickStart
+# 2. 选择模型供应商：Moonshot AI
+# 3. 粘贴刚才复制的API Key
+# 4. 选择默认模型：kimi-code/kimi-for-codi
+# 5. 完成其他配置
+```
+
+**成本估算**：
+- 轻度使用：10-20元/月
+- 中度使用：30-50元/月
+- 重度使用：建议购买套餐
+
+---
+
+#### 2. DeepSeek 配置（性价比之王）
+
+**特点**：
+- 💰 **最便宜**：输入0.001元/千tokens
+- 🧠 **推理能力强**：适合复杂任务
+- 💻 **编程能力出色**：代码生成质量高
+
+**配置步骤**：
+
+**第一步：注册并充值**
+
+访问：https://platform.deepseek.com/
+
+> ⚠️ **注意**：DeepSeek采用按量付费，账户余额必须大于0才能调用API。
+
+![DeepSeek平台](https://upload.maynor1024.live/file/1770957195044__null_)
+
+**第二步：充值账户**
+
+建议先充值10元试用：
+
+![充值账户](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=OWU5ZGEzMDE0Y2YyNDhhOTYwZjliNWY0OTM1YjgzMmVfa0dlYzNvMzFvUDVuY0J3cWZ6b3VDUkNLRHpKbmhHSURfVG9rZW46UmZuamJDV29vb0Q2bXl4VHUwcWNxYWFRbnZ1XzE3NzA5NTcxNjg6MTc3MDk2MDc2OF9WNA)
+
+**第三步：创建API Key**
+
+1. 保证账号有余额
+2. 点击"API keys"
+3. 点击"创建API key"
+
+![创建API Key](https://upload.maynor1024.live/file/1770957195220__null_-20260213123309627._null_)
+
+**第四步：保存API Key**
+
+⚠️ **重要**：API Key只显示一次，务必复制保存！
+
+名称随便取，复制API Key后妥善保存。
+
+![保存API Key](https://upload.maynor1024.live/file/1770957204667__null_-20260213123316852._null_)
+
+**第五步：配置到OpenClaw**
+
+```bash
+# 运行配置向导
+openclaw onboard
+
+# 配置流程：
+# 1. 选择 QuickStart
+# 2. 选择模型供应商：DeepSeek
+# 3. 粘贴API Key
+# 4. 选择默认模型：deepseek-chat
+# 5. 完成其他配置
+```
+
+**成本估算**：
+- 日常使用：5-10元/月
+- 中度使用：10-30元/月
+- 重度使用：30-50元/月
+
+---
+
+### 国产大模型配置（其他选项）
 
 #### 1. DeepSeek配置（性价比之王）
 
