@@ -27,6 +27,8 @@ kramdown:
 navigation:
   - title: 首页
     url: /
+  - title: 搜索
+    url: /search
   - title: 快速开始
     url: /docs/01-basics/03-quick-start
   - title: 核心功能

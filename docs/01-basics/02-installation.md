@@ -257,6 +257,8 @@ OpenClaw在Mac上体验最好，因为：
 | 🎯 **开箱即用** | 预配置国内常用服务 |
 | 💰 **成本优化** | 默认配置国产模型 |
 
+![image-20260213122830687](https://upload.maynor1024.live/file/1770956917086_image-20260213122830687.png)
+
 ### 前置要求
 
 **必需环境**：
@@ -655,7 +657,7 @@ openclaw-cn configure --section auth
    - 这是后续进入管理后台的唯一凭证
    - 建议使用强密码生成器
 
-![Cloudflare Workers 部署](https://img.newzone.top/20260206092300302.png?imageMogr2/format/webp)
+![Cloudflare Workers 部署](https://upload.maynor1024.live/file/1770956993044_webp)
 
 #### 第二步：等待构建
 
@@ -663,7 +665,7 @@ openclaw-cn configure --section auth
 - 可点击「继续处理项目」跳过等待页面
 - 构建完成后会自动跳转到项目页面
 
-![构建过程](https://img.newzone.top/20260206092633334.png?imageMogr2/format/webp)
+![构建过程](https://upload.maynor1024.live/file/1770956995188_webp-20260213122951843)
 
 #### 第三步：配置 Access（Zero Trust）
 
@@ -673,7 +675,7 @@ openclaw-cn configure --section auth
 - 进入 Zero Trust → Access → Applications
 - 添加一个 Self-hosted 应用
 
-![创建应用](https://img.newzone.top/20260206095003557.png?imageMogr2/format/webp)
+![创建应用](https://upload.maynor1024.live/file/1770957006656_1770956995941_webp-20260213122946760)
 
 **2. 设置域名**：
 - 子域默认为 `moltbot-sandbox`
@@ -707,7 +709,7 @@ OpenClaw 需要 R2 来存储状态，需配置以下三个变量：
 - 在 Cloudflare 侧边栏进入 R2 → Overview
 - 右侧 Account Details 中的 Account ID 即为 `CF_ACCOUNT_ID`
 
-![获取 Account ID](https://img.newzone.top/20260206093250175.png?imageMogr2/format/webp)
+![获取 Account ID](https://upload.maynor1024.live/file/1770957013012_webp-20260213123002670)
 
 **2. 创建 API 令牌**：
 - 点击 Manage R2 API Tokens
@@ -717,12 +719,12 @@ OpenClaw 需要 R2 来存储状态，需配置以下三个变量：
 - 权限选择 Object Read & Write
 - 建议范围通过 Specific Bucket 限制在 `moltbot-data`
 
-![设置权限](https://img.newzone.top/20260206093536752.png?imageMogr2/format/webp)
+![设置权限](https://upload.maynor1024.live/file/1770957013719_webp-20260213123006410)
 
 **4. 保存密钥**：
 - 创建成功后，记录 Access Key ID 和 Secret Access Key
 
-![保存密钥](https://img.newzone.top/20260206094205340.png?imageMogr2/format/webp)
+![保存密钥](https://upload.maynor1024.live/file/1770957016450_webp-20260213123010373)
 
 > ⚠️ **重要提示**：修改 Token 时请务必核对变量名称。如果不慎修改了 Build Token，会导致 Worker 构建失败。
 
@@ -743,7 +745,7 @@ OpenClaw 需要 R2 来存储状态，需配置以下三个变量：
    - 点击 Deploy 重新部署
    - 等待部署完成
 
-![注入变量](https://img.newzone.top/20260206101721853.png?imageMogr2/format/webp)
+![注入变量](https://upload.maynor1024.live/file/1770957030499_webp-20260213123020335)
 
 ### 访问与管理
 
@@ -755,13 +757,14 @@ https://moltbot-sandbox.xxxxxxxx.workers.dev?token=MOLTBOT_GATEWAY_TOKEN
 ```
 
 **管理后台**（需要邮箱验证）：
+
 ```
 https://moltbot-sandbox.xxxxxxxx.workers.dev/_admin/
 ```
 
 通过 Cloudflare Access 的邮箱验证码验证后，即可进入管理后台并接受 Pairing Requests。
 
-![管理后台](https://img.newzone.top/20260206200351203.png?imageMogr2/format/webp)
+![管理后台](https://upload.maynor1024.live/file/1770957055794_webp-20260213123047239)
 
 ### 基础使用
 
@@ -1782,7 +1785,29 @@ OpenClaw本身不包含AI模型，需要连接第三方API：
 
 
 
-![image-20260212225751206](https://upload.maynor1024.live/file/1770908288564_image-20260212225751206.png)
+ DeepSeek 的 API 调用是**按量付费**的，你的账户余额必须大于 0 才能正常调用接口。
+
+ 如果账户没钱或余额不足，API 请求会直接失败，所以提前充值是保证服务可用的必要操作。
+
+ 其他大模型也是同理，你要去找到对应网址去充值，然后获取API keys
+
+![img](https://upload.maynor1024.live/file/1770957195044__null_)
+
+ 如果你只想先试试，可以就先花个10块钱玩一下
+
+![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=OWU5ZGEzMDE0Y2YyNDhhOTYwZjliNWY0OTM1YjgzMmVfa0dlYzNvMzFvUDVuY0J3cWZ6b3VDUkNLRHpKbmhHSURfVG9rZW46UmZuamJDV29vb0Q2bXl4VHUwcWNxYWFRbnZ1XzE3NzA5NTcxNjg6MTc3MDk2MDc2OF9WNA)
+
+ 保证账号有余额之后，点击”API keys“，然后点”创建 API key“
+
+![img](https://upload.maynor1024.live/file/1770957195220__null_-20260213123309627._null_)
+
+ API key的名称：随便取。然后这个APIkey一定！一定！要复制下来，因为一般你点完”关闭“之后，你就再也无法查看你的API key了，如果你我忘记了你的API key，那只能重新创建一个了。
+
+ 复制完后，找地方先存起来，后续在”第四步：OpenClaw配置“的时候会用到
+
+![img](https://upload.maynor1024.live/file/1770957204667__null_-20260213123316852._null_)
+
+好，至此”第二步：配置模型“完成，进入”第三步：配置Bot“吧
 
 **配置步骤**：
 
@@ -1855,7 +1880,21 @@ OpenClaw本身不包含AI模型，需要连接第三方API：
 - 📄 **长文档处理**：论文、报告分析专家
 - 🎯 **中文理解好**：适合中文场景
 
-![image-20260212225825708](https://upload.maynor1024.live/file/1770908316642_image-20260212225825708.png)
+ 那如何使用，第一步，搜索 kimi code：https://www.kimi.com/code
+
+![img](https://upload.maynor1024.live/file/1770957261204__null_-20260213123415103._null_)
+
+ 第二步，购买优惠套餐 plan，说实话，目前 OpenClaw 消耗 token 还挺大的，最好买个套餐划算一些，我买的是 Allegretto 套餐。
+
+![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=Mzk3ODdjZjE0NDY3Y2NkMTU1ZDZmMzg4YTAwYTg3ZDlfV3haZXdRMEU5OENVN0RCTzBwbmp2U2M5dU1XSm9MMWdfVG9rZW46Q0dYQWJ5NzRVbzB4MWt4b09QRmNwckUybm1lXzE3NzA5NTcyMzY6MTc3MDk2MDgzNl9WNA)
+
+ 第二步，打开控制台，创建 API key。名字随便取。
+
+![img](https://upload.maynor1024.live/file/1770957262024__null_-20260213123418045._null_)
+
+ 这个APIkey一定！一定！要复制下来，因为一般你点完”完成“之后，你就再也无法查看你的API key了，如果你忘记了你的API key，那就只能重新创建一个了。复制完后，找地方先存起来，后续在”第四步：OpenClaw配置“的时候会用到
+
+![img](https://upload.maynor1024.live/file/1770957271422__null_-20260213123420103._null_)
 
 **配置步骤**：
 

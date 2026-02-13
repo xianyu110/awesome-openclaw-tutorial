@@ -24,6 +24,68 @@
       background: linear-gradient(120deg, #155799, #159957);
     }
     
+    /* 搜索框样式 */
+    .header-search {
+      margin: 1.5rem auto;
+      max-width: 600px;
+    }
+    
+    .search-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .search-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.9);
+      outline: none;
+      transition: all 0.3s;
+    }
+    
+    .search-input:focus {
+      background: white;
+      border-color: white;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+    }
+    
+    .search-submit {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+    }
+    
+    .search-submit:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: white;
+      transform: translateY(-2px);
+    }
+    
+    @media screen and (max-width: 42em) {
+      .header-search {
+        margin: 1rem;
+      }
+      
+      .search-input {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+      }
+      
+      .search-submit {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+      }
+    }
+    
     .main-content {
       max-width: 64rem;
       padding: 2rem 4rem;
@@ -152,6 +214,15 @@
   <header class="page-header" role="banner">
     <h1 class="project-name">{{ site.title }}</h1>
     <h2 class="project-tagline">{{ site.description }}</h2>
+    
+    <!-- 搜索框 -->
+    <div class="header-search">
+      <form action="{{ '/search' | relative_url }}" method="get" class="search-form">
+        <input type="text" name="q" placeholder="🔍 搜索教程..." class="search-input" autocomplete="off">
+        <button type="submit" class="search-submit">搜索</button>
+      </form>
+    </div>
+    
     <a href="{{ site.github.repository_url }}" class="btn">在GitHub上查看</a>
     <a href="{{ '/' | relative_url }}" class="btn">首页</a>
     <a href="{{ '/docs/01-basics/03-quick-start' | relative_url }}" class="btn">快速开始</a>
