@@ -61,6 +61,7 @@ OpenClaw会回复类似：
 ```
 
 **验证成功的标志**：
+
 - ✅ 收到AI的回复
 - ✅ 右上角显示模型名称（Web UI）
 - ✅ 显示Token使用情况
@@ -269,6 +270,10 @@ OpenClaw 的配置文件位于：`~/.openclaw/workspace`
 | **IDENTITY.md** | 名称/主题 | AI的名称、身份、主题设定 |
 | **BOOT.md** | 启动配置 | 启动时的初始化配置 |
 
+![image-20260212230206925](https://upload.maynor1024.live/file/1770908540502_image-20260212230206925.png)
+
+
+
 #### 什么是 SOUL.md 和 USER.md？
 
 **SOUL.md**：AI的"宪法"
@@ -308,6 +313,10 @@ OpenClaw 的配置文件位于：`~/.openclaw/workspace`
 5. **保存并生效**
    - 点击保存
    - 配置立即生效，无需重启
+
+
+
+
 
 #### 配置方法：直接编辑文件（进阶）
 
@@ -585,9 +594,176 @@ AI 的名称、身份、主题设定。
 
 ## 3.4 模型选择指南
 
-> 💡 **快速选择**：新手推荐 Claude Haiku 4.5 或 DeepSeek，性价比高且完全够用。详细的模型对比和切换策略请参考 [第10章：高级配置](../03-advanced/10-advanced-configuration.md)。
+> 💡 **快速选择**：新手推荐 Claude Haiku 4.5 或 DeepSeek，性价比高且完全够用。详细的模型对比和切换策略请参考 [第11章：高级配置](../03-advanced/11-advanced-configuration.md)。
 
-### 新手推荐配置
+### 3.4.1 快速配置模型（命令行向导）
+
+> 🎯 **最简单的方式**：使用 `openclaw onboard` 命令启动配置向导，交互式配置模型。
+
+#### 启动配置向导
+
+```bash
+openclaw onboard
+```
+
+执行后会启动命令行交互式配置向导。
+
+#### 配置步骤
+
+**步骤1：选择初始化模式**
+
+```text
+◇  初始化模式
+│  快速开始
+```
+
+选择 "快速开始" 模式。
+
+**步骤2：处理现有配置**
+
+如果检测到现有配置，会显示：
+
+```text
+◇  检测到现有配置 ────────────────────────────╮
+│                                             │
+│  workspace: ~/clawd                         │
+│  model: local-antigravity/gemini-3-pro-low  │
+│  gateway.mode: local                        │
+│  gateway.port: 18789                        │
+│  gateway.bind: lan                          │
+│  skills.nodeManager: npm                    │
+│                                             │
+├─────────────────────────────────────────────╯
+◇  配置处理方式
+│  使用现有值
+```
+
+选择 "使用现有值" 保留当前配置，或选择 "重新配置" 从头开始。
+
+**步骤3：选择模型提供商**
+
+```text
+◆  模型/认证提供商
+│  ○ OpenAI (Codex OAuth + API key)
+│  ○ Anthropic
+│  ○ MiniMax
+│  ○ Moonshot AI
+│  ○ Google
+│  ○ OpenRouter
+│  ○ Qwen
+│  ○ Z.AI (GLM 4.7)
+│  ○ Copilot
+│  ○ Vercel AI Gateway
+│  ○ OpenCode Zen
+│  ○ Xiaomi
+│  ○ Synthetic
+│  ○ Venice AI
+│  ○ Skip for now
+```
+
+使用 **方向键** 选择提供商，**空格键** 确认。
+
+**新手推荐的提供商：**
+
+1. **Anthropic**（Claude，质量最好）
+   - 价格：中等（$3/百万tokens）
+   - 能力：推理能力强
+   - 适合：复杂任务、重要工作
+
+2. **Google**（Gemini，免费额度大）
+   - 价格：免费额度大
+   - 能力：多模态（支持图片）
+   - 适合：图片识别、长文档
+
+3. **Moonshot AI**（Kimi，超长上下文）
+   - 价格：低（$0.01/百万tokens）
+   - 能力：200万字上下文
+   - 适合：长文档处理
+
+**步骤4：输入 API Key**
+
+选择提供商后，会提示输入 API Key：
+
+```text
+◆  请输入 Anthropic API Key
+│  sk-ant-...
+```
+
+**如何获取 API Key？**
+
+- **Anthropic (Claude)**：访问 [Anthropic Console](https://console.anthropic.com/)
+- **Google (Gemini)**：访问 [Google AI Studio](https://makersuite.google.com/app/apikey)
+- **Moonshot (Kimi)**：访问 [Moonshot Platform](https://platform.moonshot.cn/)
+- **OpenAI**：访问 [OpenAI Platform](https://platform.openai.com/api-keys)
+
+**步骤5：选择默认模型**
+
+配置完成后，选择默认使用的模型：
+
+```text
+◆  选择默认模型
+│  ○ claude-3-5-sonnet-20241022
+│  ○ claude-3-opus-20240229
+│  ● claude-3-haiku-20240307
+```
+
+**推荐选择：**
+- **日常使用**：Claude 3 Haiku（速度快、便宜）
+- **重要任务**：Claude 3.5 Sonnet（质量高）
+- **图片识别**：Gemini 2.0 Flash（多模态）
+
+**步骤6：完成配置**
+
+```text
+✔  配置已保存
+✔  Gateway 已重启
+✔  模型配置成功
+```
+
+#### 验证配置
+
+配置完成后，测试模型是否可用：
+
+```bash
+# 查看已配置的模型
+openclaw models list
+
+# 测试模型连接
+openclaw message send "你好，测试一下"
+```
+
+#### 修改配置
+
+如果需要修改配置，再次运行：
+
+```bash
+openclaw onboard
+```
+
+可以添加、删除或修改模型提供商。
+
+#### 配置技巧
+
+**技巧1：配置多个提供商**
+
+可以多次运行 `openclaw onboard`，每次添加一个提供商，实现多模型配置。
+
+**技巧2：跳过向导**
+
+如果暂时不想配置，选择 "Skip for now"，稍后再配置。
+
+**技巧3：查看配置文件**
+
+配置保存在：
+```bash
+~/.openclaw/openclaw.json
+```
+
+可以直接编辑这个文件进行高级配置。
+
+---
+
+### 3.4.2 新手推荐配置
 
 **推荐1：DeepSeek（性价比之王）**
 - 💰 最便宜：比其他模型便宜70%

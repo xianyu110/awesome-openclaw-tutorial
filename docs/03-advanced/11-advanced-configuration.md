@@ -577,6 +577,8 @@ OpenClaw（Claude Sonnet）：你好！我是Claude...
 - 速率限制（Rate Limit）
 - 服务不可用
 
+![image-20260213094718578](/Users/chinamanor/Library/Application%20Support/typora-user-images/image-20260213094718578.png)
+
 #### 基础容灾配置
 
 **配置文件路径**：`~/.openclaw/openclaw.json`
@@ -1640,6 +1642,94 @@ openclaw stats memory
 ## 11.6 模型提供商配置详解
 
 > 🤖 **多模型支持**：OpenClaw 支持 20+ 主流 AI 模型提供商，灵活配置满足不同需求。
+
+### 11.6.0 快速配置：使用命令行向导（推荐新手）
+
+> 💡 **最简单的方式**：使用 `openclaw onboard` 命令启动配置向导，交互式配置模型。
+
+#### 启动配置向导
+
+```bash
+openclaw onboard
+```
+
+执行后会启动命令行交互式配置向导。
+
+#### 配置流程
+
+**步骤1：选择初始化模式**
+
+```text
+◇  初始化模式
+│  快速开始
+```
+
+**步骤2：选择模型提供商**
+
+```text
+◆  模型/认证提供商
+│  ○ OpenAI (Codex OAuth + API key)
+│  ○ Anthropic
+│  ○ MiniMax
+│  ○ Moonshot AI
+│  ○ Google
+│  ○ OpenRouter
+│  ○ Qwen
+│  ○ Z.AI (GLM 4.7)
+│  ○ Copilot
+│  ○ Vercel AI Gateway
+│  ○ OpenCode Zen
+│  ○ Xiaomi
+│  ○ Synthetic
+│  ○ Venice AI
+│  ○ Skip for now
+```
+
+使用 **方向键** 选择，**空格键** 确认。
+
+**步骤3：输入 API Key**
+
+根据提示输入对应提供商的 API Key。
+
+**步骤4：选择默认模型**
+
+从可用模型列表中选择默认模型。
+
+**步骤5：完成配置**
+
+配置自动保存并重启 Gateway。
+
+#### 命令行向导的优势
+
+✅ **交互式操作**：逐步引导，不易出错
+✅ **实时验证**：输入 API Key 后立即验证有效性
+✅ **自动配置**：自动生成配置文件
+✅ **一键保存**：自动保存并重启服务
+✅ **错误提示**：配置错误时会有明确的提示信息
+
+#### 验证配置
+
+配置完成后，验证模型是否可用：
+
+```bash
+# 查看已配置的模型
+openclaw models list
+
+# 测试模型连接
+openclaw message send "你好，测试一下"
+```
+
+#### 修改配置
+
+如果需要修改配置，再次运行：
+
+```bash
+openclaw onboard
+```
+
+可以添加、删除或修改模型提供商。
+
+---
 
 ### 11.6.1 支持的模型提供商
 
