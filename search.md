@@ -5,12 +5,12 @@ title: 搜索
 
 <div class="search-container">
   <div class="search-box">
-    <input type="text" id="search-input" placeholder="搜索教程内容..." autocomplete="off">
+    <input type="text" id="search-input" placeholder="搜索标题..." autocomplete="off">
     <button id="search-button">🔍 搜索</button>
   </div>
   
   <div id="search-results">
-    <p class="search-hint">输入关键词搜索教程内容</p>
+    <p class="search-hint">输入关键词搜索标题</p>
   </div>
 </div>
 
@@ -140,12 +140,10 @@ mark {
     .then(data => {
       searchData = data;
       
-      // 构建搜索索引
+      // 构建搜索索引（只搜索标题）
       searchIndex = lunr(function() {
         this.ref('url');
-        this.field('title', { boost: 10 });
-        this.field('content');
-        this.field('excerpt', { boost: 5 });
+        this.field('title'); // 只索引标题字段
         
         // 添加中文分词支持
         this.pipeline.remove(lunr.stemmer);
@@ -197,15 +195,18 @@ mark {
       results.slice(0, 20).forEach(result => {
         const doc = searchData.find(d => d.url === result.ref);
         if (doc) {
-          // 高亮关键词
-          let excerpt = doc.excerpt || doc.content.substring(0, 200);
+          // 高亮标题中的关键词
+          let title = doc.title || '无标题';
           const regex = new RegExp('(' + query.split(/\s+/).join('|') + ')', 'gi');
-          excerpt = excerpt.replace(regex, '<mark>$1</mark>');
+          title = title.replace(regex, '<mark>$1</mark>');
+          
+          // 显示摘要（不高亮）
+          let excerpt = doc.excerpt || doc.content.substring(0, 200);
           
           html += `
             <div class="search-result-item">
               <div class="search-result-title">
-                <a href="${doc.url}">${doc.title || '无标题'}</a>
+                <a href="${doc.url}">${title}</a>
               </div>
               <div class="search-result-excerpt">${excerpt}...</div>
               <div class="search-result-url">${doc.url}</div>
