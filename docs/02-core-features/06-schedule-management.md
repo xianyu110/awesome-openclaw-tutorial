@@ -86,7 +86,7 @@ OpenClaw：已创建日历事件！
 - iPhone日历 ✅
 ```
 
-![创建日历事件](https://upload.maynor1024.live/file/1770176285839_image_20.jpg)
+![image-20260212231420791](https://upload.maynor1024.live/file/1770909307160_image-20260212231420791.png)
 
 **查看效果**：
 
@@ -279,7 +279,7 @@ deadline：提前1周、3天、1天
 
 你在微信上收到这样的消息：
 
-![微信聊天截图示例](https://example.com/wechat-screenshot.png)
+<img src="/Users/chinamanor/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_ffgyrt3i5y6m21_5c96/temp/RWTemp/2026-02/1798b73b46c39a4178c203bd36616691/59879fc9a7abc0db6314c3ff43d8c1fe.jpg" alt="59879fc9a7abc0db6314c3ff43d8c1fe" style="zoom: 25%;" />
 
 ```
 张三：明天下午2点，在星巴克（国贸店）见面讨论新项目的事，
@@ -287,6 +287,7 @@ deadline：提前1周、3天、1天
 ```
 
 **传统做法**：
+
 1. 看到消息
 2. 记住时间地点
 3. 打开日历

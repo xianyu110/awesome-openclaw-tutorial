@@ -89,7 +89,7 @@ OpenClaw：好的，我来设置定时提醒！
 首次执行：明天 08:00
 ```
 
-![设置定时提醒](https://upload.maynor1024.live/file/1770176300319_image_24.jpg)
+![image-20260212232722747](https://upload.maynor1024.live/file/1770910047044_image-20260212232722747.png)
 
 **第二天早上8点**：
 
@@ -382,7 +382,7 @@ OpenClaw：好的，我来设置博客监控！
 首次检查：明天 09:00
 ```
 
-![设置网站监控](https://upload.maynor1024.live/file/1770176318568_image_28.jpg)
+![image-20260212232752122](https://upload.maynor1024.live/file/1770910079191_image-20260212232752122.png)
 
 **发现更新时**：
 
