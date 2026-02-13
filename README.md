@@ -21,7 +21,57 @@
 - 🔄 **持续优化**：删除重复内容，提升质量
 - 🆕 **新增内容**：多 Agent 配置（第9章）、超级个体实战案例（第15章）、AI绘图实战（第14章）
 
-👉 [查看完整项目总结](PROJECT-SUMMARY.md) | [查看最新更新](FINAL-WORK-SUMMARY-2026-02-11.md)
+👉 [查看完整项目总结](PROJECT-SUMMARY.md) | [查看最新更新](CHANGELOG.md)
+
+## 🆘 遇到问题？快速解决
+
+<table>
+<tr>
+<td width="50%">
+
+### 🔧 安装问题
+- [安装失败怎么办？](docs/05-troubleshooting/16-common-problems.md#安装配置问题)
+- [Node.js版本不对？](docs/01-basics/02-installation.md#系统要求)
+- [权限错误？](docs/05-troubleshooting/16-common-problems.md#权限问题)
+- [网络超时？](docs/05-troubleshooting/16-common-problems.md#网络问题)
+
+</td>
+<td width="50%">
+
+### 🔌 连接问题
+- [API连接失败？](docs/05-troubleshooting/16-common-problems.md#api连接问题)
+- [飞书Bot不回复？](docs/03-advanced/09-multi-platform-integration.md#常见问题)
+- [Gateway启动失败？](docs/05-troubleshooting/16-common-problems.md#gateway问题)
+- [端口被占用？](docs/05-troubleshooting/16-common-problems.md#端口问题)
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🧩 Skills问题
+- [Skills安装失败？](docs/03-advanced/08-skills-extension.md#故障排查)
+- [Skills不生效？](docs/03-advanced/08-skills-extension.md#常见问题)
+- [如何卸载Skills？](docs/03-advanced/08-skills-extension.md#技能管理)
+- [Skills冲突？](docs/03-advanced/08-skills-extension.md#版本管理)
+
+</td>
+<td width="50%">
+
+### 💰 成本问题
+- [API费用太高？](docs/03-advanced/11-advanced-configuration.md#成本优化)
+- [如何选择模型？](docs/01-basics/03-quick-start.md#模型选择指南)
+- [国产模型推荐？](appendix/C-api-comparison.md)
+- [如何省钱？](docs/05-troubleshooting/17-best-practices.md#成本控制)
+
+</td>
+</tr>
+</table>
+
+**找不到答案？**
+- 📖 [查看完整FAQ](docs/05-troubleshooting/16-common-problems.md)
+- 💬 [GitHub Discussions](https://github.com/xianyu110/awesome-openclaw-tutorial/discussions)
+- 🐛 [报告Bug](https://github.com/xianyu110/awesome-openclaw-tutorial/issues)
 
 ## 📖 关于本教程
 
