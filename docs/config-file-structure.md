@@ -4,7 +4,7 @@
 
 ### 全局配置目录
 
-```
+```text
 ~/.openclaw/                          # 全局配置根目录
 ├── openclaw.json                     # 全局配置（所有 Agent 共享）
 ├── credentials/                      # 认证凭据目录
@@ -29,7 +29,7 @@
 
 ### 旧版配置目录（已废弃）
 
-```
+```text
 ~/.openclaw-main-assistant/           # 旧版配置目录
 └── openclaw.json                     # 不再使用，已迁移到新结构
 ```
@@ -64,8 +64,7 @@
     "port": 18789
   }
 }
-```
-
+```text
 **查看命令**:
 ```bash
 # 查看全局配置
@@ -76,8 +75,7 @@ openclaw config get models.default
 
 # 编辑配置文件
 nano ~/.openclaw/openclaw.json
-```
-
+```text
 ---
 
 ### 2. Agent 专属配置
@@ -104,8 +102,7 @@ nano ~/.openclaw/openclaw.json
     "role": "专注于代码开发和技术问题"
   }
 }
-```
-
+```text
 **查看命令**:
 ```bash
 # 查看 Agent 配置
@@ -116,8 +113,7 @@ openclaw config set models.default "openai/gpt-4" --agent tech-dev
 
 # 编辑配置文件
 nano ~/.openclaw/agents/tech-dev/openclaw.json
-```
-
+```text
 ---
 
 ### 3. 认证配置文件
@@ -144,8 +140,7 @@ nano ~/.openclaw/agents/tech-dev/openclaw.json
     }
   ]
 }
-```
-
+```text
 **管理命令**:
 ```bash
 # 添加认证（交互式）
@@ -156,8 +151,7 @@ cat ~/.openclaw/agents/main-assistant/agent/auth-profiles.json
 
 # 删除认证
 rm ~/.openclaw/agents/main-assistant/agent/auth-profiles.json
-```
-
+```text
 ---
 
 ### 4. OAuth 凭据文件
@@ -177,8 +171,7 @@ rm ~/.openclaw/agents/main-assistant/agent/auth-profiles.json
     "expiresAt": "2026-02-14T11:00:00Z"
   }
 }
-```
-
+```text
 **说明**: 这是旧版的认证方式，新版本建议使用 `auth-profiles.json`。
 
 ---
@@ -195,8 +188,7 @@ rm ~/.openclaw/agents/main-assistant/agent/auth-profiles.json
 3. 全局配置 (~/.openclaw/openclaw.json)
    ↓
 4. 默认值（最低优先级）
-```
-
+```text
 ### 示例说明
 
 假设你有以下配置：
@@ -204,8 +196,7 @@ rm ~/.openclaw/agents/main-assistant/agent/auth-profiles.json
 **环境变量**:
 ```bash
 export ANTHROPIC_API_KEY="sk-ant-env"
-```
-
+```text
 **Agent 配置** (`~/.openclaw/agents/tech-dev/openclaw.json`):
 ```json
 {
@@ -217,8 +208,7 @@ export ANTHROPIC_API_KEY="sk-ant-env"
     }
   }
 }
-```
-
+```text
 **全局配置** (`~/.openclaw/openclaw.json`):
 ```json
 {
@@ -230,8 +220,7 @@ export ANTHROPIC_API_KEY="sk-ant-env"
     }
   }
 }
-```
-
+```text
 **实际使用的 API Key**: `sk-ant-env`（环境变量优先级最高）
 
 ---
@@ -246,8 +235,7 @@ openclaw config path
 
 # 查看 Agent 配置文件路径
 openclaw config path --agent tech-dev
-```
-
+```text
 ### 查看配置内容
 
 ```bash
@@ -262,8 +250,7 @@ openclaw config get --agent tech-dev
 
 # 以 JSON 格式输出
 openclaw config get --json
-```
-
+```text
 ### 查看生效的配置
 
 ```bash
@@ -275,8 +262,7 @@ openclaw gateway status
 
 # 查看所有 Agent
 openclaw agents list
-```
-
+```text
 ---
 
 ## ⚙️ 配置修改命令
@@ -292,8 +278,7 @@ openclaw config set models.default "openai/gpt-4" --agent tech-dev
 
 # 设置 API Key
 openclaw config set models.providers.anthropic.apiKey "sk-ant-xxx"
-```
-
+```text
 ### 删除配置
 
 ```bash
@@ -302,8 +287,7 @@ openclaw config unset models.providers.anthropic.apiKey
 
 # 删除 Agent 配置
 openclaw config unset models.default --agent tech-dev
-```
-
+```text
 ### 重置配置
 
 ```bash
@@ -312,8 +296,7 @@ openclaw config reset
 
 # 重置 Agent 配置
 openclaw config reset --agent tech-dev
-```
-
+```text
 ---
 
 ## 🛠️ 常见配置场景
@@ -324,8 +307,7 @@ openclaw config reset --agent tech-dev
 ```bash
 # 在全局配置中设置 API Key
 openclaw config set models.providers.anthropic.apiKey "sk-ant-xxx"
-```
-
+```text
 **优点**:
 - ✅ 配置一次，全局生效
 - ✅ 管理简单
@@ -342,8 +324,7 @@ openclaw config set models.providers.anthropic.apiKey "sk-ant-xxx"
 # 为每个 Agent 单独配置
 openclaw config set models.providers.anthropic.apiKey "sk-ant-xxx" --agent tech-dev
 openclaw config set models.providers.openai.apiKey "sk-yyy" --agent content-writer
-```
-
+```text
 **优点**:
 - ✅ 每个 Agent 独立配置
 - ✅ 灵活性高
@@ -363,8 +344,7 @@ export ANTHROPIC_API_KEY="sk-ant-xxx"
 # 永久设置（添加到 ~/.zshrc）
 echo 'export ANTHROPIC_API_KEY="sk-ant-xxx"' >> ~/.zshrc
 source ~/.zshrc
-```
-
+```text
 **优点**:
 - ✅ 最高优先级
 - ✅ 适合 Docker 和 CI/CD
@@ -461,8 +441,7 @@ source ~/.zshrc
     }
   }
 }
-```
-
+```text
 ### 完整配置模板
 
 ```json

@@ -24,7 +24,7 @@
 - 知识管理要求高
 
 **痛点**：
-```
+```text
 ❌ 信息分散：邮件、微信、文档到处都是
 ❌ 时间碎片：会议太多，难以专注
 ❌ 重复劳动：每天都在做相似的事
@@ -32,7 +32,7 @@
 ```
 
 **目标**：
-```
+```text
 ✅ 信息集中管理
 ✅ 自动化重复任务
 ✅ 提升专注时间
@@ -45,7 +45,7 @@
 
 打开手机，OpenClaw已经推送了今日日报：
 
-```
+```text
 📊 今日日报（2026年2月10日）
 
 【重要日程】
@@ -84,8 +84,7 @@ openclaw config set report.sources \
 
 # 3. 配置推送渠道
 openclaw config set report.channel "feishu"
-```
-
+```text
 **效果**：
 - 每天早上7点自动推送
 - 信息来源：日历、待办、RSS订阅、Notion笔记
@@ -107,8 +106,7 @@ openclaw config set report.channel "feishu"
 3. 手动复制粘贴到文档
 4. 整理成结构化笔记
 ⏱️ 耗时：1小时
-```
-
+```text
 **OpenClaw方式**：
 ```
 你：帮我收集一下新能源汽车行业最近一周的重要新闻，
@@ -141,8 +139,7 @@ OpenClaw：好的，正在收集...
 
 已保存到备忘录：新能源汽车行业周报_20260210
 ⏱️ 耗时：2分钟
-```
-
+```text
 **配置方法**：
 
 ```bash
@@ -154,8 +151,7 @@ clawhub install notes-sync
 
 # 3. 设置默认存储位置
 openclaw config set notes.default "备忘录/行业研究"
-```
-
+```text
 **效果对比**：
 | 项目 | 传统方式 | OpenClaw方式 | 提升 |
 |------|----------|--------------|------|
@@ -180,8 +176,7 @@ openclaw config set notes.default "备忘录/行业研究"
 3. 整理成文档
 4. 发送给相关人员
 ⏱️ 耗时：45分钟
-```
-
+```text
 **OpenClaw方式**：
 
 ```
@@ -222,8 +217,7 @@ OpenClaw：好的，正在整理...
 已保存到：会议纪要/客户A项目启动会_20260210.md
 已同步到：Notion工作区
 ⏱️ 耗时：3分钟
-```
-
+```text
 **配置方法**：
 
 ```bash
@@ -236,8 +230,7 @@ openclaw config set sync.targets "notion,feishu"
 
 # 3. 配置提醒
 openclaw config set reminder.action-items true
-```
-
+```text
 **效果**：
 - 会议结束后3分钟完成纪要
 - 自动提取行动项并设置提醒
@@ -319,8 +312,7 @@ OpenClaw：已完成审核，发现以下问题：
 4. 全文缺少图表，建议增加流程图和数据图表
 
 已生成优化建议文档
-```
-
+```text
 **效果对比**：
 | 项目 | 传统方式 | OpenClaw辅助 | 提升 |
 |------|----------|--------------|------|
@@ -374,8 +366,7 @@ OpenClaw：
 
 已保存到：工作日报/20260210.md
 已同步到：Notion个人工作区
-```
-
+```text
 **自动归档配置**：
 
 ```bash
@@ -394,8 +385,7 @@ openclaw schedule add "daily-summary" \
 
 # 3. 配置知识图谱
 openclaw config set knowledge.graph true
-```
-
+```text
 ### 11.1.7 完整工作流配置
 
 **一键配置脚本**：
@@ -432,8 +422,7 @@ openclaw config set knowledge.graph true
 openclaw config set knowledge.auto-link true
 
 echo "✅ 知识工作者工作流配置完成！"
-```
-
+```text
 ### 11.1.8 效率提升数据分析
 
 **使用前后对比**：
@@ -451,8 +440,7 @@ echo "✅ 知识工作者工作流配置完成！"
 节省时间：272分钟/天 × 22天 = 5,984分钟 ≈ 100小时
 相当于：12.5个工作日
 年度节省：150个工作日（约7.5个月）
-```
-
+```text
 **投资回报率（ROI）**：
 ```
 成本：
@@ -464,8 +452,7 @@ echo "✅ 知识工作者工作流配置完成！"
 - 节省时间：100小时/月
 - 按时薪$50计算：$5,000/月
 - ROI：($5,000 - $50) / $50 = 9,900%
-```
-
+```text
 ---
 
 ## 11.2 程序员的开发助手
@@ -485,16 +472,14 @@ echo "✅ 知识工作者工作流配置完成！"
 ❌ 文档查找：技术文档到处都是
 ❌ Bug追踪：问题记录不系统
 ❌ 学习碎片：学习资料难以整理
-```
-
+```text
 **目标**：
 ```
 ✅ 统一代码管理
 ✅ 快速查找文档
 ✅ 系统化Bug追踪
 ✅ 构建技术知识库
-```
-
+```text
 ### 11.2.2 代码搜索和管理
 
 **场景：快速定位代码**
@@ -521,8 +506,7 @@ const authMiddleware = async (req, res, next) => {
   }
   // ... 验证逻辑
 }
-```
-
+```text
 已生成代码地图：auth-code-map.md
 ```
 
@@ -539,9 +523,7 @@ openclaw config set code.language "javascript,python,go"
 
 # 3. 配置代码地图
 openclaw config set code.map.enabled true
-```
-
-
+```text
 ### 11.2.3 技术文档整理
 
 **场景：学习新技术**
@@ -590,8 +572,7 @@ OpenClaw：正在收集...
 
 已保存到：技术笔记/React19.md
 已同步到：Notion技术知识库
-```
-
+```text
 **GitHub项目分析**：
 
 ```
@@ -610,7 +591,7 @@ OpenClaw：正在分析...
 • 活跃度：非常活跃
 
 🏗️ 项目结构：
-```
+```text
 next.js/
 ├── packages/          # 核心包
 │   ├── next/         # Next.js核心
@@ -647,8 +628,7 @@ next.js/
 • SEO要求高的项目
 
 已保存到：项目分析/NextJS.md
-```
-
+```text
 ![GitHub项目分析](https://upload.maynor1024.live/file/1770176261237_image_16.jpg)
 
 ### 11.2.4 Bug追踪和解决
@@ -693,8 +673,7 @@ OpenClaw：已记录Bug，正在分析...
 已创建任务：修复登录刷新Bug
 已设置提醒：今天下班前处理
 已保存到：Bug追踪/2024-001.md
-```
-
+```text
 **Bug解决流程**：
 
 ```
@@ -731,8 +710,7 @@ OpenClaw：
 
 已同步到：Bug追踪系统
 已通知：相关团队成员
-```
-
+```text
 ### 11.2.5 开发环境管理
 
 **场景：快速切换项目环境**
@@ -767,8 +745,7 @@ OpenClaw：正在切换...
 • 编写单元测试
 
 是否需要启动开发服务器？
-```
-
+```text
 **配置方法**：
 
 ```bash
@@ -791,8 +768,7 @@ openclaw config set project.auto-start true
 
 # 3. 配置环境检查
 openclaw config set project.health-check true
-```
-
+```text
 ### 11.2.6 学习资源管理
 
 **场景：系统化学习新技术**
@@ -845,9 +821,7 @@ Day 9-10：最佳实践
 已创建学习任务
 已设置每日提醒
 已同步到日历
-```
-
-
+```text
 ### 11.2.7 完整工作流配置
 
 **程序员开发助手配置脚本**：
@@ -884,8 +858,7 @@ clawhub install code-review
 openclaw config set review.auto-check true
 
 echo "✅ 程序员开发助手配置完成！"
-```
-
+```text
 ### 11.2.8 开发效率提升数据
 
 **使用前后对比**：
@@ -904,8 +877,7 @@ echo "✅ 程序员开发助手配置完成！"
 节省时间：114分钟/天 × 22天 = 2,508分钟 ≈ 42小时
 相当于：5.25个工作日
 年度节省：63个工作日（约3个月）
-```
-
+```text
 ---
 
 ## 11.3 内容创作者的工作流
@@ -925,16 +897,14 @@ echo "✅ 程序员开发助手配置完成！"
 ❌ 素材分散：图片、文字到处都是
 ❌ 多平台发布：重复劳动
 ❌ 数据分析：缺乏系统化
-```
-
+```text
 **目标**：
 ```
 ✅ 系统化选题
 ✅ 统一素材管理
 ✅ 自动化发布
 ✅ 数据驱动优化
-```
-
+```text
 ### 11.3.2 选题灵感收集
 
 **场景：每日选题灵感**
@@ -986,8 +956,7 @@ OpenClaw：正在收集...
 • B站搜索：增长80%
 
 已保存到：选题库/20260210.md
-```
-
+```text
 **配置方法**：
 
 ```bash
@@ -1004,8 +973,7 @@ openclaw schedule add "daily-topics" \
 # 3. 配置选题评分
 openclaw config set topic.scoring true
 openclaw config set topic.factors "热度,竞争度,实用性"
-```
-
+```text
 ### 11.3.3 资料搜集和整理
 
 **场景：快速收集素材**
@@ -1045,8 +1013,7 @@ OpenClaw：正在收集...
 
 已整理成文档：资料库/BananaPro.md
 已下载示例图片到：素材库/BananaPro/
-```
-
+```text
 ![素材收集](https://upload.maynor1024.live/file/1770176324389_image_29.jpg)
 
 ### 11.3.4 内容创作辅助
@@ -1104,8 +1071,7 @@ OpenClaw：正在创作...
 
 已生成文章：草稿/BananaPro教程.md
 已生成配图需求：5张
-```
-
+```text
 **图片生成**：
 
 ```
@@ -1123,8 +1089,7 @@ OpenClaw：正在生成...
 已保存到：素材库/BananaPro/配图/
 已添加水印
 已压缩优化
-```
-
+```text
 ![AI绘画生成](https://upload.maynor1024.live/file/1770176332471_image_30.jpg)
 
 
@@ -1172,8 +1137,7 @@ OpenClaw：正在发布...
 • 已发布：3个平台
 • 待发布：1个平台
 • 总耗时：15分钟
-```
-
+```text
 **配置方法**：
 
 ```bash
@@ -1197,8 +1161,7 @@ openclaw config set publish.platforms "wechat,zhihu,xiaohongshu"
 
 # 3. 配置发布模板
 openclaw template add "multi-platform-publish"
-```
-
+```text
 ### 11.3.6 数据分析和优化
 
 **场景：内容数据分析**
@@ -1248,8 +1211,7 @@ OpenClaw：正在分析...
 • 优化发布时间为晚上8点
 
 已保存到：数据分析/20260210.md
-```
-
+```text
 ### 11.3.7 完整工作流配置
 
 **内容创作者工作流配置脚本**：
@@ -1289,8 +1251,7 @@ openclaw config set materials.auto-organize true
 openclaw config set materials.backup true
 
 echo "✅ 内容创作者工作流配置完成！"
-```
-
+```text
 ### 11.3.8 创作效率提升数据
 
 **使用前后对比**：
@@ -1311,8 +1272,7 @@ echo "✅ 内容创作者工作流配置完成！"
 节省时间：350分钟/篇 × 3篇 × 4周 = 4,200分钟 ≈ 70小时
 相当于：8.75个工作日
 年度节省：105个工作日（约5个月）
-```
-
+```text
 **收益提升**：
 ```
 效率提升后：
@@ -1320,8 +1280,7 @@ echo "✅ 内容创作者工作流配置完成！"
 • 内容质量：提升30%
 • 粉丝增长：提升50%
 • 广告收入：提升80%
-```
-
+```text
 ---
 
 ## 11.4 学生的学习助手
@@ -1341,16 +1300,14 @@ echo "✅ 内容创作者工作流配置完成！"
 ❌ 作业繁重：时间不够用
 ❌ 项目混乱：进度难以把控
 ❌ 复习低效：知识点太分散
-```
-
+```text
 **目标**：
 ```
 ✅ 高效阅读论文
 ✅ 快速完成作业
 ✅ 系统管理项目
 ✅ 科学复习备考
-```
-
+```text
 ### 11.4.2 课程资料管理
 
 **场景：整理课程资料**
@@ -1400,9 +1357,7 @@ OpenClaw：正在整理...
 └── 笔记/
 
 已生成学习进度表
-```
-
-
+```text
 ### 11.4.3 论文阅读和笔记
 
 **场景：快速阅读论文**
@@ -1435,7 +1390,7 @@ OpenClaw：正在阅读...
 • Feed-Forward Network：前馈网络
 
 📊 模型架构：
-```
+```text
 Transformer
 ├── Encoder（6层）
 │   ├── Multi-Head Attention
@@ -1476,8 +1431,7 @@ Transformer
 已保存到：论文笔记/Transformer.md
 已添加到：知识图谱
 已创建：复习卡片
-```
-
+```text
 **配置方法**：
 
 ```bash
@@ -1493,8 +1447,7 @@ openclaw template add "paper-notes" \
 # 3. 配置知识图谱
 openclaw config set knowledge.graph true
 openclaw config set knowledge.auto-link true
-```
-
+```text
 ### 11.4.4 作业辅助完成
 
 **场景：编程作业辅助**
@@ -1556,8 +1509,7 @@ class SimpleNN(nn.Module):
 
 # 4. 评估代码
 # （详细实现）
-```
-
+```text
 🎯 关键点：
 • 数据归一化很重要
 • 学习率建议0.001
@@ -1581,7 +1533,7 @@ class SimpleNN(nn.Module):
 
 **作业检查**：
 
-```
+```text
 你：帮我检查一下代码有没有问题
 
 OpenClaw：正在检查...
@@ -1622,7 +1574,7 @@ OpenClaw：正在检查...
 
 **场景：期末考试复习**
 
-```
+```text
 你：帮我制定机器学习课程的期末复习计划，
     考试时间：2周后
 
@@ -1710,7 +1662,7 @@ Day 14：考前准备
 
 **知识点卡片**：
 
-```
+```text
 你：帮我生成所有重要知识点的复习卡片
 
 OpenClaw：正在生成...
@@ -1750,7 +1702,7 @@ OpenClaw：正在生成...
 
 **场景：管理研究项目**
 
-```
+```text
 你：帮我管理我的毕业论文项目，
     包括：进度追踪、文献管理、实验记录
 
@@ -1822,7 +1774,7 @@ OpenClaw：好的，正在创建项目管理系统...
 
 **实验记录**：
 
-```
+```text
 你：帮我记录今天的实验结果
 
 OpenClaw：好的，请告诉我实验详情
@@ -1911,8 +1863,7 @@ clawhub install calendar-sync
 openclaw config set calendar.auto-create true
 
 echo "✅ 学生学习助手配置完成！"
-```
-
+```text
 ### 11.4.8 学习效率提升数据
 
 **使用前后对比**：
@@ -1931,8 +1882,7 @@ echo "✅ 学生学习助手配置完成！"
 节省时间：285分钟/天 × 100天 = 28,500分钟 ≈ 475小时
 相当于：59个工作日
 年度节省：118个工作日（约6个月）
-```
-
+```text
 **学习成果提升**：
 ```
 使用前：
@@ -1945,8 +1895,7 @@ echo "✅ 学生学习助手配置完成！"
 • 平均成绩：92分（+8.2%）
 • 项目进度：按时完成
 • 额外收获：发表1篇论文
-```
-
+```text
 ---
 
 ## 11.5 云上OpenClaw的5种正确打开方式
@@ -1962,8 +1911,7 @@ echo "✅ 学生学习助手配置完成！"
 ✅ 自动执行：定时任务自动跑
 ✅ 成本低廉：0.01元/月起步
 ✅ 快速部署：5分钟完成配置
-```
-
+```text
 **百度云O计划部署**：
 
 ![百度云OpenClaw 配置](https://upload.maynor1024.live/file/1770780868861_image_1.jpg)
@@ -2021,8 +1969,7 @@ OpenClaw：正在安装...
 - 分类整理
 - 附带原文链接
 - 推送到飞书
-```
-
+```text
 **Skills双幻神介绍**：
 
 **find-skills**：智能Skills发现
@@ -2067,8 +2014,7 @@ OpenClaw：正在安装...
 • Agent系统架构设计
 
 已推送到飞书 ✅
-```
-
+```text
 **避坑指南**：
 - ⚠️ Brave Search需要绑卡，建议使用百度搜索（云端自带）
 - ⚠️ 定时任务时区设置要正确
@@ -2096,8 +2042,7 @@ OpenClaw：正在安装...
 4. 提取未完成待办
 5. 生成下周计划
 6. 推送到飞书
-```
-
+```text
 **实战效果**：
 
 ```
@@ -2140,8 +2085,7 @@ OpenClaw：正在安装...
 • 体检报告周二可取
 
 已推送到飞书 ✅
-```
-
+```text
 ![备忘录管理示例](https://upload.maynor1024.live/file/1770780930864_image_8.jpg)
 
 ---
@@ -2167,8 +2111,7 @@ OpenClaw：正在安装...
 # 2. 定时提醒
 你：每天下午3点：
 - 提醒未完成的高优先级任务
-```
-
+```text
 **实战效果**：
 
 ```
@@ -2205,8 +2148,7 @@ OpenClaw：正在安装...
   - 建议：立即开始
 
 已@你 请及时处理 ⏰
-```
-
+```text
 ![日报+待办事项示例](https://upload.maynor1024.live/file/1770780940542_image_9.jpg)
 
 ---
@@ -2240,8 +2182,7 @@ OpenClaw：正在生成...
 • 下载链接：[点击下载]
 
 素材文件已保存到：/output/openclaw-ppt/
-```
-
+```text
 ![PPT生成示例](https://upload.maynor1024.live/file/1770780875363_image_10.jpg)
 
 **自动清理机制**：
@@ -2281,8 +2222,7 @@ OpenClaw：已配置自动清理任务
 💾 可释放空间：180MB
 
 是否确认删除？回复"确认"执行删除
-```
-
+```text
 **存储优化效果**：
 - 2核4G4M配置完全够用
 - 自动清理机制释放空间
@@ -2350,8 +2290,7 @@ todo-app/
 
 ✅ 开发完成！
 项目已保存到：~/projects/todo-app/
-```
-
+```text
 ![AI编程Skills](https://upload.maynor1024.live/file/1770780886607_image_11.jpg)
 
 **成本优化**：
@@ -2374,8 +2313,7 @@ todo-app/
 {
   "systemPrompt": "你是我的AI助理。每次回复后，都要加上口头禅：'主人，还有什么需要帮忙的吗？'"
 }
-```
-
+```text
 ![人设设置示例](https://upload.maynor1024.live/file/1770780919379_image_6.jpg)
 
 **检测机制**：
@@ -2419,8 +2357,7 @@ OpenClaw：好的，我来帮你配置。根据文档，需要以下步骤：
        "appSecret": "你的App Secret"
      }
    }
-   ```
-
+   ```text
 需要我一步步指导你吗？
 ```
 
@@ -2454,7 +2391,7 @@ OpenClaw：好的，我来帮你配置。根据文档，需要以下步骤：
 
 **实战演示**：
 
-```
+```text
 你：帮我在YouSkill上搜索"自动化日报"的解决方案
 
 OpenClaw：正在搜索...
@@ -2567,8 +2504,7 @@ echo "  ✅ AI编程协作"
 echo "  ✅ Skills双幻神"
 echo ""
 echo "🎯 你现在是一个超级个体了！"
-```
-
+```text
 ---
 
 ### 11.5.10 效率提升数据
@@ -2605,8 +2541,7 @@ echo "🎯 你现在是一个超级个体了！"
 节省时间：255分钟/天 ≈ 4.25小时/天
 月度节省：94小时 ≈ 12个工作日
 年度节省：1,128小时 ≈ 141个工作日
-```
-
+```text
 **投资回报率（ROI）**：
 
 ```
@@ -2620,8 +2555,7 @@ echo "🎯 你现在是一个超级个体了！"
 - 节省时间：94小时/月
 - 按时薪50元计算：4,700元/月
 - ROI：(4,700 - 50) / 50 = 9,300%
-```
-
+```text
 ---
 
 ## 📝 本章小结
@@ -2673,32 +2607,28 @@ echo "🎯 你现在是一个超级个体了！"
 ✅ 资料收集
 ✅ 会议纪要
 ✅ 数据分析
-```
-
+```text
 **2. 系统化知识管理**
 ```
 ✅ 统一存储
 ✅ 自动归档
 ✅ 智能搜索
 ✅ 知识图谱
-```
-
+```text
 **3. 智能化辅助决策**
 ```
 ✅ 选题建议
 ✅ 优化建议
 ✅ 风险提示
 ✅ 数据分析
-```
-
+```text
 **4. 多平台协同**
 ```
 ✅ 飞书/企微/钉钉
 ✅ Notion/备忘录
 ✅ 日历/提醒
 ✅ 多端同步
-```
-
+```text
 ### 投资回报率（ROI）
 
 **成本**：
@@ -2752,16 +2682,14 @@ echo "🎯 你现在是一个超级个体了！"
 需求 → OpenClaw分析 → 生成开发计划 → 
 调用Claude Code → 自动编程 → 测试验证 → 
 发现Bug → 自动修复 → 完成交付
-```
-
+```text
 **优势**：
 ```
 ✅ 24小时不间断开发
 ✅ 自动测试和修复
 ✅ 代码质量稳定
 ✅ 开发效率提升10倍
-```
-
+```text
 ### 11.2.9.2 安装Claude Code
 
 **方式1：让OpenClaw自动安装**
@@ -2783,8 +2711,7 @@ OpenClaw：好的，正在安装Claude Code...
 ✅ 安装完成！
 
 现在可以开始使用了！
-```
-
+```text
 ![Claude Code安装](https://upload.maynor1024.live/file/1770782761573_image_28.jpg)
 
 **方式2：手动安装**
@@ -2799,8 +2726,7 @@ export ANTHROPIC_API_KEY="your-api-key"
 # 3. 配置 OpenClaw
 clawhub install coding-agent
 openclaw config set coding.tool "claude-code"
-```
-
+```text
 ### 11.2.9.3 基础使用：简单开发任务
 
 **场景：开发一个待办事项应用**
@@ -2834,8 +2760,7 @@ npm install
 npm run dev
 
 已发送项目文件到飞书 ✅
-```
-
+```text
 ![Claude Code开发示例](https://upload.maynor1024.live/file/1770782764980_image_29.jpg)
 
 ### 11.2.9.4 进阶使用：自动测试和修复
@@ -2868,8 +2793,7 @@ OpenClaw：好的，正在开发并测试...
 ❌ 失败：0个测试
 
 ✅ 全部测试通过！
-```
-
+```text
 ### 11.2.9.5 配置方法
 
 ```bash
@@ -2885,8 +2809,7 @@ openclaw config set coding.api-key "YOUR_ANTHROPIC_API_KEY"
 openclaw config set coding.workspace "~/projects"
 openclaw config set coding.auto-test true
 openclaw config set coding.auto-fix true
-```
-
+```text
 ### 11.2.9.6 效率提升数据
 
 **使用Coding Agent前后对比**：
@@ -2913,8 +2836,7 @@ openclaw config set coding.auto-fix true
 
 每周节省：26.33小时
 每月节省：105小时 ≈ 13个工作日
-```
-
+```text
 ### 11.2.9.7 注意事项
 
 **安全性**：
@@ -2924,8 +2846,7 @@ openclaw config set coding.auto-fix true
 2. 测试验证：必须进行充分测试
 3. 安全检查：检查是否有安全漏洞
 4. 备份代码：定期备份重要代码
-```
-
+```text
 **成本控制**：
 ```
 💰 成本优化：

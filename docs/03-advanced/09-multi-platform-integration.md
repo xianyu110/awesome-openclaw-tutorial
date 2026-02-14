@@ -71,8 +71,7 @@
 
 ```text
 访问 https://work.weixin.qq.com/
-```
-
+```text
 **步骤2：注册企业**
 
 ```text
@@ -85,8 +84,7 @@
    - 管理员信息
 4. 验证手机号
 5. 完成注册
-```
-
+```text
 **步骤3：完善企业信息**
 
 ```text
@@ -94,9 +92,7 @@
 2. 完善企业资料
 3. 添加成员（可选）
 4. 设置部门（可选）
-```
-
-
+```text
 ### 9.2.3 创建企业微信应用
 
 **步骤1：进入应用管理**
@@ -105,8 +101,7 @@
 1. 登录企业微信管理后台
 2. 点击"应用管理"
 3. 点击"创建应用"
-```
-
+```text
 **步骤2：填写应用信息**
 
 ```text
@@ -114,8 +109,7 @@
 - 应用Logo：上传Logo图片
 - 应用简介：AI智能助手
 - 可见范围：选择可使用的成员
-```
-
+```text
 **步骤3：获取应用凭证**
 
 ```text
@@ -123,8 +117,7 @@
 - AgentId：应用ID
 - Secret：应用密钥
 - CorpId：企业ID
-```
-
+```yaml
 ### 9.2.4 配置 OpenClaw
 
 > 💡 **前置要求**：请先完成 OpenClaw 的基础安装和配置，详见 [第2章：环境搭建](../01-basics/02-installation.md)。
@@ -147,9 +140,7 @@ openclaw config set wework.secret "your-secret"
 
 # 启动企微Bot
 openclaw wework start
-```
-
-
+```text
 ### 9.2.5 实战案例
 
 **案例1：个人助手Bot**
@@ -169,8 +160,7 @@ OpenClaw：找到3张发票，已发送给你
 
 你：明天下午3点提醒我开会
 OpenClaw：已设置提醒 ✅
-```
-
+```text
 **案例2：团队协作Bot**
 
 ```text
@@ -188,8 +178,7 @@ OpenClaw：好的，会议记录如下...
 
 成员B：@OpenClaw 查询项目进度
 OpenClaw：项目进度：已完成60%...
-```
-
+```text
 **案例3：客户服务Bot**
 
 ```text
@@ -207,8 +196,7 @@ OpenClaw：产品主要功能包括...
 
 客户：如何购买？
 OpenClaw：购买方式有以下几种...
-```
-
+```text
 ### 9.2.6 手机端使用技巧
 
 **技巧1：快速访问**
@@ -217,24 +205,20 @@ OpenClaw：购买方式有以下几种...
 2. 点击"工作台"
 3. 找到"OpenClaw助手"
 4. 开始对话
-```
-
+```text
 **技巧2：语音输入**
 ```text
 1. 点击语音按钮
 2. 说出你的需求
 3. OpenClaw自动识别并处理
-```
-
+```text
 **技巧3：文件传输**
 ```text
 1. 点击"+"号
 2. 选择"文件"
 3. 发送给OpenClaw
 4. OpenClaw自动处理
-```
-
-
+```text
 ### 9.2.7 常见问题解决
 
 **问题1：应用无法接收消息**
@@ -245,8 +229,7 @@ OpenClaw：购买方式有以下几种...
 1. 检查回调URL是否正确
 2. 确保服务器可访问
 3. 检查Token和EncodingAESKey
-```
-
+```text
 **问题2：消息发送失败**
 ```text
 原因：权限不足或配置错误
@@ -255,8 +238,7 @@ OpenClaw：购买方式有以下几种...
 1. 检查应用权限
 2. 确认Secret正确
 3. 查看错误日志
-```
-
+```text
 **问题3：域名备案问题**
 ```text
 提示：域名备案主体与企业微信认证主体不一致
@@ -264,8 +246,7 @@ OpenClaw：购买方式有以下几种...
 解决方案：
 参考官方教程：
 https://cloud.tencent.com/developer/article/2626187
-```
-
+```text
 ---
 
 ## 9.3 钉钉Bot配置
@@ -298,8 +279,7 @@ https://cloud.tencent.com/developer/article/2626187
 **步骤1：注册钉钉开放平台**
 ```text
 https://open.dingtalk.com/
-```
-
+```text
 **步骤2：创建企业内部应用**
 
 ```text
@@ -307,8 +287,7 @@ https://open.dingtalk.com/
 2. 点击"应用开发"
 3. 选择"企业内部开发"
 4. 点击"创建应用"
-```
-
+```text
 **步骤3：配置应用信息**
 
 ```text
@@ -316,8 +295,7 @@ https://open.dingtalk.com/
 应用描述：AI智能助手
 应用图标：上传图标
 开发方式：企业内部开发
-```
-
+```text
 **步骤4：获取凭证**
 
 ```text
@@ -325,9 +303,7 @@ https://open.dingtalk.com/
 - AppKey：应用Key
 - AppSecret：应用密钥
 - AgentId：应用ID
-```
-
-
+```text
 ### 9.3.3 配置 OpenClaw
 
 > 💡 **前置要求**：请先完成 OpenClaw 的基础安装和配置，详见 [第2章：环境搭建](../01-basics/02-installation.md)。
@@ -338,8 +314,7 @@ https://open.dingtalk.com/
 
 ```text
 https://cloud.tencent.com/developer/article/2626553
-```
-
+```text
 **本地配置**
 
 ```bash
@@ -349,8 +324,7 @@ openclaw config set dingtalk.appKey "your-app-key"
 openclaw config set dingtalk.appSecret "your-app-secret"
 openclaw config set dingtalk.agentId "your-agent-id"
 openclaw dingtalk start
-```
-
+```text
 ### 9.3.4 实战案例
 
 **案例1：工作助手**
@@ -367,8 +341,7 @@ OpenClaw：今天有3个会议...
 
 你：生成本周工作报表
 OpenClaw：报表已生成 ✅
-```
-
+```text
 **案例2：审批流程**
 ```text
 功能：
@@ -383,8 +356,7 @@ OpenClaw：有2个待审批...
 
 你：帮我填写请假单
 OpenClaw：请假单已填写 ✅
-```
-
+```text
 ---
 
 ## 9.1 飞书Bot配置
@@ -424,8 +396,7 @@ OpenClaw：请假单已填写 ✅
 
 ```bash
 openclaw setup
-```
-
+```text
 向导会引导您完成：
 1. 创建飞书应用并获取凭证
 2. 配置应用凭证
@@ -435,16 +406,14 @@ openclaw setup
 ```bash
 openclaw gateway status      # 查看网关运行状态
 openclaw logs --follow       # 查看实时日志
-```
-
+```text
 **方式二：通过命令行添加**
 
 如果您已经完成了初始安装，可以用以下命令添加飞书渠道：
 
 ```bash
 openclaw channels add
-```
-
+```text
 然后根据交互式提示选择 Feishu，输入 App ID 和 App Secret 即可。
 
 ✅ **完成配置后**，您可以使用以下命令管理网关：
@@ -452,8 +421,7 @@ openclaw channels add
 openclaw gateway status      # 查看网关运行状态
 openclaw gateway restart     # 重启网关以应用新配置
 openclaw logs --follow       # 查看实时日志
-```
-
+```text
 ### 9.1.3 第一步：创建飞书应用
 
 #### 1. 打开飞书开放平台
@@ -518,8 +486,7 @@ openclaw logs --follow       # 查看实时日志
     ]
   }
 }
-```
-
+```text
 ![飞书应用权限配置 - 批量导入JSON权限](https://upload.maynor1024.live/file/1770734343156_image_1770734320.jpg)
 
 #### 5. 启用机器人能力
@@ -582,8 +549,7 @@ openclaw logs --follow       # 查看实时日志
     "mode": "local"
   }
 }
-```
-
+```text
 如果遇到 "Gateway auth is set to token, but no token is configured" 错误：
 ```bash
 # 方式1：在配置文件中设置 token
@@ -598,8 +564,7 @@ openclaw logs --follow       # 查看实时日志
 
 # 方式2：使用环境变量
 export OPENCLAW_GATEWAY_TOKEN="your-secure-token"
-```
-
+```text
 #### 7. 发布应用
 
 1. 在 **版本管理与发布** 页面创建版本
@@ -616,16 +581,14 @@ openclaw plugins install @openclaw/feishu
 
 # 本地 checkout（在 git 仓库内运行）
 openclaw plugins install ./extensions/feishu
-```
-
+```text
 #### 通过向导配置（推荐）
 
 运行以下命令，根据提示粘贴 App ID 和 App Secret：
 
 ```bash
 openclaw channels add
-```
-
+```text
 选择 **Feishu**，然后输入您在第一步获取的凭证即可。
 
 #### 通过配置文件配置
@@ -648,15 +611,13 @@ openclaw channels add
     }
   }
 }
-```
-
+```text
 #### 通过环境变量配置
 
 ```bash
 export FEISHU_APP_ID="cli_xxx"
 export FEISHU_APP_SECRET="xxx"
-```
-
+```text
 #### Lark（国际版）域名配置
 
 如果您的租户在 Lark（国际版），请设置域名为 `lark`：
@@ -675,8 +636,7 @@ export FEISHU_APP_SECRET="xxx"
     }
   }
 }
-```
-
+```text
 ### 9.1.5 第三步：启动并测试
 
 #### 1. 启动网关
@@ -690,15 +650,13 @@ openclaw gateway status
 
 # 查看实时日志
 openclaw logs --follow
-```
-
+```text
 **网关启动成功的标志：**
 ```
 ✅ Gateway: running (pid xxxxx, state active)
 ✅ Gateway target: ws://127.0.0.1:18789
 ✅ Source: local loopback
-```
-
+```text
 #### 2. 发送测试消息
 
 在飞书中找到您创建的机器人，发送一条消息，例如："hi"。
@@ -709,8 +667,7 @@ HEARTBEAT_OK
 hi
 connected | running
 agent main | session main (heartbeat) | local-antigravity/gemini-3-pro-high
-```
-
+```text
 #### 3. 配对授权
 
 默认情况下（`dmPolicy: "pairing"`），机器人会回复一个 **配对码**。您需要批准此代码：
@@ -724,8 +681,7 @@ openclaw pairing approve feishu <配对码>
 
 # 示例
 openclaw pairing approve feishu ABC123
-```
-
+```text
 批准后即可正常对话。
 
 **如果不想使用配对模式：**
@@ -738,8 +694,7 @@ openclaw pairing approve feishu ABC123
     }
   }
 }
-```
-
+```text
 ### 9.1.6 访问控制
 
 #### 私聊访问
@@ -750,8 +705,7 @@ openclaw pairing approve feishu ABC123
 ```bash
 openclaw pairing list feishu           # 查看待审批列表
 openclaw pairing approve feishu <CODE> # 批准
-```
-
+```text
 **白名单模式**：通过 `channels.feishu.allowFrom` 配置允许的用户 Open ID
 
 #### 群组访问
@@ -778,8 +732,7 @@ openclaw pairing approve feishu <CODE> # 批准
     }
   }
 }
-```
-
+```text
 #### 允许所有群组，无需 @提及
 
 需要为特定群组配置：
@@ -794,8 +747,7 @@ openclaw pairing approve feishu <CODE> # 批准
     }
   }
 }
-```
-
+```text
 #### 仅允许特定用户在群组中使用
 
 ```json
@@ -807,8 +759,7 @@ openclaw pairing approve feishu <CODE> # 批准
     }
   }
 }
-```
-
+```text
 ### 9.1.8 获取群组/用户 ID
 
 #### 获取群组 ID（chat_id）
@@ -832,8 +783,7 @@ openclaw pairing approve feishu <CODE> # 批准
 **方法二**：查看配对请求列表，其中包含用户的 Open ID：
 ```bash
 openclaw pairing list feishu
-```
-
+```text
 ### 9.1.9 高级配置
 
 ### 自定义菜单
@@ -917,8 +867,7 @@ OpenClaw 支持同时管理多个飞书机器人，这在以下场景非常有�
     }
   }
 }
-```
-
+```text
 > 💡 **实战提示**：上面的配置示例来自真实的多机器人部署案例。注意 `appSecret` 和 `token` 在生产环境中应该妥善保管，不要提交到代码仓库。
 
 **多机器人配置示例（4个专业助手）：**
@@ -980,8 +929,7 @@ OpenClaw 支持同时管理多个飞书机器人，这在以下场景非常有�
     }
   }
 }
-```
-
+```text
 > ⚠️ **重要提示**：在多账号配置中，不需要使用 `bindings` 来绑定不同的 agent。所有机器人会自动共享 `agents.defaults` 配置。如果需要不同的模型，可以在对话中使用 `/model` 命令切换。
 
 **配置说明：**
@@ -1071,8 +1019,7 @@ OpenClaw 支持同时管理多个飞书机器人，这在以下场景非常有�
     }
   }
 }
-```
-
+```text
 **实战场景2：环境分离**
 
 测试环境和生产环境使用不同的机器人：
@@ -1106,8 +1053,7 @@ OpenClaw 支持同时管理多个飞书机器人，这在以下场景非常有�
     }
   }
 }
-```
-
+```text
 **实战场景3：功能分离**
 
 不同功能使用专用机器人：
@@ -1139,8 +1085,7 @@ OpenClaw 支持同时管理多个飞书机器人，这在以下场景非常有�
     }
   }
 }
-```
-
+```text
 **配合多 Agent 使用**
 
 将不同的飞书机器人绑定到不同的 Agent，实现更精细的功能分离：
@@ -1211,8 +1156,7 @@ OpenClaw 支持同时管理多个飞书机器人，这在以下场景非常有�
     }
   ]
 }
-```
-
+```text
 **管理多个机器人**
 
 ```bash
@@ -1230,8 +1174,7 @@ openclaw channels restart feishu main
 
 # 查看特定账号的日志
 openclaw logs --channel feishu --account main --follow
-```
-
+```text
 **配置文件位置**
 
 ```bash
@@ -1240,16 +1183,14 @@ openclaw logs --channel feishu --account main --follow
 
 # 或者使用独立的渠道配置文件
 ~/.openclaw/channels/feishu.json
-```
-
+```text
 **独立配置文件示例：**
 
 ```bash
 # 创建独立配置文件
 mkdir -p ~/.openclaw/channels
 nano ~/.openclaw/channels/feishu.json
-```
-
+```text
 ```json
 {
   "enabled": true,
@@ -1305,8 +1246,7 @@ openclaw logs --channel feishu --account main --follow
 
 # 检查配置是否正确
 openclaw config get channels.feishu.accounts.main
-```
-
+```text
 **问题2：多个机器人冲突**
 
 确保每个机器人使用不同的飞书应用：
@@ -1322,14 +1262,12 @@ openclaw gateway restart
 
 # 或者重新加载配置
 openclaw channels reload feishu
-```
-
+```text
 **问题4：配置验证失败 - bindings 错误**
 
 ```
 Error: bindings.0.match: Unrecognized key: "account"
-```
-
+```text
 **原因**：在多账号配置中，不需要使用 `bindings` 来绑定 agent。
 
 **解决方案**：
@@ -1356,8 +1294,7 @@ Error: bindings.0.match: Unrecognized key: "account"
   }
   // ❌ 不需要 bindings
 }
-```
-
+```text
 **问题5：配置后运行 openclaw doctor 报错**
 
 ```bash
@@ -1370,8 +1307,7 @@ openclaw doctor --fix
 # 验证配置
 openclaw doctor
 # 应该看到：✅ Config valid
-```
-
+```text
 **最佳实践：**
 
 1. **使用有意义的账号名称**
@@ -1442,8 +1378,7 @@ openclaw doctor
     }
   }
 }
-```
-
+```text
 如需禁用流式输出（等待完整回复后一次性发送），可设置 `streaming: false`。
 
 #### 消息引用
@@ -1463,8 +1398,7 @@ openclaw doctor
     }
   }
 }
-```
-
+```text
 `replyToMode` 值说明：
 - `"off"` = 不引用原消息（私聊默认值）
 - `"first"` = 仅在第一条回复时引用原消息
@@ -1515,8 +1449,7 @@ openclaw doctor
     }
   ]
 }
-```
-
+```text
 ### 9.1.10 常用命令
 
 #### 机器人命令
@@ -1615,8 +1548,7 @@ openclaw doctor
 **错误示例：**
 ```
 JSON5 parse error at line 443: Python True/False vs JSON true/false
-```
-
+```text
 **解决方案：**
 ```bash
 # 检查 JSON 语法
@@ -1628,8 +1560,7 @@ cat ~/.openclaw/openclaw.json | python -m json.tool
 
 # ❌ 多余的逗号
 # ✅ 最后一项不要逗号
-```
-
+```text
 #### 网关启动失败
 
 **错误1：Gateway start blocked**
@@ -1643,8 +1574,7 @@ Gateway start blocked: set gateway.mode=local (current: unset)
     "mode": "local"
   }
 }
-```
-
+```text
 **错误2：Gateway auth token 未配置**
 ```bash
 # 错误信息
@@ -1662,8 +1592,7 @@ Gateway auth is set to token, but no token is configured
 
 # 解决方案2：环境变量
 export OPENCLAW_GATEWAY_TOKEN="your-secure-token"
-```
-
+```text
 **错误3：插件未找到**
 ```bash
 # 错误信息
@@ -1680,8 +1609,7 @@ Config validation failed: plugins.entries.qqbot: plugin not found: qqbot
     }
   }
 }
-```
-
+```text
 **错误4：工作空间路径错误**
 ```bash
 # 错误信息
@@ -1695,8 +1623,7 @@ run error: Error: ENOENT: no such file or directory, mkdir '/root'
     }
   }
 }
-```
-
+```text
 #### App Secret 泄露怎么办
 
 1. 在飞书开放平台重置 App Secret
@@ -1724,8 +1651,7 @@ openclaw gateway stop
     "port": 18790
   }
 }
-```
-
+```text
 #### 配置修改不生效
 
 ```bash
@@ -1737,8 +1663,7 @@ openclaw channels reload feishu
 
 # 检查配置是否正确加载
 openclaw config get channels.feishu
-```
-
+```text
 ### 9.1.12 配置参考
 
 | 配置项 | 说明 | 默认值 |
@@ -1797,8 +1722,7 @@ openclaw config get channels.feishu
 你：把这段内容保存到飞书文档
 OpenClaw：已保存到飞书文档 ✅
 链接：https://...
-```
-
+```text
 **集成飞书多维表格**
 ```
 功能：
@@ -1810,8 +1734,7 @@ OpenClaw：已保存到飞书文档 ✅
 示例：
 你：把发票信息添加到多维表格
 OpenClaw：已添加3条记录 ✅
-```
-
+```text
 **集成飞书日历**
 ```
 功能：
@@ -1823,8 +1746,7 @@ OpenClaw：已添加3条记录 ✅
 示例：
 你：明天下午3点开会
 OpenClaw：已添加到飞书日历 ✅
-```
-
+```text
 ---
 
 ### 9.1.15 实战案例：配置双机器人
@@ -1912,8 +1834,7 @@ OpenClaw：已添加到飞书日历 ✅
     }
   }
 }
-```
-
+```text
 **3. 配置飞书应用权限**
 
 为两个应用分别配置权限（批量导入 JSON，参见 9.1.3 节）。
@@ -1936,8 +1857,7 @@ openclaw gateway status
 # 应该看到：
 # ✅ Gateway: running (pid 57344, state active)
 # ✅ Gateway target: ws://127.0.0.1:18789
-```
-
+```text
 **6. 测试机器人**
 
 在飞书中分别给两个机器人发送消息：
@@ -1945,8 +1865,7 @@ openclaw gateway status
 ```
 你：hi
 机器人：[配对码] 请管理员批准配对
-```
-
+```text
 **7. 批准配对**
 
 ```bash
@@ -1958,8 +1877,7 @@ openclaw pairing approve feishu <配对码1>
 
 # 批准机器人2
 openclaw pairing approve feishu <配对码2>
-```
-
+```text
 **8. 验证运行**
 
 查看日志确认两个机器人都在正常运行：
@@ -1972,8 +1890,7 @@ openclaw logs --follow
 # hi
 # connected | running
 # agent main | session main (heartbeat)
-```
-
+```text
 #### 常见问题处理
 
 **问题1：配置文件 JSON 语法错误**
@@ -1988,8 +1905,7 @@ cat ~/.openclaw/openclaw.json | python -m json.tool
 # 修正：
 # ❌ "enabled": True
 # ✅ "enabled": true
-```
-
+```text
 **问题2：网关启动失败**
 
 ```bash
@@ -2001,8 +1917,7 @@ cat ~/.openclaw/openclaw.json | python -m json.tool
     "mode": "local"
   }
 }
-```
-
+```text
 **问题3：工作空间路径错误**
 
 ```bash
@@ -2017,8 +1932,7 @@ cat ~/.openclaw/openclaw.json | python -m json.tool
     }
   }
 }
-```
-
+```text
 **问题4：插件未找到**
 
 ```bash
@@ -2036,8 +1950,7 @@ cat ~/.openclaw/openclaw.json | python -m json.tool
     }
   }
 }
-```
-
+```text
 #### 配置检查清单
 
 - [ ] 两个飞书应用已创建
@@ -2071,8 +1984,7 @@ hi
 connected | running
 agent main | session main (heartbeat) | your-model-provider/your-model
 tokens 25k/200k (13%)
-```
-
+```text
 两个机器人都可以正常接收和回复消息！🎉
 
 ---
@@ -2250,8 +2162,7 @@ openclaw onboard
 # 7. 测试连接
 # - 选择打开 TUI（终端界面）
 # - 或直接在QQ中测试
-```
-
+```text
 **方式三：手动编辑配置文件**
 
 ```bash
@@ -2272,8 +2183,7 @@ nano ~/.openclaw/config.json
 
 # 重启服务
 systemctl --user restart openclaw-gateway.service
-```
-
+```text
 **启动Gateway服务**
 
 ```bash
@@ -2286,8 +2196,7 @@ nohup openclaw gateway --port 18789 --verbose > /dev/null 2>&1 &
 # 方式3：使用systemd（最稳定）
 systemctl --user enable openclaw-gateway.service
 systemctl --user start openclaw-gateway.service
-```
-
+```text
 **验证配置**
 
 ```bash
@@ -2299,8 +2208,7 @@ journalctl --user -u openclaw-gateway.service -f
 
 # 测试连接
 # 在QQ中给机器人发送消息："你好"
-```
-
+```text
 ### 9.4.4 实战案例
 
 **案例1：个人助手**
@@ -2317,8 +2225,7 @@ OpenClaw：今天晴天，15-25°C
 
 你：提醒我明天交作业
 OpenClaw：已设置提醒 ✅
-```
-
+```text
 **案例2：群管理**
 ```
 功能：
@@ -2333,8 +2240,7 @@ OpenClaw：公告已发布 ✅
 
 成员：@OpenClaw 查询群规
 OpenClaw：群规如下...
-```
-
+```text
 **案例3：娱乐互动**
 ```
 功能：
@@ -2349,8 +2255,7 @@ OpenClaw：好的，听我说...
 
 你：猜谜语
 OpenClaw：什么东西...
-```
-
+```text
 ### 9.4.5 限制和注意事项
 
 **功能限制**：
@@ -2361,8 +2266,7 @@ OpenClaw：什么东西...
 - 审核要求严格
 - 部分API需要申请
 - 目前不支持主动发送消息（2026.2.6测试）
-```
-
+```text
 **注意事项**：
 ```
 ✅ 遵守平台规则
@@ -2370,8 +2274,7 @@ OpenClaw：什么东西...
 ✅ 合理使用API
 ✅ 及时响应用户
 ✅ 定期检查服务状态
-```
-
+```text
 **常见问题**：
 
 1. **机器人不回复消息**：
@@ -2428,8 +2331,7 @@ OpenClaw：什么东西...
 
 ```
 https://discord.com/developers/applications
-```
-
+```text
 **步骤2：创建应用**
 
 1. 点击"New Application"
@@ -2485,8 +2387,7 @@ openclaw onboard
 # 4. 选择通道：Discord
 # 5. 输入 Bot Token
 # 6. 配置 Skills 和 Hooks
-```
-
+```text
 **启动服务**：
 
 ```bash
@@ -2498,8 +2399,7 @@ openclaw gateway --port 18789 --verbose
 
 # 后台运行
 nohup openclaw gateway --port 18789 --verbose > /dev/null 2>&1 &
-```
-
+```text
 **配对连接**：
 
 ```bash
@@ -2513,8 +2413,7 @@ openclaw pairing approve discord <Pairing code>
 
 # 4. 重新启动Gateway
 openclaw gateway --port 18789 --verbose
-```
-
+```text
 ### 9.5.4 使用Discord Bot
 
 **私聊模式**：
@@ -2523,8 +2422,7 @@ openclaw gateway --port 18789 --verbose
 2. 点击Bot头像
 3. 点击"发送消息"
 4. 直接发送消息即可
-```
-
+```text
 **群聊模式**：
 ```
 1. 在频道中@Bot
@@ -2533,8 +2431,7 @@ openclaw gateway --port 18789 --verbose
 
 示例：
 @MyBot 今天天气怎么样？
-```
-
+```text
 ### 9.5.5 注意事项
 
 **命令更新**：
@@ -2582,8 +2479,7 @@ openclaw gateway --port 18789 --verbose
 ❌ 不适合：
 - 传统企业
 - 简单需求
-```
-
+```text
 **企业微信**：
 ```
 ✅ 适合场景：
@@ -2595,8 +2491,7 @@ openclaw gateway --port 18789 --verbose
 ❌ 不适合：
 - 纯个人使用
 - 需要复杂文档协作
-```
-
+```text
 **钉钉**：
 ```
 ✅ 适合场景：
@@ -2608,8 +2503,7 @@ openclaw gateway --port 18789 --verbose
 ❌ 不适合：
 - 个人娱乐
 - 社交互动
-```
-
+```text
 **QQ**：
 ```
 ✅ 适合场景：
@@ -2621,8 +2515,7 @@ openclaw gateway --port 18789 --verbose
 ❌ 不适合：
 - 企业办公
 - 正式场合
-```
-
+```text
 ### 9.5.3 多平台组合策略
 
 **策略1：工作+生活分离**
@@ -2634,8 +2527,7 @@ openclaw gateway --port 18789 --verbose
 - 工作生活分离
 - 专注度更高
 - 管理更方便
-```
-
+```text
 **策略2：全平台覆盖**
 ```
 同时接入所有平台
@@ -2648,8 +2540,7 @@ openclaw gateway --port 18789 --verbose
 劣势：
 - 维护成本高
 - 消息分散
-```
-
+```text
 **策略3：主次搭配（推荐）**
 ```
 主平台：飞书（日常使用）
@@ -2659,9 +2550,7 @@ openclaw gateway --port 18789 --verbose
 - 重点突出
 - 成本可控
 - 易于管理
-```
-
-
+```text
 ---
 
 ## 📝 本章小结
@@ -2824,8 +2713,7 @@ A：可以，所有平台都支持手机端。飞书的移动端体验最好。
     }
   ]
 }
-```
-
+```text
 **问题**：
 - ❌ OpenClaw 2026.2.9 的 bindings 功能不稳定
 - ❌ peer.id 匹配经常失败
@@ -2877,8 +2765,7 @@ A：可以，所有平台都支持手机端。飞书的移动端体验最好。
 │ Claude Opus  │ Claude Sonnet│ Claude Sonnet│ Gemini 2.5 │
 │ 4.6 Thinking │ 4.5          │ 4.5 Thinking │ Flash      │
 └──────────────┴──────────────┴──────────────┴────────────┘
-```
-
+```text
 #### Profile 隔离机制
 
 使用 `--profile <name>` 参数，OpenClaw 会：
@@ -2924,8 +2811,7 @@ A：可以，所有平台都支持手机端。飞书的移动端体验最好。
 
 ```bash
 mkdir -p agent-configs/{main-agent,content-agent,tech-agent,ainews-agent}
-```
-
+```text
 为每个 Agent 创建配置文件：
 
 **agent-configs/main-agent/USER.md**：
@@ -2936,16 +2822,14 @@ mkdir -p agent-configs/{main-agent,content-agent,tech-agent,ainews-agent}
 - 姓名：Maynor
 - 职业：超级个体创业者
 - 工作领域：AI 技术、内容创作、技术开发
-```
-
+```text
 **agent-configs/main-agent/SOUL.md**：
 
 ```markdown
 # Agent 身份
 
 你是 Maynor 的主助理，负责处理各类复杂任务。使用 Claude Opus 4.6 Thinking 模型，提供最高质量的服务。
-```
-
+```text
 类似地为其他 3 个 Agent 创建配置文件。
 
 #### 第三步：运行配置脚本
@@ -2959,8 +2843,7 @@ chmod +x setup-multi-gateway.sh
 
 # 运行配置脚本
 ./setup-multi-gateway.sh
-```
-
+```text
 脚本会自动：
 1. 停止当前 Gateway
 2. 备份现有配置
@@ -2978,8 +2861,7 @@ chmod +x setup-multi-gateway.sh
 
 # 验证配置
 ./verify-setup.sh
-```
-
+```text
 ### 9.1.16.5 使用方法
 
 #### 直接私聊机器人
@@ -3035,8 +2917,7 @@ tail -f logs-ai-news.log
 
 # 查看所有日志
 tail -f logs-*.log
-```
-
+```text
 #### 重启 Gateway
 
 ```bash
@@ -3049,8 +2930,7 @@ sleep 2
 ps aux | grep "openclaw.*--profile main-assistant"
 kill <PID>
 ./start-main-assistant.sh
-```
-
+```text
 #### 修改配置
 
 ```bash
@@ -3062,8 +2942,7 @@ jq . ~/.openclaw-main-assistant/openclaw.json
 
 # 重启生效
 # (停止并重启对应的 Gateway)
-```
-
+```text
 #### 监控资源
 
 ```bash
@@ -3078,8 +2957,7 @@ lsof -i :18789
 lsof -i :18790
 lsof -i :18791
 lsof -i :18792
-```
-
+```text
 ### 9.1.16.7 实战案例
 
 #### 案例一：内容创作工作流
@@ -3181,8 +3059,7 @@ lsof -i :18789
 
 # 4. 运行 doctor
 openclaw --profile main-assistant doctor
-```
-
+```text
 **常见问题**：
 - 配置文件格式错误：运行 `jq` 验证
 - 端口被占用：更换端口或停止占用进程
@@ -3203,8 +3080,7 @@ tail -f logs-main-assistant.log
 
 # 3. 检查飞书连接
 grep "WebSocket client started" logs-main-assistant.log
-```
-
+```text
 **常见原因**：
 - Gateway 未启动：运行 `./start-all-gateways.sh`
 - 飞书连接断开：检查网络，重启 Gateway
@@ -3226,8 +3102,7 @@ jq '.agents.list[0].id, .agents.list[0].model.primary' \
 # 应该输出：
 # "content-agent"
 # "local-antigravity/claude-sonnet-4-5"
-```
-
+```text
 ### 9.1.16.10 高级技巧
 
 #### 技巧一：使用 tmux 管理
@@ -3248,8 +3123,7 @@ Ctrl+b "  # 水平分割
 
 # 查看所有日志
 tail -f logs-*.log
-```
-
+```text
 #### 技巧二：配置开机自启动
 
 使用 launchd（macOS）：
@@ -3281,8 +3155,7 @@ EOF
 
 # 加载服务
 launchctl load ~/Library/LaunchAgents/com.openclaw.main-assistant.plist
-```
-
+```text
 #### 技巧三：日志轮转
 
 ```bash
@@ -3302,8 +3175,7 @@ chmod +x rotate-logs.sh
 # 添加到 crontab（每小时执行）
 crontab -e
 # 添加：0 * * * * /path/to/rotate-logs.sh
-```
-
+```text
 ### 9.1.16.11 总结
 
 多 Gateway + 多飞书机器人的方案是目前最稳定、最简单的多 Agent 实现方式：
@@ -3380,8 +3252,7 @@ crontab -e
     }
   ]
 }
-```
-
+```text
 ### 9.1.17.2 实战案例：4个专业助手（传统方式）
 
 **场景**：一人公司，需要不同的专业助手处理不同任务。
@@ -3484,8 +3355,7 @@ crontab -e
     }
   ]
 }
-```
-
+```text
 ### 9.1.17.3 获取用户 ID（传统方式）
 
 **方法1：通过日志获取（推荐）**
@@ -3499,14 +3369,12 @@ openclaw logs --follow
 
 # 3. 在日志中查找 open_id
 # 格式：ou_xxxxxxxxxxxxxxxx
-```
-
+```text
 **日志示例**：
 ```
 [feishu] Received message from ou_18d36d8a49c010dfe20ace2a29250c04
 [feishu] Bot: 主助理
-```
-
+```text
 **方法2：通过配对请求获取**
 
 ```bash
@@ -3515,8 +3383,7 @@ openclaw pairing list feishu
 # 输出示例：
 # Pending pairing requests:
 # - Code: ABC123, User: ou_xxx, Bot: 主助理
-```
-
+```text
 ### 9.1.17.4 配置步骤（传统方式）
 
 **步骤1：创建工作空间目录**
@@ -3525,8 +3392,7 @@ openclaw pairing list feishu
 mkdir -p /Users/username/clawd/content
 mkdir -p /Users/username/clawd/tech
 mkdir -p /Users/username/clawd/ainews
-```
-
+```text
 **步骤2：获取所有用户 ID**
 
 按照上面的方法，获取每个机器人对应的用户 ID。
@@ -3549,8 +3415,7 @@ openclaw doctor
 
 # 重启网关
 openclaw gateway restart
-```
-
+```text
 **步骤5：验证运行**
 
 ```bash
@@ -3566,8 +3431,7 @@ openclaw logs --follow | grep bindings
 
 # 应该看到：
 # [bindings] Matched agent: main-agent for user ou_xxx
-```
-
+```text
 ### 9.1.17.5 配置注意事项
 
 **⚠️ 重要：agents.list 配置限制**
@@ -3584,8 +3448,7 @@ openclaw logs --follow | grep bindings
   // ❌ 不能包含 subagents
   // ❌ 不能包含 models
 }
-```
-
+```text
 **错误示例（会导致配置验证失败）**：
 ```json
 {
@@ -3600,8 +3463,7 @@ openclaw logs --follow | grep bindings
     ]
   }
 }
-```
-
+```text
 **正确示例**：
 ```json
 {
@@ -3620,8 +3482,7 @@ openclaw logs --follow | grep bindings
     }
   }
 }
-```
-
+```text
 **2. 通用配置必须放在 agents.defaults**：
 
 所有 Agent 共享的配置项必须放在 `agents.defaults` 中，包括：
@@ -3642,8 +3503,7 @@ openclaw logs --follow | grep bindings
     "subagents": { "maxConcurrent": 8 }
   }
 }
-```
-
+```text
 **3. Bindings 顺序很重要**：
 
 OpenClaw 会按顺序匹配 bindings，第一个匹配的规则会被使用。
@@ -3657,8 +3517,7 @@ OpenClaw 会按顺序匹配 bindings，第一个匹配的规则会被使用。
   // 3. 最后是默认匹配
   { "agentId": "default-agent", "match": { "channel": "feishu" } }
 ]
-```
-
+```text
 **4. 用户 ID 是唯一的**：
 
 每个飞书用户只能绑定到一个 Agent。
@@ -3677,8 +3536,7 @@ Problem:
 - agents.list.2: Unrecognized keys: "compaction", "maxConcurrent"
 - agents.list.3: Unrecognized keys: "compaction", "maxConcurrent"
 Run: openclaw doctor --fix
-```
-
+```text
 **原因**：`agents.list` 中的 Agent 配置包含了只能在 `agents.defaults` 中使用的字段。
 
 **解决方案**：
@@ -3689,8 +3547,7 @@ openclaw doctor --fix
 
 # 方法2：手动修复
 # 编辑配置文件，将 compaction 和 maxConcurrent 从 agents.list 移到 agents.defaults
-```
-
+```text
 **修复前**：
 ```json
 {
@@ -3705,8 +3562,7 @@ openclaw doctor --fix
     ]
   }
 }
-```
-
+```text
 **修复后**：
 ```json
 {
@@ -3724,8 +3580,7 @@ openclaw doctor --fix
     }
   }
 }
-```
-
+```text
 **验证修复**：
 ```bash
 # 验证配置
@@ -3735,8 +3590,7 @@ openclaw doctor
 # ✅ Config valid
 # ✅ 4 agents configured
 # ✅ 4 bindings configured
-```
-
+```text
 **问题2：Bindings 不生效**
 
 ```bash
@@ -3745,8 +3599,7 @@ openclaw logs --follow | grep "ou_"
 
 # 查看 bindings 匹配情况
 openclaw logs --follow | grep bindings
-```
-
+```text
 **问题3：找不到用户 ID**
 
 ```bash
@@ -3755,8 +3608,7 @@ openclaw logs --follow --level debug
 
 # 或查看配对请求
 openclaw pairing list feishu
-```
-
+```text
 **问题4：配置修改后运行 openclaw doctor 报错**
 
 ```bash
@@ -3769,8 +3621,7 @@ Unknown config keys:
 ...
 
 Run "openclaw doctor --fix" to remove these keys.
-```
-
+```text
 **解决方案**：
 ```bash
 # 运行自动修复
@@ -3784,8 +3635,7 @@ openclaw gateway restart
 
 # 查看状态
 openclaw gateway status
-```
-
+```text
 **问题5：版本不匹配警告**
 
 ```bash
@@ -3793,13 +3643,11 @@ openclaw gateway status
 Config was last written by a newer OpenClaw (2026.2.6-3); 
 current version is 2026.2.1-zh.3.
 Run "openclaw doctor --fix" to apply changes.
-```
-
+```text
 **说明**：这是正常的版本提示，不影响使用。如果想消除警告：
 ```bash
 openclaw doctor --fix
-```
-
+```text
 ### 9.1.17.6 配置对比
 
 | 特性 | 单 Agent 模式 | 多 Agent 模式 |
@@ -3845,8 +3693,7 @@ openclaw dashboard
 
 # 或直接访问
 http://127.0.0.1:18789/?token=你的token
-```
-
+```text
 **优势**：
 - ✅ 图形化界面，操作直观
 - ✅ 支持文件上传和下载
@@ -3864,8 +3711,7 @@ echo "帮我总结这个文件的内容" | openclaw chat
 
 # 指定输出文件
 openclaw chat "生成项目文档" --output docs.md
-```
-
+```text
 **优势**：
 - ✅ 快速执行单次任务
 - ✅ 适合脚本自动化
@@ -3876,8 +3722,7 @@ openclaw chat "生成项目文档" --output docs.md
 ```bash
 # 启动终端交互界面
 openclaw tui
-```
-
+```text
 **优势**：
 - ✅ 终端内交互式对话
 - ✅ 支持多轮对话
@@ -3921,8 +3766,7 @@ openclaw tui
     }
   }
 }
-```
-
+```text
 **配置说明**：
 
 1. **agents.list**：定义所有可用的 Agent
@@ -3956,8 +3800,7 @@ openclaw agents list
 # - research-agent
 #   Workspace: /Users/username/research
 #   Model: google/gemini-2-flash
-```
-
+```text
 #### 切换 Agent
 
 ```bash
@@ -3968,8 +3811,7 @@ openclaw agents switch content-agent
 # Switched to agent: content-agent
 # Workspace: /Users/username/content
 # Model: anthropic/claude-sonnet-4
-```
-
+```text
 #### 查看当前 Agent
 
 ```bash
@@ -3980,8 +3822,7 @@ openclaw agents current
 # Current agent: content-agent
 # Workspace: /Users/username/content
 # Model: anthropic/claude-sonnet-4
-```
-
+```text
 #### 查看 Agent 配置
 
 ```bash
@@ -3990,8 +3831,7 @@ openclaw agents config content-agent
 
 # 查看当前 Agent 的配置
 openclaw agents config
-```
-
+```text
 #### 查看 Agent 状态
 
 ```bash
@@ -4003,8 +3843,7 @@ openclaw doctor
 # ✅ 4 agents configured
 # ✅ Gateway running
 # ✅ Session store: 12 entries
-```
-
+```text
 ### 实战案例：4个专业助手
 
 **场景**：个人开发者，需要不同的专业助手处理不同任务。
@@ -4018,8 +3857,7 @@ mkdir -p ~/work/main
 mkdir -p ~/work/content
 mkdir -p ~/work/code
 mkdir -p ~/work/research
-```
-
+```text
 **步骤2：编辑配置文件**
 
 ```bash
@@ -4028,8 +3866,7 @@ cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.backup
 
 # 编辑配置
 nano ~/.openclaw/openclaw.json
-```
-
+```text
 将上面的配置示例粘贴进去，修改路径为你的实际路径。
 
 **步骤3：验证配置**
@@ -4041,8 +3878,7 @@ openclaw doctor
 # 应该看到：
 # ✅ Config valid
 # ✅ 4 agents configured
-```
-
+```text
 **步骤4：重启网关**
 
 ```bash
@@ -4051,8 +3887,7 @@ openclaw gateway restart
 
 # 查看状态
 openclaw gateway status
-```
-
+```text
 **步骤5：使用不同的 Agent**
 
 ```bash
@@ -4071,8 +3906,7 @@ openclaw chat "帮我优化这段 Python 代码"
 # 使用研究助手搜集资料
 openclaw agents switch research-agent
 openclaw chat "帮我搜集关于量子计算的最新研究"
-```
-
+```text
 ### 使用场景对比
 
 | 场景 | 推荐方式 | Agent 配置 | 优势 |
@@ -4106,8 +3940,7 @@ openclaw chat "写一篇关于今天开发经验的博客"
 # 晚上：使用主助手总结一天
 openclaw agents switch main-agent
 openclaw chat "生成今日工作总结"
-```
-
+```text
 ### 配置技巧
 
 **技巧1：为不同任务使用不同模型**
@@ -4134,8 +3967,7 @@ openclaw chat "生成今日工作总结"
     ]
   }
 }
-```
-
+```text
 **说明**：
 - Claude Sonnet 4：通用对话和复杂任务
 - DeepSeek：代码生成和技术问题
@@ -4153,8 +3985,7 @@ alias oc-research='openclaw agents switch research-agent'
 # 使用别名快速切换
 oc-code
 openclaw chat "帮我写一个排序算法"
-```
-
+```text
 **技巧3：为每个 Agent 配置独立的 Skills**
 
 ```bash
@@ -4167,8 +3998,7 @@ openclaw skill install code-review
 openclaw agents switch content-agent
 openclaw skill install grammar-check
 openclaw skill install seo-optimizer
-```
-
+```text
 ### 常见问题
 
 **问题1：切换 Agent 后工作空间没变**
@@ -4182,8 +4012,7 @@ openclaw agents config
 
 # 重启网关
 openclaw gateway restart
-```
-
+```text
 **问题2：找不到 Agent**
 
 ```bash
@@ -4192,8 +4021,7 @@ openclaw agents list
 
 # 检查配置文件
 cat ~/.openclaw/openclaw.json | grep -A 5 "agents"
-```
-
+```text
 **问题3：Agent 配置验证失败**
 
 ```bash
@@ -4202,8 +4030,7 @@ openclaw doctor
 
 # 自动修复
 openclaw doctor --fix
-```
-
+```text
 ### 最佳实践
 
 1. **工作空间隔离**
@@ -4305,8 +4132,7 @@ openclaw doctor --fix
 - 给出具体可行的建议
 - 必要时提供代码示例和架构图
 - 考虑可扩展性和维护性
-```
-
+```text
 #### 3. 编辑 Gateway ✏️
 
 修改现有 Gateway 的配置和人格设定。
@@ -4378,8 +4204,7 @@ npm install
 
 # 3. 启动服务（前端 + 后端）
 npm start
-```
-
+```text
 应用将在以下地址启动：
 - 前端：http://localhost:3000
 - 后端 API：http://localhost:3001
@@ -4453,8 +4278,7 @@ npm start
 - 给出可运行的代码示例
 - 考虑性能和可维护性
 - 推荐合适的工具和库
-```
-
+```text
 5. 填写飞书配置
 6. 点击"创建"
 
@@ -4533,8 +4357,7 @@ npm start
 ## 限制和边界
 - 明确不擅长的领域
 - 设定合理的期望
-```
-
+```text
 #### 2. 模型选择建议
 
 **Claude Opus 4.6**：
@@ -4625,8 +4448,7 @@ lsof -i :3001
 
 # 手动启动后端
 npm run server
-```
-
+```text
 #### 问题 5：前端无法访问
 
 ```bash
@@ -4636,8 +4458,7 @@ lsof -i :3000
 # 清除缓存重新启动
 rm -rf node_modules/.vite
 npm start
-```
-
+```text
 ### 9.12.7 API 文档
 
 #### 状态查询

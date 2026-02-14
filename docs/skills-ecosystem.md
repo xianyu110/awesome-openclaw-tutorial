@@ -14,8 +14,7 @@
 **查看命令**:
 ```bash
 openclaw skills list --builtin
-```
-
+```text
 ---
 
 ### 🏪 ClawHub 官方 Skills
@@ -37,8 +36,7 @@ clawhub install <skill-name>
 
 # 查看已安装
 openclaw skills list
-```
-
+```text
 ---
 
 ### 🌐 社区 Skills（扩展）

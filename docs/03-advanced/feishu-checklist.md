@@ -94,16 +94,14 @@ openclaw channels add
 # 选择 Feishu
 # 输入 App ID
 # 输入 App Secret
-```
-
+```text
 **检查配置**：
 ```bash
 # 查看渠道列表
 openclaw channels list
 
 # 应该看到 feishu 渠道
-```
-
+```text
 ### 2. 启动网关
 
 ```bash
@@ -114,8 +112,7 @@ openclaw gateway start
 openclaw gateway status
 
 # 应该显示 "running"
-```
-
+```text
 ### 3. 验证配置
 
 ```bash
@@ -123,8 +120,7 @@ openclaw gateway status
 openclaw channels test feishu
 
 # 应该显示连接成功
-```
-
+```text
 ---
 
 ## 🧪 测试验证

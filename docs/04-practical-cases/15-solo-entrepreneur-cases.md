@@ -23,7 +23,7 @@
 ### 15.1.2 传统流程 vs 自动化流程
 
 **传统流程（3小时）**：
-```
+```text
 选题（30分钟）
   ↓
 写作（1-2小时）
@@ -34,7 +34,7 @@
 ```
 
 **自动化流程（10分钟）**：
-```
+```text
 Agent每天9点推送5个选题 → 选一个（1分钟）
   ↓
 Agent 5分钟出初稿 → 人工审核修改（5分钟）
@@ -66,8 +66,7 @@ Agent 5分钟出初稿 → 人工审核修改（5分钟）
 ```bash
 # 每天早上9点自动执行
 0 9 * * * /path/to/openclaw run daily-topic-push
-```
-
+```text
 **选题生成流程**：
 
 ```
@@ -84,8 +83,7 @@ Agent 5分钟出初稿 → 人工审核修改（5分钟）
    - 核心要点
    ↓
 5. 推送到Telegram
-```
-
+```text
 **实际效果**：
 
 ```
@@ -123,8 +121,7 @@ Agent：今日选题推荐：
 你：写 1
 
 Agent：收到！开始创作《Claude一个插件，让全球软件股蒸发2850亿美元》
-```
-
+```text
 ### 15.1.5 文章生成工作流
 
 **第一步：素材收集**
@@ -146,8 +143,7 @@ def collect_materials(topic):
         'memories': memories,
         'docs': docs
     }
-```
-
+```text
 **第二步：按风格写初稿**
 
 ```
@@ -171,8 +167,7 @@ def collect_materials(topic):
 - "弹射"而不是"降落"
 - 一句狠话收束
 - 示例："把重复的交给系统，把判断留给自己。"
-```
-
+```text
 **第三步：自动推送飞书**
 
 ```python
@@ -196,8 +191,7 @@ def push_to_feishu(article):
     telegram.send_message(f"文章已生成：{link}")
     
     return link
-```
-
+```text
 ### 15.1.6 一键发布14个平台
 
 **使用字流**：
@@ -218,8 +212,7 @@ def push_to_feishu(article):
 4. Chrome扩展自动填充各平台编辑器
    ↓
 5. 10分钟全部发完
-```
-
+```text
 **最新升级：API直接对接**
 
 ```python
@@ -240,8 +233,7 @@ def publish_to_all_platforms(article):
     
     # 3. 返回发布结果
     return result
-```
-
+```text
 **流程优化：**
 
 ```
@@ -252,8 +244,7 @@ Agent写完 → 推送飞书 → 打开飞书 → 复制内容 → 打开字流 
 Agent写完 → 直接调用字流API → 自动发布
 
 省去3个手动步骤！
-```
-
+```text
 ### 15.1.7 关键细节
 
 **1. 风格文件是核心**
@@ -317,8 +308,7 @@ Agent写完 → 直接调用字流API → 自动发布
 ❌ "可能"、"也许"、"大概"（不确定）
 ❌ "我觉得"、"我认为"（太主观）
 ✅ 用数据代替感觉："效率提升94%"而不是"效率提升很多"
-```
-
+```text
 **2. 记忆系统很重要**
 
 ```markdown
@@ -347,8 +337,7 @@ Agent写完 → 直接调用字流API → 自动发布
 ## 下次改进
 - 可以增加更多实战案例
 - 技术细节可以再深入一些
-```
-
+```text
 **3. 绝不自动发布**
 
 ```
@@ -363,8 +352,7 @@ Agent写完 → 直接调用字流API → 自动发布
 Agent写完 → 推送给我 → 我审核修改 → 确认后发布
 
 AI负责效率，人负责质量底线。
-```
-
+```text
 **4. cron定时任务是灵魂**
 
 ```bash
@@ -378,8 +366,7 @@ AI负责效率，人负责质量底线。
 
 # 每周一早上8点生成周报
 0 8 * * 1 /usr/local/bin/openclaw run weekly-report
-```
-
+```text
 **为什么定时任务重要？**
 
 ```
@@ -392,8 +379,7 @@ AI负责效率，人负责质量底线。
 - 每天9点选题推过来
 - 你不得不面对它
 - 被推着走，效率高10倍
-```
-
+```text
 ### 15.1.8 实际效果数据
 
 **全平台数据**：
@@ -427,8 +413,7 @@ AI负责效率，人负责质量底线。
 - 写文章是个"轻决策"
 - 选题已经在那了
 - 日更就好，太轻松了！
-```
-
+```text
 ### 15.1.9 可复制的配置模板
 
 **SOUL.md模板**：
@@ -465,8 +450,7 @@ AI负责效率，人负责质量底线。
 - 只管内容创作，不管其他
 - 所有发布必须经人工确认
 - 遇到不确定的事实，标注[待核实]
-```
-
+```text
 **定时任务脚本**：
 
 ```bash
@@ -481,8 +465,7 @@ openclaw telegram send "今日选题推荐：\n\n[选题内容]"
 
 # 3. 记录日志
 echo "$(date): 选题推送完成" >> /var/log/openclaw/daily-push.log
-```
-
+```text
 **字流API集成**：
 
 ```python
@@ -535,8 +518,7 @@ result = ziliu.publish(
     draft_id=draft['id'],
     platforms=['zhihu', 'juejin', 'bilibili', 'xiaohongshu']
 )
-```
-
+```text
 ---
 
 ## 15.2 案例2：AI 助手矩阵 - 多机器人多 Agent 模式
@@ -595,8 +577,7 @@ result = ziliu.publish(
 │ Claude Opus  │ Claude Sonnet│ Claude Sonnet│ Gemini 2.5 │
 │ 4.6 Thinking │ 4.5          │ 4.5 Thinking │ Flash      │
 └──────────────┴──────────────┴──────────────┴────────────┘
-```
-
+```text
 ### 15.3.3 配置步骤
 
 **第一步：创建飞书机器人应用**
@@ -619,8 +600,7 @@ result = ziliu.publish(
 
 # 检查状态
 ./check-gateways.sh
-```
-
+```text
 ### 15.3.4 使用方法：直接私聊机器人
 
 这是最简单的使用方式：
@@ -699,8 +679,7 @@ result = ziliu.publish(
 更多人用工具
   ↓
 （循环）
-```
-
+```text
 **核心逻辑**：
 
 ```
@@ -719,8 +698,7 @@ result = ziliu.publish(
 - 用户留存提升
 - 口碑传播
 - 自然复购
-```
-
+```text
 ### 15.3.3 定价策略
 
 **最终定价：¥49/人**
@@ -747,8 +725,7 @@ result = ziliu.publish(
 - 红包是获客成本
 - 额度是钩子
 - API消费是LTV
-```
-
+```text
 **为什么不用阶梯定价？**
 
 ```
@@ -761,8 +738,7 @@ result = ziliu.publish(
 - 太复杂
 - 免费进来的人参与度低
 - 不如直接¥49，简单粗暴
-```
-
+```text
 ### 15.3.4 1天搭建的基础设施
 
 **1. 上手教程（Notion文档）**
@@ -785,8 +761,7 @@ curl -fsSL https://openclaw.example/install.sh | bash
 
 # Windows
 iwr https://openclaw.example/install.ps1 | iex
-```
-
+```text
 ### 第3步：接入模型
 ```bash
 # 配置API Key
@@ -794,8 +769,7 @@ openclaw config set api.key "your-api-key"
 
 # 测试连接
 openclaw ask "你好"
-```
-
+```text
 ### 第4步：连接Telegram
 ```bash
 # 创建Bot
@@ -803,8 +777,7 @@ openclaw telegram create-bot
 
 # 绑定Bot
 openclaw telegram bind
-```
-
+```text
 ### 第5步：切换模型
 ```bash
 # 查看可用模型
@@ -815,8 +788,7 @@ openclaw config set model "claude-opus-4"
 
 # 切换到Codex
 openclaw config set model "codex-5.3"
-```
-
+```text
 ## 完成！
 现在你可以在Telegram上和OpenClaw对话了。
 ```
@@ -859,8 +831,7 @@ openclaw config set model "codex-5.3"
 
 教程地址：
 [Notion教程文档]
-```
-
+```text
 **3. 自动化付款+进群**
 
 ```python
@@ -911,8 +882,7 @@ def send_qrcode_to_user(user_id, qr_code):
     """发送二维码给用户"""
     # 通过微信/Telegram发送
     pass
-```
-
+```text
 **关键点**：降低用户操作成本
 
 ```
@@ -920,8 +890,7 @@ def send_qrcode_to_user(user_id, qr_code):
 看到海报 → 扫码付款 → 自动弹出群二维码 → 进群
 
 越短、越顺滑，转化率越高
-```
-
+```text
 **4. 额度发放系统**
 
 ```python
@@ -980,8 +949,7 @@ manager.distribute_credit('user123')
 
 # 导出报告
 manager.export_report()
-```
-
+```text
 **为什么需要自动化？**
 
 ```
@@ -994,8 +962,7 @@ manager.export_report()
 - 防止重复
 - 自动记录
 - 一键导出
-```
-
+```text
 ### 15.3.5 推广策略
 
 **多平台同步发布**：
@@ -1010,8 +977,7 @@ manager.export_report()
 - 详细介绍群价值
 
 没买量，没互推，纯自然流量
-```
-
+```text
 **海报迭代**：
 
 ```
@@ -1027,8 +993,7 @@ manager.export_report()
 
 教训：
 别低估"最后一公里"的体验
-```
-
+```text
 ### 15.3.6 5个Telegram Bot矩阵
 
 **Bot分工**：
@@ -1060,8 +1025,7 @@ manager.export_report()
    - 管KPI
    - 管薪酬
    - 管周报
-```
-
+```text
 **为什么要多Bot？**
 
 ```
@@ -1077,8 +1041,7 @@ manager.export_report()
 - 互不干扰
 
 相当于雇了5个AI员工，7×24在线
-```
-
+```text
 **Bot配置示例**：
 
 ```markdown
@@ -1117,8 +1080,7 @@ manager.export_report()
 - 中间：核心内容
 - 最后：行动指引
 - 字数：280字以内
-```
-
+```text
 ### 15.3.7 模型自动切换
 
 **看门狗脚本**：
@@ -1195,8 +1157,7 @@ class ModelWatchdog:
 # 启动看门狗
 watchdog = ModelWatchdog()
 watchdog.run()
-```
-
+```text
 **效果**：
 
 ```
@@ -1207,8 +1168,7 @@ watchdog.run()
 - 早上醒来，已经处理好了
 
 不需要人工干预！
-```
-
+```text
 ### 15.3.8 Notion全自动工作流
 
 **自动化内容**：
@@ -1242,8 +1202,7 @@ watchdog.run()
    - MRR追踪
    - 用户数追踪
    - 产品迭代记录
-```
-
+```text
 **自动化脚本**：
 
 ```python
@@ -1310,8 +1269,7 @@ notion.add_topic("Claude Opus 4.6发布", score=5)
 
 # 更新额度状态
 notion.update_credit_status("user123", "distributed")
-```
-
+```text
 ### 15.3.9 实际数据
 
 **冷启动数据**：
@@ -1336,8 +1294,7 @@ notion.update_credit_status("user123", "distributed")
 完成付款：100人
   ↓ 100%
 进群：100人
-```
-
+```text
 **关键指标**：
 
 ```
@@ -1345,8 +1302,7 @@ notion.update_credit_status("user123", "distributed")
 退款率：0%
 额度领取率：95%（95/100）
 API激活率：60%（60/100）
-```
-
+```text
 ### 15.3.10 踩坑与反思
 
 **坑1：海报和支付链路决定转化**
@@ -1364,8 +1320,7 @@ API激活率：60%（60/100）
 
 教训：
 别低估"最后一公里"的体验
-```
-
+```text
 **坑2：不要高估"免费"的价值**
 
 ```
@@ -1376,8 +1331,7 @@ API激活率：60%（60/100）
 - 免费进来的人和付费进来的人
 - 参与度完全不一样
 - ¥49不多，但这个动作本身就是筛选
-```
-
+```text
 **坑3：群公告要提前想好**
 
 ```
@@ -1389,8 +1343,7 @@ API激活率：60%（60/100）
 - 精简成几个要点
 - 加上额度领取流程
 - 效果好多了
-```
-
+```text
 ---
 
 
@@ -1414,8 +1367,7 @@ API激活率：60%（60/100）
 - 感觉：轻松、高效、持续
 
 最大的变化不是速度，是心态
-```
-
+```text
 **案例2的感受**：
 
 ```
@@ -1432,8 +1384,7 @@ API激活率：60%（60/100）
 - 报名表单：Claude Max开发，20分钟
 
 一天就跑通了整套系统
-```
-
+```text
 **核心感悟**：
 
 ```
@@ -1444,8 +1395,7 @@ API激活率：60%（60/100）
 
 以前需要一个团队干的活
 现在一个人加上AI就能搞定
-```
-
+```text
 ### 15.3.2 一人公司的3个核心能力
 
 **1. 判断力**
@@ -1468,8 +1418,7 @@ AI可以：
 - 哪个选题最有价值
 - 哪篇文章最符合定位
 - 哪个海报最能转化
-```
-
+```text
 **2. 系统化思维**
 
 ```
@@ -1496,8 +1445,7 @@ AI可以：
 - 5个Bot各管一摊
 - 自动化支付进群
 - 看门狗自动切换模型
-```
-
+```text
 **3. 快速迭代能力**
 
 ```
@@ -1518,8 +1466,7 @@ AI可以：
 - 先干，再优化
 - 数据驱动迭代
 - 不要想太多
-```
-
+```text
 ### 15.3.3 一人公司的4个关键系统
 
 **1. 内容生产系统**
@@ -1539,8 +1486,7 @@ AI可以：
 效果：
 - 3小时 → 10分钟
 - 效率提升94%
-```
-
+```text
 **2. 社群运营系统**
 
 ```
@@ -1559,8 +1505,7 @@ AI可以：
 效果：
 - 1天冷启动100人
 - 0退款
-```
-
+```text
 **3. 模型管理系统**
 
 ```
@@ -1578,8 +1523,7 @@ AI可以：
 效果：
 - 半夜出问题自动处理
 - 不需要人工干预
-```
-
+```text
 **4. 数据记录系统**
 
 ```
@@ -1599,8 +1543,7 @@ AI可以：
 - 不需要手动记录
 - 随时查看数据
 - 数据驱动优化
-```
-
+```text
 ### 15.3.4 一人公司的5个铁律
 
 **铁律1：绝不自动发布**
@@ -1615,8 +1558,7 @@ AI可以：
 Agent生成 → 人工审核 → 确认后发布
 
 AI负责效率，人负责质量底线
-```
-
+```text
 **铁律2：定时任务是灵魂**
 
 ```
@@ -1629,8 +1571,7 @@ AI负责效率，人负责质量底线
 - 每天9点推送选题
 - 每天23点生成日志
 - 每周一生成周报
-```
-
+```text
 **铁律3：记录一切**
 
 ```
@@ -1649,8 +1590,7 @@ AI负责效率，人负责质量底线
 - Notion（结构化数据）
 - 日志文件（原始数据）
 - 截图（视觉记录）
-```
-
+```text
 **铁律4：快速迭代**
 
 ```
@@ -1666,8 +1606,7 @@ AI负责效率，人负责质量底线
 案例2：
 - 第一版海报：转化率5%
 - 第二版海报：转化率20%
-```
-
+```text
 **铁律5：专注核心价值**
 
 ```
@@ -1685,8 +1624,7 @@ AI负责效率，人负责质量底线
 案例2：
 - AI负责：海报、系统、文案
 - 人负责：定价、策略、运营
-```
-
+```text
 ### 15.3.5 一人公司的成本结构
 
 **案例1成本分析**：
@@ -1740,8 +1678,7 @@ AI负责效率，人负责质量底线
 更多内容素材
   ↓
 （循环）
-```
-
+```text
 **案例2的飞轮**：
 
 ```
@@ -1758,8 +1695,7 @@ AI负责效率，人负责质量底线
 更多用户
   ↓
 （循环）
-```
-
+```text
 **核心要素**：
 
 ```
@@ -1779,8 +1715,7 @@ AI负责效率，人负责质量底线
    - 数据驱动
    - 快速迭代
    - 不断提升
-```
-
+```text
 ---
 
 ## 15.5 可复制的自动化模板
@@ -1806,8 +1741,7 @@ AI负责效率，人负责质量底线
     ├── feishu.json          # 飞书配置
     ├── ziliu.json           # 字流配置
     └── platforms.json       # 平台配置
-```
-
+```text
 **2. SOUL.md模板**：
 
 ```markdown
@@ -1839,8 +1773,7 @@ AI负责效率，人负责质量底线
 - [边界1]
 - [边界2]
 - [边界3]
-```
-
+```text
 **3. 定时任务模板**：
 
 ```bash
@@ -1857,8 +1790,7 @@ AI负责效率，人负责质量底线
 
 # 每月月报（每月1号早上9点）
 0 9 1 * * /path/to/openclaw run monthly-report
-```
-
+```text
 **4. 发布脚本模板**：
 
 ```bash
@@ -1877,8 +1809,7 @@ openclaw ziliu publish "$draft_id" \
 
 # 4. 记录发布日志
 echo "$(date): Published article $1" >> /var/log/openclaw/publish.log
-```
-
+```text
 ### 15.4.2 社群运营自动化模板
 
 **1. 目录结构**：
@@ -1899,8 +1830,7 @@ echo "$(date): Published article $1" >> /var/log/openclaw/publish.log
     ├── users.csv            # 用户数据
     ├── credits.csv          # 额度记录
     └── logs/                # 日志文件
-```
-
+```text
 **2. Bot配置模板**：
 
 ```markdown
@@ -1925,8 +1855,7 @@ echo "$(date): Published article $1" >> /var/log/openclaw/publish.log
 
 ## 输出格式
 [格式说明]
-```
-
+```text
 **3. 支付自动化模板**：
 
 ```python
@@ -1962,8 +1891,7 @@ def handle_payment():
 
 if __name__ == '__main__':
     app.run(port=5000)
-```
-
+```text
 **4. 额度管理模板**：
 
 ```python
@@ -2023,8 +1951,7 @@ class CreditManager:
     def export_report(self):
         """导出报告"""
         return self.db.to_csv('credit_report.csv')
-```
-
+```text
 ### 15.4.3 快速开始指南
 
 **步骤1：选择场景**
@@ -2043,8 +1970,7 @@ class CreditManager:
 场景C：混合场景
 - 结合A和B
 - 内容+社群双轮驱动
-```
-
+```text
 **步骤2：搭建基础设施**
 
 ```bash
@@ -2064,8 +1990,7 @@ cp templates/*.sh ~/.openclaw/scripts/
 # 4. 配置API
 openclaw config set api.key "your-api-key"
 openclaw config set model "claude-opus-4"
-```
-
+```text
 **步骤3：配置定时任务**
 
 ```bash
@@ -2075,8 +2000,7 @@ crontab -e
 # 添加定时任务
 0 9 * * * /path/to/openclaw run daily-topic-push
 0 23 * * * /path/to/openclaw run daily-summary
-```
-
+```text
 **步骤4：测试运行**
 
 ```bash
@@ -2088,8 +2012,7 @@ openclaw ask "写一篇关于AI编程的文章"
 
 # 测试发布
 openclaw run publish-all "article-id"
-```
-
+```text
 **步骤5：持续优化**
 
 ```

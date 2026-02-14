@@ -19,7 +19,7 @@ OpenClaw 支持多种 API Key 配置方式，每种方式都有其适用场景�
 
 ### 优先级顺序（从高到低）
 
-```
+```text
 1. 环境变量（最高优先级）
    ↓
 2. Agent 专属配置
@@ -44,8 +44,7 @@ openclaw config set models.providers.anthropic.apiKey "sk-ant-agent" --agent tec
 
 # 3. 全局配置
 openclaw config set models.providers.anthropic.apiKey "sk-ant-global"
-```
-
+```text
 **实际使用**: `sk-ant-env`（环境变量优先级最高）
 
 ---
@@ -79,8 +78,7 @@ export DEEPSEEK_API_KEY="sk-xxx"
 
 # Moonshot
 export MOONSHOT_API_KEY="sk-xxx"
-```
-
+```text
 #### 永久设置（写入 Shell 配置）
 
 **macOS/Linux (zsh)**:
@@ -88,15 +86,13 @@ export MOONSHOT_API_KEY="sk-xxx"
 # 添加到 ~/.zshrc
 echo 'export ANTHROPIC_API_KEY="sk-ant-xxx"' >> ~/.zshrc
 source ~/.zshrc
-```
-
+```text
 **macOS/Linux (bash)**:
 ```bash
 # 添加到 ~/.bashrc
 echo 'export ANTHROPIC_API_KEY="sk-ant-xxx"' >> ~/.bashrc
 source ~/.bashrc
-```
-
+```text
 **Windows (PowerShell)**:
 ```powershell
 # 临时设置
@@ -104,8 +100,7 @@ $env:ANTHROPIC_API_KEY="sk-ant-xxx"
 
 # 永久设置（用户级）
 [System.Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY", "sk-ant-xxx", "User")
-```
-
+```text
 ### 验证配置
 
 ```bash
@@ -114,8 +109,7 @@ echo $ANTHROPIC_API_KEY
 
 # 测试连接
 openclaw models list
-```
-
+```text
 ### 优点和缺点
 
 **优点**:
@@ -153,8 +147,7 @@ openclaw config set models.providers.openai.apiKey "sk-yyy" --agent content-writ
 
 # 验证配置
 openclaw config get models.providers.anthropic.apiKey --agent tech-dev
-```
-
+```text
 #### 直接编辑配置文件
 
 **配置文件位置**: `~/.openclaw/agents/<agentId>/openclaw.json`
@@ -162,8 +155,7 @@ openclaw config get models.providers.anthropic.apiKey --agent tech-dev
 ```bash
 # 编辑配置文件
 nano ~/.openclaw/agents/tech-dev/openclaw.json
-```
-
+```text
 **配置内容**:
 ```json
 {
@@ -177,8 +169,7 @@ nano ~/.openclaw/agents/tech-dev/openclaw.json
     }
   }
 }
-```
-
+```text
 ### 验证配置
 
 ```bash
@@ -187,8 +178,7 @@ openclaw config get --agent tech-dev
 
 # 测试连接
 openclaw chat --agent tech-dev "Hello"
-```
-
+```text
 ### 优点和缺点
 
 **优点**:
@@ -225,8 +215,7 @@ openclaw models auth add
 # 1. 选择 provider（如 anthropic）
 # 2. 输入 API Key
 # 3. 确认保存
-```
-
+```text
 #### 方法2：配置命令
 
 ```bash
@@ -238,8 +227,7 @@ openclaw config set models.default "anthropic/claude-sonnet-4-5"
 
 # 验证配置
 openclaw config get models.providers.anthropic.apiKey
-```
-
+```text
 #### 方法3：直接编辑配置文件
 
 **配置文件位置**: `~/.openclaw/openclaw.json`
@@ -247,8 +235,7 @@ openclaw config get models.providers.anthropic.apiKey
 ```bash
 # 编辑配置文件
 nano ~/.openclaw/openclaw.json
-```
-
+```text
 **配置内容**:
 ```json
 {
@@ -264,8 +251,7 @@ nano ~/.openclaw/openclaw.json
     }
   }
 }
-```
-
+```text
 ### 验证配置
 
 ```bash
@@ -274,8 +260,7 @@ openclaw config get
 
 # 测试连接
 openclaw models list
-```
-
+```text
 ### 优点和缺点
 
 **优点**:
@@ -309,8 +294,7 @@ openclaw onboard
 # 2. 输入 API Key
 # 3. 选择默认 model
 # 4. 完成配置
-```
-
+```text
 ### 验证配置
 
 ```bash
@@ -319,8 +303,7 @@ openclaw config get
 
 # 测试连接
 openclaw channels status
-```
-
+```text
 ### 优点和缺点
 
 **优点**:
@@ -354,8 +337,7 @@ openclaw channels status
 
 # 5. 发送测试消息
 openclaw chat "Hello, test API Key"
-```
-
+```text
 ### 查看生效的配置
 
 ```bash
@@ -367,8 +349,7 @@ openclaw config get models.providers
 
 # 以 JSON 格式输出
 openclaw config get --json
-```
-
+```text
 ---
 
 ## 🔧 配置故障排查
@@ -427,8 +408,7 @@ openclaw chat --agent tech-dev "Hello"
 
 export ANTHROPIC_API_KEY="sk-ant-yyy"
 openclaw chat --agent content-writer "Hello"
-```
-
+```text
 ---
 
 ### 问题3：如何切换 provider
@@ -452,8 +432,7 @@ openclaw config set models.default "google/gemini-pro"
 
 # 验证
 openclaw models list
-```
-
+```text
 ---
 
 ### 问题4：API Key 泄露了怎么办
@@ -615,8 +594,7 @@ openclaw models list
 **A**: 
 ```bash
 openclaw config get models.providers.anthropic.apiKey
-```
-
+```text
 ### Q4: 配置后不生效怎么办？
 
 **A**: 

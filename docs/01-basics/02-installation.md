@@ -125,8 +125,7 @@ OpenClaw在Mac上体验最好，因为：
 
 ```bash
 curl -fsSL https://openclaw.ai/install.sh | bash
-```
-
+```text
 安装过程会自动：
 - 检测系统环境
 - 安装Node.js（如果未安装）
@@ -141,8 +140,7 @@ curl -fsSL https://openclaw.ai/install.sh | bash
 
 ```bash
 openclaw --version
-```
-
+```text
 如果显示版本号（如 `2026.2.9`），说明安装成功！
 
 #### 第四步：初始化配置
@@ -151,8 +149,7 @@ openclaw --version
 
 ```bash
 openclaw onboard
-```
-
+```text
 **配置流程**：
 
 **1. 接受风险提示**：
@@ -225,8 +222,7 @@ openclaw channels status
 
 # 应该显示：
 # Gateway reachable.
-```
-
+```text
 ### 日常使用
 
 **启动OpenClaw**：
@@ -237,8 +233,7 @@ openclaw gateway start
 
 # 或使用systemd（推荐，开机自启）
 openclaw gateway enable
-```
-
+```text
 **访问Web UI**：
 
 打开浏览器访问：`http://127.0.0.1:18789/chat`
@@ -247,8 +242,7 @@ openclaw gateway enable
 
 ```bash
 openclaw gateway stop
-```
-
+```text
 ### 接入飞书（推荐）
 
 Mac本地部署后，强烈推荐接入飞书，获得最佳体验：
@@ -264,20 +258,17 @@ Mac本地部署后，强烈推荐接入飞书，获得最佳体验：
 ```bash
 # 使用sudo安装
 curl -fsSL https://openclaw.ai/install.sh | sudo bash
-```
-
+```text
 **Q2：如何更新OpenClaw？**
 
 ```bash
 openclaw update
-```
-
+```text
 **Q3：如何卸载？**
 
 ```bash
 openclaw uninstall
-```
-
+```text
 ---
 
 ## Windows本地部署
@@ -323,8 +314,7 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 
 # 设置WSL 2为默认版本
 wsl --set-default-version 2
-```
-
+```text
 **重启计算机**。
 
 #### 第二步：安装Ubuntu
@@ -348,8 +338,7 @@ sudo apt update && sudo apt upgrade -y
 
 # 安装基础工具
 sudo apt install -y curl git wget build-essential
-```
-
+```text
 #### 第四步：安装Node.js 22+
 
 ```bash
@@ -362,16 +351,14 @@ sudo apt install -y nodejs
 # 验证版本（必须≥22.x）
 node -v
 npm -v
-```
-
+```text
 #### 第五步：安装 OpenClaw
 
 **方法A：一键脚本安装**
 
 ```bash
 curl -fsSL https://openclaw.ai/install.sh | bash
-```
-
+```text
 #### 第六步：验证安装
 
 ```bash
@@ -383,8 +370,7 @@ openclaw --help
 
 # 查看系统状态
 openclaw status
-```
-
+```text
 #### 第七步：配置Windows访问WSL2服务
 
 由于OpenClaw运行在WSL2中，需要配置端口转发以便Windows访问。
@@ -397,15 +383,13 @@ echo Starting OpenClaw Gateway in WSL2...
 wsl -d Ubuntu-22.04 -u root service openclaw start
 timeout /t 3
 start http://localhost:18789
-```
-
+```text
 或直接在WSL2中启动：
 
 ```bash
 # 在WSL2 Ubuntu终端中
 openclaw gateway run --port 18789
-```
-
+```text
 然后在Windows浏览器访问 `http://localhost:18789`
 
 ---
@@ -428,8 +412,7 @@ openclaw gateway run --port 18789
 # 打开PowerShell
 node -v
 npm -v
-```
-
+```text
 #### 第三步：以管理员身份安装 OpenClaw
 
 **重要**：必须以**管理员身份**运行PowerShell。
@@ -440,8 +423,7 @@ npm install -g openclaw@latest
 
 # 或安装汉化版
 npm install -g @qingchencloud/openclaw-zh@latest
-```
-
+```text
 #### 第四步：解决安装权限问题
 
 如果遇到权限错误：
@@ -456,15 +438,13 @@ npm config set cache "C:\npm-cache"
 
 # 将目录添加到PATH
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\npm", "User")
-```
-
+```text
 #### 第五步：验证安装
 
 ```powershell
 openclaw --version
 openclaw --help
-```
-
+```text
 #### 第六步：解决常见问题
 
 **问题：sharp模块加载失败**
@@ -475,8 +455,7 @@ npm cache clean --force
 
 # 重新安装
 npm install -g openclaw@latest --force
-```
-
+```text
 **问题：Windows Defender阻止**
 
 将OpenClaw安装目录添加到Windows Defender排除项：
@@ -484,8 +463,7 @@ npm install -g openclaw@latest --force
 ```
 C:\Users\你的用户名\AppData\Roaming\npm
 C:\Users\你的用户名\.openclaw
-```
-
+```text
 ---
 
 ### 初始化配置
@@ -496,8 +474,7 @@ C:\Users\你的用户名\.openclaw
 
 ```bash
 openclaw onboard --install-daemon
-```
-
+```text
 #### 配置AI模型提供商
 
 OpenClaw需要对接AI模型才能工作。
@@ -511,8 +488,7 @@ OpenClaw需要对接AI模型才能工作。
 openclaw models auth add
 # 按提示选择 anthropic
 # 输入 API Key: sk-ant-xxx
-```
-
+```text
 #### 绑定消息渠道
 
 **1. Telegram**
@@ -528,8 +504,7 @@ openclaw models auth add
 openclaw channels add telegram
 openclaw config set channels.telegram.botToken "your-bot-token"
 openclaw gateway restart
-```
-
+```text
 **2. WhatsApp**
 
 ```bash
@@ -537,8 +512,7 @@ openclaw gateway restart
 openclaw channels login whatsapp
 
 # 用手机WhatsApp扫码
-```
-
+```text
 **3. 企业微信（国内推荐）**
 
 ```bash
@@ -547,8 +521,7 @@ openclaw plugins install @m1heng-clawd/wework
 
 # 配置
 openclaw config set channels.wework '{"enabled":true,"corpId":"xxx","agentSecret":"xxx"}' --json
-```
-
+```text
 **4. 飞书（国内推荐）**
 
 ```bash
@@ -557,8 +530,7 @@ openclaw plugins install @m1heng-clawd/feishu
 
 # 配置
 openclaw config set channels.feishu '{"enabled":true,"appId":"cli_xxx","appSecret":"xxx"}' --json
-```
-
+```text
 ### Windows常用命令速查
 
 **系统管理**：
@@ -605,26 +577,22 @@ sudo apt-get install -y nodejs
 
 # 验证安装
 node --version
-```
-
+```text
 #### 第二步：安装 OpenClaw
 
 ```bash
 curl -fsSL https://openclaw.ai/install.sh | bash
-```
-
+```text
 #### 第三步：验证安装
 
 ```bash
 openclaw --version
-```
-
+```text
 #### 第四步：初始化配置
 
 ```bash
 openclaw onboard
-```
-
+```text
 ---
 
 ## 2.1 系统要求与准备
@@ -987,8 +955,7 @@ openclaw onboard
 ```bash
 # 使用国内官方安装脚本
 curl -fsSL https://clawd.org.cn/install.sh | bash
-```
-
+```text
 #### Windows 安装
 
 使用 PowerShell（管理员权限）：
@@ -996,8 +963,7 @@ curl -fsSL https://clawd.org.cn/install.sh | bash
 ```powershell
 # 使用国内官方安装脚本
 iwr -useb https://clawd.org.cn/install.ps1 | iex
-```
-
+```text
 > ⚠️ **Windows 用户注意**：强烈推荐使用 WSL2（Ubuntu），原生 Windows 支持有限。
 
 **WSL2 安装步骤**：
@@ -1009,8 +975,7 @@ wsl --install
 
 # 3. 在 WSL2 中运行 Linux 安装命令
 curl -fsSL https://clawd.org.cn/install.sh | bash
-```
-
+```text
 #### 全局安装（替代方案）
 
 如果一键脚本失败，可以使用 npm 全局安装：
@@ -1021,8 +986,7 @@ npm install -g openclaw-cn@latest
 
 # 或使用 pnpm（推荐）
 pnpm add -g openclaw-cn@latest
-```
-
+```text
 ### 运行入门向导
 
 安装完成后，运行配置向导：
@@ -1030,8 +994,7 @@ pnpm add -g openclaw-cn@latest
 ```bash
 # 运行入门向导并安装后台服务
 openclaw-cn onboard --install-daemon
-```
-
+```text
 ### 配置向导流程
 
 向导会引导你完成以下配置：
@@ -1086,15 +1049,13 @@ openclaw-cn onboard --install-daemon
 ```bash
 # 检查 Gateway 状态
 openclaw-cn gateway status
-```
-
+```text
 **手动运行（前台）**：
 
 ```bash
 # 在前台运行，查看实时日志
 openclaw-cn gateway --port 18789 --verbose
-```
-
+```text
 **Dashboard 访问**：
 
 本地回环地址：`http://127.0.0.1:18789/`
@@ -1111,8 +1072,7 @@ openclaw-cn status
 
 # 健康检查
 openclaw-cn health
-```
-
+```text
 ### 配对 + 连接聊天界面
 
 #### WhatsApp（二维码登录）
@@ -1120,8 +1080,7 @@ openclaw-cn health
 ```bash
 # 登录 WhatsApp
 openclaw-cn channels login
-```
-
+```text
 通过 WhatsApp → 设置 → 已连接的设备 扫描二维码。
 
 #### Telegram / Discord / 其他
@@ -1133,15 +1092,13 @@ openclaw-cn channels login
 openclaw-cn channels add \
   --channel telegram \
   --token "YOUR_BOT_TOKEN"
-```
-
+```text
 **Discord**：
 ```bash
 openclaw-cn channels add \
   --channel discord \
   --token "YOUR_BOT_TOKEN"
-```
-
+```text
 > 💡 **Telegram 私信提示**：首次私信会返回配对码，需要批准后机器人才会响应。
 
 ### 私信安全（配对审批）
@@ -1156,8 +1113,7 @@ openclaw-cn pairing list whatsapp
 
 # 批准配对
 openclaw-cn pairing approve whatsapp <code>
-```
-
+```text
 ### 从源码运行（开发）
 
 如果需要修改 OpenClaw 本身，可以从源码运行：
@@ -1178,16 +1134,14 @@ pnpm build
 
 # 运行入门向导
 openclaw-cn onboard --install-daemon
-```
-
+```text
 如果还没有全局安装，可以从仓库中通过 `pnpm openclaw-cn ...` 运行命令。
 
 **从源码运行 Gateway**：
 
 ```bash
 node dist/entry.js gateway --port 18789 --verbose
-```
-
+```text
 ### 端到端验证
 
 在新终端中，发送测试消息：
@@ -1195,8 +1149,7 @@ node dist/entry.js gateway --port 18789 --verbose
 ```bash
 # 发送测试消息
 openclaw-cn message send --target +15555550123 --message "Hello from OpenClaw"
-```
-
+```text
 如果 `openclaw-cn health` 显示 "no auth configured"，需要返回向导设置 OAuth/密钥认证。
 
 **调试提示**：
@@ -1220,8 +1173,7 @@ openclaw-cn message send --target +15555550123 --message "Hello from OpenClaw"
 
 # 日志文件
 ~/.openclaw/logs/gateway.log
-```
-
+```text
 ### 国内版特色功能
 
 **1. 预配置国产模型**：
@@ -1253,15 +1205,13 @@ node --version
 # 如果版本过低，使用 nvm 升级
 nvm install 22
 nvm use 22
-```
-
+```text
 **Q2: 如何更新到最新版本？**
 
 ```bash
 # 重新运行安装脚本
 curl -fsSL https://clawd.org.cn/install.sh | bash
-```
-
+```text
 **Q3: 如何卸载？**
 
 ```bash
@@ -1273,8 +1223,7 @@ npm uninstall -g openclaw-cn
 
 # 删除配置（可选）
 rm -rf ~/.openclaw
-```
-
+```text
 **Q4: 支持哪些系统？**
 
 - ✅ macOS 12+
@@ -1292,8 +1241,7 @@ openclaw-cn gateway status
 # 重新启动网关并重试
 openclaw-cn gateway restart
 openclaw-cn onboard
-```
-
+```text
 **Q6: 健康检查显示 "no auth configured"**
 
 需要配置认证：
@@ -1303,8 +1251,7 @@ openclaw-cn onboard
 
 # 或手动配置 API 密钥
 openclaw-cn configure --section auth
-```
-
+```text
 ### 下一步（可选，但很棒）
 
 - macOS 菜单栏应用 + 语音唤醒：[macOS 应用](https://docs.openclaw.ai/platforms/macos.html)
@@ -1462,14 +1409,12 @@ OpenClaw 需要 R2 来存储状态，需配置以下三个变量：
 **访问 Worker**（需要 token）：
 ```
 https://moltbot-sandbox.xxxxxxxx.workers.dev?token=MOLTBOT_GATEWAY_TOKEN
-```
-
+```text
 **管理后台**（需要邮箱验证）：
 
 ```
 https://moltbot-sandbox.xxxxxxxx.workers.dev/_admin/
-```
-
+```text
 通过 Cloudflare Access 的邮箱验证码验证后，即可进入管理后台并接受 Pairing Requests。
 
 ![管理后台](https://upload.maynor1024.live/file/1770957055794_webp-20260213123047239)
@@ -1484,16 +1429,14 @@ https://moltbot-sandbox.xxxxxxxx.workers.dev/_admin/
 
 # 切换模型
 /model minimax/MiniMax-M2.1
-```
-
+```text
 #### 设置开机自启命令
 
 为了避免 Worker 重启后模型被重置，建议设置开机自启命令：
 
 ```bash
 set model minimax/MiniMax-M2.1
-```
-
+```text
 #### 远程终端连接
 
 ```bash
@@ -1502,8 +1445,7 @@ openclaw gateway login --url https://moltbot-sandbox.xxxxxxxx.workers.dev
 
 # 配置 Skills
 openclaw configure --section skills
-```
-
+```text
 ### 避坑指南
 
 **问题 1：模型配置报错**
@@ -1606,8 +1548,7 @@ Cloudflare Workers + OpenClaw 是一个低成本的尝鲜方案，适合：
 
 # 或使用 Homebrew
 brew install --cask docker
-```
-
+```text
 **Windows**：
 ```bash
 # 下载 Docker Desktop
@@ -1615,8 +1556,7 @@ brew install --cask docker
 
 # 安装 WSL2（如果还没安装）
 wsl --install
-```
-
+```text
 **Linux (Ubuntu)**：
 ```bash
 # 安装 Docker
@@ -1628,14 +1568,12 @@ sudo systemctl enable docker
 
 # 添加当前用户到 docker 组
 sudo usermod -aG docker $USER
-```
-
+```text
 **验证安装**：
 ```bash
 docker --version
 # 应显示：Docker version 24.x.x
-```
-
+```text
 ### 快速开始
 
 #### 方式一：一键脚本部署（推荐新手）
@@ -1644,8 +1582,7 @@ docker --version
 
 ```bash
 curl -fsSL https://clawd.org.cn/install.sh | bash
-```
-
+```text
 **这个脚本会自动：**
 - ✅ 检查 Docker 环境
 - ✅ 下载镜像（使用国内镜像：`jiulingyun803/openclaw-cn:latest`）
@@ -1669,8 +1606,7 @@ curl -fsSL https://clawd.org.cn/install.sh | bash
 ```bash
 mkdir -p ~/openclaw-docker
 cd ~/openclaw-docker
-```
-
+```text
 **步骤 2：创建 `.env` 环境文件**
 
 ```bash
@@ -1693,8 +1629,7 @@ CLAUDE_AI_SESSION_KEY=
 CLAUDE_WEB_SESSION_KEY=
 CLAUDE_WEB_COOKIE=
 EOF
-```
-
+```text
 **步骤 3：创建 `docker-compose.yml` 文件**
 
 ```yaml
@@ -1745,8 +1680,7 @@ services:
     tty: true
     init: true
     entrypoint: ["node", "dist/index.js"]
-```
-
+```text
 **步骤 4：启动容器**
 
 ```bash
@@ -1758,14 +1692,12 @@ docker compose up -d openclaw-cn-gateway
 
 # 查看日志（可选）
 docker compose logs -f openclaw-cn-gateway
-```
-
+```text
 **步骤 5：运行配置向导**
 
 ```bash
 docker compose run --rm openclaw-cn-cli onboard
-```
-
+```text
 配置向导会提示你：
 - 选择网关后端（Claude、Gemini 等）
 - 配置 Feishu、Telegram 等渠道
@@ -1801,19 +1733,16 @@ nano .env
 
 # docker compose 会自动读取
 docker compose up -d
-```
-
+```text
 **方式 B：命令行设置**
 ```bash
 export OPENCLAW_GATEWAY_PORT=18789
 docker compose up -d
-```
-
+```text
 **方式 C：命令行临时覆盖**
 ```bash
 docker compose -e OPENCLAW_GATEWAY_PORT=8080 up -d
-```
-
+```text
 ### 常用操作
 
 #### 查看网关状态
@@ -1827,8 +1756,7 @@ docker compose logs openclaw-cn-gateway
 
 # 实时查看日志（持续跟踪）
 docker compose logs -f openclaw-cn-gateway
-```
-
+```text
 #### 配置渠道
 
 通过 CLI 容器配置各类渠道：
@@ -1838,26 +1766,22 @@ docker compose logs -f openclaw-cn-gateway
 docker compose run --rm openclaw-cn-cli channels add \
   --channel telegram \
   --token "YOUR_BOT_TOKEN"
-```
-
+```text
 **Discord（需要机器人令牌）**：
 ```bash
 docker compose run --rm openclaw-cn-cli channels add \
   --channel discord \
   --token "YOUR_BOT_TOKEN"
-```
-
+```text
 **WhatsApp（QR 扫码）**：
 ```bash
 docker compose run --rm openclaw-cn-cli channels login
-```
-
+```text
 **Feishu（需要 App ID 和 Secret）**：
 ```bash
 docker compose run --rm openclaw-cn-cli onboard
 # 按提示输入信息
-```
-
+```text
 #### 重新配置
 
 ```bash
@@ -1866,8 +1790,7 @@ docker compose run --rm openclaw-cn-cli onboard
 
 # 查看当前配置
 docker compose run --rm openclaw-cn-cli config get
-```
-
+```text
 #### 重启网关
 
 ```bash
@@ -1879,8 +1802,7 @@ docker compose down
 
 # 重新启动
 docker compose up -d openclaw-cn-gateway
-```
-
+```text
 #### 更新到最新版本
 
 ```bash
@@ -1889,8 +1811,7 @@ docker compose pull
 
 # 重启容器（自动使用新镜像）
 docker compose up -d openclaw-cn-gateway
-```
-
+```text
 #### 清理数据（谨慎操作）
 
 ```bash
@@ -1902,8 +1823,7 @@ rm -rf ./data/
 
 # 删除本地镜像（可选）
 docker rmi jiulingyun803/openclaw-cn:latest
-```
-
+```text
 ### 数据持久化
 
 Docker 容器的数据存储在工作目录的 `data` 文件夹：
@@ -1915,8 +1835,7 @@ Docker 容器的数据存储在工作目录的 `data` 文件夹：
 │   └── logs/          # 日志文件
 └── clawd/             # 工作空间
     └── workspace/     # 代理工作文件
-```
-
+```text
 **备份数据**：
 ```bash
 # 备份配置和数据
@@ -1924,8 +1843,7 @@ tar -czf openclaw-backup-$(date +%Y%m%d).tar.gz ./data
 
 # 恢复数据
 tar -xzf openclaw-backup-20260210.tar.gz
-```
-
+```text
 ### Docker 部署常见问题
 
 #### 问题 1：容器无法启动
@@ -1944,8 +1862,7 @@ sudo netstat -ltnp | grep 18789
 # 如果被占用，修改 OPENCLAW_GATEWAY_PORT
 # 编辑 .env，将端口改为其他（如 18790）
 nano .env
-```
-
+```text
 #### 问题 2：权限拒绝（Permission Denied）
 
 **症状**：`Error: EACCES: permission denied, mkdir ...`
@@ -1958,8 +1875,7 @@ chmod 755 ./data/.openclaw ./data/clawd
 
 # 如果使用了宿主机路径，确保目录可写
 chmod 777 ./data
-```
-
+```text
 #### 问题 3：无法访问 Web UI
 
 **症状**：浏览器访问 `http://127.0.0.1:18789` 无响应
@@ -1983,8 +1899,7 @@ sudo pfctl -d  # 临时关闭防火墙测试
 # Linux
 sudo ufw status
 sudo ufw allow 18789
-```
-
+```text
 #### 问题 4：配置向导卡住
 
 **症状**：`docker compose run --rm openclaw-cn-cli onboard` 无反应
@@ -1999,8 +1914,7 @@ docker compose logs openclaw-cn-gateway
 # 重新启动网关并重试
 docker compose restart openclaw-cn-gateway
 docker compose run --rm openclaw-cn-cli onboard
-```
-
+```text
 #### 问题 5：镜像拉取失败（403 错误）
 
 **症状**：`docker pull openclaw/openclaw:latest` 返回 403 错误
@@ -2015,8 +1929,7 @@ echo "OPENCLAW_IMAGE=jiulingyun803/openclaw-cn:latest" >> .env
 
 # 重新拉取
 docker compose pull
-```
-
+```text
 #### 问题 6：网络超时
 
 **症状**：拉取镜像或访问 API 时网络超时
@@ -2039,8 +1952,7 @@ sudo nano /etc/docker/daemon.json
 sudo systemctl restart docker
 
 # macOS 用户在 Docker Desktop 设置中添加镜像加速器
-```
-
+```text
 #### 问题 7：数据丢失
 
 **症状**：重启容器后配置和数据丢失
@@ -2056,8 +1968,7 @@ ls -la ./data/clawd
 
 # 如果数据丢失，从备份恢复
 tar -xzf openclaw-backup-20260210.tar.gz
-```
-
+```text
 #### 问题 8：性能问题
 
 **症状**：容器运行缓慢或占用资源过高
@@ -2079,8 +1990,7 @@ services:
 
 # 重启容器
 docker compose up -d openclaw-cn-gateway
-```
-
+```text
 ### 从一键脚本迁移到手动配置
 
 如果想从一键脚本切换到手动配置（或反之）：
@@ -2096,8 +2006,7 @@ cp -r ~/.openclaw ~/.openclaw.backup
 
 # 重新启动
 docker compose up -d openclaw-cn-gateway
-```
-
+```text
 配置会自动保留在数据目录中，无需重新设置。
 
 ### Docker 部署优势总结
@@ -2134,8 +2043,7 @@ openclaw --version
 
 # 检查最新版本
 curl -s https://api.github.com/repos/openclaw/openclaw/releases/latest | grep tag_name
-```
-
+```text
 ### 本地安装更新
 
 ```bash
@@ -2147,8 +2055,7 @@ cd ~/openclaw
 git pull origin main
 pnpm install
 pnpm build
-```
-
+```text
 ### Docker 更新
 
 ```bash
@@ -2166,8 +2073,7 @@ docker run -d \
   -v ~/.openclaw:/root/.openclaw \
   --restart unless-stopped \
   openclaw/openclaw:latest
-```
-
+```text
 ### 备份数据
 
 **本地安装备份**：
@@ -2177,8 +2083,7 @@ tar -czf openclaw-backup-$(date +%Y%m%d).tar.gz ~/.openclaw
 
 # 恢复数据
 tar -xzf openclaw-backup-20260210.tar.gz -C ~/
-```
-
+```text
 **Docker 备份**：
 ```bash
 # 备份数据卷
@@ -2192,8 +2097,7 @@ docker run --rm \
   -v ~/.openclaw:/data \
   -v $(pwd):/backup \
   alpine tar xzf /backup/openclaw-backup-20260210.tar.gz -C /
-```
-
+```text
 ### 监控和日志
 
 **查看日志**：
@@ -2203,8 +2107,7 @@ tail -f ~/.openclaw/logs/gateway.log
 
 # Docker
 docker logs -f openclaw
-```
-
+```text
 **监控指标**：
 ```bash
 # 查看系统状态
@@ -2215,8 +2118,7 @@ openclaw stats
 
 # 查看 API 消耗
 openclaw stats api
-```
-
+```text
 ### 故障排查
 
 **常见问题**：
@@ -2264,8 +2166,7 @@ rm -rf ~/openclaw
 
 # 删除命令
 npm uninstall -g openclaw
-```
-
+```text
 **Docker 卸载**：
 ```bash
 # 停止并删除容器
@@ -2277,8 +2178,7 @@ docker rmi openclaw/openclaw
 
 # 删除数据
 rm -rf ~/.openclaw
-```
-
+```text
 ---
 
 ## API配置指南
@@ -2392,16 +2292,14 @@ OpenClaw内置支持非常多的API模型，包括但不限于：
 2. 选择国产模型（如 Kimi、DeepSeek）
 3. 通过 openclaw onboard 向导配置
 4. 先体验，熟悉后再考虑自定义
-```
-
+```text
 **进阶用户**：
 ```
 1. 先用内置API模型熟悉OpenClaw
 2. 了解配置文件结构
 3. 根据需求添加自定义API
 4. 测试验证后投入使用
-```
-
+```text
 ---
 
 ### 自定义API配置（进阶用户）
@@ -2437,8 +2335,7 @@ OpenClaw内置支持非常多的API模型，包括但不限于：
 
 # 编辑配置文件
 nano ~/.openclaw/openclaw.json
-```
-
+```text
 #### 配置文件结构
 
 ```json
@@ -2470,8 +2367,7 @@ nano ~/.openclaw/openclaw.json
     }
   }
 }
-```
-
+```text
 #### 示例1：配置DeepSeek（自定义方式）
 
 ```json
@@ -2509,8 +2405,7 @@ nano ~/.openclaw/openclaw.json
     }
   }
 }
-```
-
+```text
 #### 示例2：配置第三方API代理
 
 如果你使用API代理服务（如OpenRouter），配置如下：
@@ -2550,8 +2445,7 @@ nano ~/.openclaw/openclaw.json
     }
   }
 }
-```
-
+```text
 #### 示例3：配置多个模型供应商
 
 你可以同时配置多个供应商，根据需要切换：
@@ -2600,8 +2494,7 @@ nano ~/.openclaw/openclaw.json
     }
   }
 }
-```
-
+```text
 #### 配置参数说明
 
 | 参数 | 说明 | 示例 |
@@ -2634,8 +2527,7 @@ systemctl --user start openclaw-gateway.service
 
 # 方式3：完全重启
 systemctl --user restart openclaw-gateway.service
-```
-
+```text
 #### 验证配置
 
 ```bash
@@ -2644,8 +2536,7 @@ openclaw models list
 
 # 测试模型连接
 openclaw models test deepseek/deepseek-chat
-```
-
+```text
 #### 常见问题
 
 **Q1：配置后无法连接？**
@@ -2655,22 +2546,19 @@ openclaw models test deepseek/deepseek-chat
 ✅ apiKey是否有效
 ✅ 网络是否能访问API地址
 ✅ 配置文件JSON格式是否正确
-```
-
+```text
 **Q2：如何切换模型？**
 ```bash
 # 临时切换
 openclaw chat --model deepseek/deepseek-chat
 
 # 永久切换：修改配置文件中的 primary 字段
-```
-
+```text
 **Q3：如何添加多个模型？**
 ```
 在 models 数组中添加多个模型对象即可
 每个模型需要有唯一的 id
-```
-
+```text
 ---
 
 ### 内置API模型配置（推荐新手）
@@ -2731,8 +2619,7 @@ openclaw onboard
 # 3. 粘贴刚才复制的API Key
 # 4. 选择默认模型：kimi-code/kimi-for-codi
 # 5. 完成其他配置
-```
-
+```text
 **成本估算**：
 - 轻度使用：10-20元/月
 - 中度使用：30-50元/月
@@ -2791,8 +2678,7 @@ openclaw onboard
 # 3. 粘贴API Key
 # 4. 选择默认模型：deepseek-chat
 # 5. 完成其他配置
-```
-
+```text
 **成本估算**：
 - 日常使用：5-10元/月
 - 中度使用：10-30元/月
@@ -3023,8 +2909,7 @@ node --version
 # 如果低于22，升级
 nvm install 22
 nvm use 22
-```
-
+```text
 **Q2: 权限错误**
 ```bash
 # macOS/Linux
@@ -3032,8 +2917,7 @@ sudo chown -R $USER ~/.openclaw
 
 # Windows
 # 以管理员身份运行PowerShell
-```
-
+```text
 **Q3: 网络连接失败**
 - 检查网络连接
 - 尝试使用代理
@@ -3065,8 +2949,7 @@ tail -f ~/.openclaw/logs/gateway.log
 
 # 重启Gateway
 openclaw gateway restart
-```
-
+```text
 **Q2: 端口被占用**
 ```bash
 # 查看端口占用
@@ -3074,8 +2957,7 @@ lsof -i :18789
 
 # 修改端口
 openclaw config set gateway.port 18790
-```
-
+```text
 ## 2.X 版本升级指南
 
 > 🔄 **保持最新**：定期升级OpenClaw以获得新功能、性能优化和安全修复。
@@ -3106,8 +2988,7 @@ openclaw --version
 
 # 查看配置文件版本
 cat ~/.openclaw/openclaw.json | grep version
-```
-
+```text
 如果配置文件版本比当前版本新，说明需要升级。
 
 ### 升级方式选择
@@ -3135,8 +3016,7 @@ cp -r ~/.openclaw ~/.openclaw.backup-$(date +%Y%m%d)
 
 # 验证备份
 ls -la ~/.openclaw.backup-*
-```
-
+```text
 **第二步：停止Gateway服务**
 
 ```bash
@@ -3145,8 +3025,7 @@ openclaw gateway stop
 
 # 验证已停止
 openclaw gateway status
-```
-
+```text
 **第三步：卸载旧版本**
 
 ```bash
@@ -3155,15 +3034,13 @@ npm uninstall -g openclaw
 
 # 验证卸载
 which openclaw  # 应该没有输出
-```
-
+```text
 **第四步：安装新版本**
 
 ```bash
 # 安装推荐版本 2026.2.9（需要使用--force参数）
 npm install -g openclaw@2026.2.9 --force
-```
-
+```text
 > ⚠️ **版本选择说明**：  
 > - 推荐安装 2026.2.9 版本（稳定）
 > - 避免安装 2026.2.12 版本（存在 session 路径 bug）
@@ -3177,8 +3054,7 @@ npm install -g openclaw@2026.2.9 --force
 ```bash
 # 运行doctor工具自动修复配置
 openclaw doctor --fix
-```
-
+```text
 doctor工具会自动：
 - 更新Gateway服务入口点路径
 - 检查配置兼容性
@@ -3194,8 +3070,7 @@ openclaw gateway restart
 # 等待几秒后检查状态
 sleep 5
 openclaw gateway status
-```
-
+```text
 **第七步：验证升级**
 
 ```bash
@@ -3207,8 +3082,7 @@ openclaw gateway status
 
 # 测试连接
 openclaw channels status
-```
-
+```text
 成功的输出应该显示：
 ```text
 2026.2.9
@@ -3217,8 +3091,7 @@ Runtime: running (pid xxxxx, state active)
 RPC probe: ok
 Listening: *:18789
 Dashboard: http://127.0.0.1:18789/
-```
-
+```text
 #### 升级示例
 
 以下是一次真实的升级过程：
@@ -3242,8 +3115,7 @@ Dashboard: http://127.0.0.1:18789/
 ```bash
 # 运行升级脚本
 curl -fsSL https://openclaw.ai/install.sh | bash
-```
-
+```text
 **优点**：
 - ✅ 一键完成
 - ✅ 自动处理依赖
@@ -3272,8 +3144,7 @@ docker compose up -d openclaw-cn-gateway
 
 # 查看日志
 docker compose logs -f openclaw-cn-gateway
-```
-
+```text
 ### 方式四：云端部署升级
 
 #### 腾讯云Lighthouse
@@ -3313,8 +3184,7 @@ docker compose logs -f openclaw-cn-gateway
 ```text
 Config warnings:
 - plugins.entries.feishu: plugin feishu: duplicate plugin id detected
-```
-
+```text
 **说明**：这是一个已知的插件重复警告，不影响正常使用。
 
 ### 升级故障排查
@@ -3326,21 +3196,18 @@ Config warnings:
 npm error code EEXIST
 npm error path /usr/local/bin/openclaw
 npm error EEXIST: file already exists
-```
-
+```text
 **解决方案**：
 ```bash
 # 使用--force参数强制覆盖
 npm install -g openclaw@2026.2.9 --force
-```
-
+```text
 #### 问题2：Gateway启动失败
 
 **症状**：
 ```text
 Gateway not running
-```
-
+```text
 **解决方案**：
 ```bash
 # 运行doctor修复
@@ -3351,30 +3218,26 @@ openclaw gateway restart
 
 # 查看详细日志
 tail -f ~/.openclaw/logs/gateway.log
-```
-
+```text
 #### 问题3：配置文件版本不匹配
 
 **症状**：
 ```text
 Config was last written by a newer OpenClaw (2026.2.6-3); 
 current version is 2026.2.1-zh.3
-```
-
+```text
 **解决方案**：
 ```bash
 # 升级到推荐版本 2026.2.9
 npm install -g openclaw@2026.2.9 --force
 openclaw doctor --fix
-```
-
+```text
 #### 问题4：插件加载失败
 
 **症状**：
 ```text
 plugin not found: xxx
-```
-
+```text
 **解决方案**：
 ```bash
 # 重新安装插件
@@ -3382,15 +3245,13 @@ openclaw plugins install <plugin-name>
 
 # 或禁用有问题的插件
 openclaw config set plugins.allow []
-```
-
+```text
 #### 问题5：端口被占用
 
 **症状**：
 ```text
 Error: listen EADDRINUSE: address already in use :::18789
-```
-
+```text
 **解决方案**：
 ```bash
 # 查找占用端口的进程
@@ -3402,8 +3263,7 @@ kill -9 <PID>
 # 或修改端口
 openclaw config set gateway.port 18790
 openclaw gateway restart
-```
-
+```text
 ### 回滚到旧版本
 
 如果升级后遇到问题，可以回滚到旧版本。
@@ -3423,8 +3283,7 @@ npm install -g @qingchencloud/openclaw-zh@2026.2.1-zh.3 --force
 
 # 重启Gateway
 openclaw gateway restart
-```
-
+```text
 #### 方式二：安装指定版本
 
 ```bash
@@ -3439,8 +3298,7 @@ openclaw doctor --fix
 
 # 重启Gateway
 openclaw gateway restart
-```
-
+```text
 ### 升级最佳实践
 
 #### 升级前必做
@@ -3579,8 +3437,7 @@ crontab -e
 
 # 添加每周检查更新（周日凌晨2点）
 0 2 * * 0 /usr/local/bin/openclaw doctor --check-updates
-```
-
+```text
 **Windows**：
 使用任务计划程序创建定时任务。
 
