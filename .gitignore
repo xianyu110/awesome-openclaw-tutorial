@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporary files
+*.tmp
+*.swp
+*~
+.~*
+
+# OpenClaw配置和数据（不上传个人配置）
+.openclaw/
+openclaw-manager/node_modules/
+
+# 开发工具
+.vscode/
+.idea/
+
+# Claude worktrees（开发临时文件）
+.claude/worktrees/
+
+# 技能开发临时文件
+.claude/.skills/*/test_output/
+.claude/.skills/*/.DS_Store
+
+# docx临时文件
+docx/.~*.docx
+docx/样章模板*.docx
