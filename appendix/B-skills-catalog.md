@@ -343,7 +343,43 @@ clawhub install debug-helper
 
 ## B.2 社区热门Skills
 
+---
+
 ### B.2.1 通讯工具类
+
+#### 📞 ClawdTalk（语音通话与短信）
+
+**功能**：
+- 拨打和接听电话
+- 发送和接收短信
+- AI驱动的通话任务
+- 通话转录和摘要
+
+**安装**：
+```bash
+clawhub install clawdtalk-client
+```
+
+**使用示例**：
+```
+"帮我给张三打个电话"
+"帮我发一条短信给李四：会议取消了"
+"帮我设置一个自动回访任务"
+```
+
+**推荐指数**：⭐⭐⭐⭐⭐
+
+**适用场景**：
+- 需要AI代理拨打电话
+- 需要发送短信通知
+- 需要自动化客户回访
+
+**链接**：
+- GitHub：https://github.com/team-telnyx/clawdtalk-client
+- 官网：https://clawdtalk.com
+- 基于：Telnyx Voice AI & Messaging APIs
+
+---
 
 #### 💬 feishu（飞书集成）
 

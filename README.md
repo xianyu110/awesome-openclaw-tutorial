@@ -313,6 +313,7 @@ curl -fsSL https://openclaw.ai/install.sh | bash
 
 - 🏪 ClawHub 官方市场：93个精选 Skills
 - ⭐ 必装 Skills Top 10：文件管理、网页搜索、日历同步
+- 📞 **ClawdTalk**：AI代理语音通话和短信技能，支持电话拨打、短信收发、通话转录
 - 🌟 **Skills双幻神**：find-skills（智能发现）+ ProactiveAgent（主动预测）
 - 🛠️ 自定义 Skills 开发：打造专属技能
 - 📦 Skills 管理技巧：安装、更新、卸载
