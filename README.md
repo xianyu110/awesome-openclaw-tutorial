@@ -207,6 +207,12 @@ openclaw gateway restart
 - **ClawHub技能广场**：https://clawhub.ai
 - **Awesome Skills合集**：https://github.com/VoltAgent/awesome-openclaw-skills
 
+## 🔌 推荐插件
+
+| 插件名称 | 链接 | 核心功能 |
+|----------|------|----------|
+| **cc-soul** | [GitHub](https://github.com/wenroudeyu-collab/cc-soul) · [npm](https://www.npmjs.com/package/@cc-soul/openclaw) · [ClawHub](https://clawhub.ai/wenroudeyu-collab/cc-soul) | 认知架构插件 — 10,000+ 条持久记忆 + 语义搜索、10 个人格自动切换、情绪检测 + 7 天情绪弧线、梦境模式跨领域联想、纠正归因自我进化。50 个模块，20K+ 行 TypeScript，123 项功能。安装：`openclaw plugins install @cc-soul/openclaw` |
+
 ## 💡 实战案例精选
 
 ### 📦 配置示例（开箱即用）
