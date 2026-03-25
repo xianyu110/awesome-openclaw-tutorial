@@ -206,6 +206,7 @@ openclaw gateway restart
 - **GitHub仓库**：https://github.com/openclaw/openclaw
 - **ClawHub技能广场**：https://clawhub.ai
 - **Awesome Skills合集**：https://github.com/VoltAgent/awesome-openclaw-skills
+- **产品经理 Agent Skills**：https://github.com/Digidai/product-manager-skills — 资深产品经理 Agent，6 个知识域、30+ 框架、32 个 SaaS 指标公式、12 个模板、反模式检测
 
 ## 💡 实战案例精选
 
