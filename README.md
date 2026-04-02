@@ -1,4 +1,5 @@
 # 🦞 Awesome OpenClaw Tutorial
+- [skill-taxonomy](https://github.com/SeeleAI/skill-taxonomy) - Structured taxonomy for AI agent skills: discovery, classification and routing across multi-agent workflows.
 # 🦞 一本书玩转OpenClaw：超级个体实战指南
 
 > 从零开始打造你的AI工作助手：最全面的中文教程，涵盖安装、配置、实战案例和避坑指南
