@@ -20,6 +20,9 @@
 
 ## 📌 本教程与 OpenClaw 最新版差异说明
 
+- [OpenClaw Monitor](https://github.com/flik2002/openclaw-monitor) — Real-time AI agent monitoring dashboard for OpenClaw
+
+
 为了避免你把旧章节当成最新版官方教程，先看这 4 点：
 
 - **当前教程基线**：本仓库目前按 `v2026.4.14` 稳定版校对；如果 GitHub Releases 出现更高版本，请以官方 Release Notes 和官方文档为准
