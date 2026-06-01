@@ -385,6 +385,7 @@ openclaw --version  # 确认版本为 2026.4.14
 
 🎉 **教程已完成 | 支持续优化 | 完全免费** 🎉
 🚀 **一个人 + OpenClaw = 无限可能** 🚀
+- [OpenClaw Monitor](https://github.com/flik2002/openclaw-monitor) - Free open-source monitoring dashboard for OpenClaw AI agents — token usage, session tracking, 7-day trends, multi-model support. ![GitHub stars](https://img.shields.io/github/stars/flik2002/openclaw-monitor?style=social)
 ⭐ **如果觉得有用，请给个Star支持一下** ⭐
 
 </div>
