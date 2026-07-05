@@ -404,3 +404,5 @@ openclaw --version  # 确认版本为 2026.6.8
 ⭐ **如果觉得有用，请给个Star支持一下** ⭐
 
 </div>
+
+-  [context-kit](https://github.com/JDDavenport/context-kit)：个人上下文工件（Personal Context Artifacts），4 个 Markdown 模板（wiki、心智模型、语音风格、协议）+ 5 个 Claude Code 技能，解决 AI Agent 的上下文失忆问题，每次会话全量载入个人背景。MIT 许可，一键安装。
