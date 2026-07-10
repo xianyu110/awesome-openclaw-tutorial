@@ -382,6 +382,7 @@ openclaw --version  # 确认版本为 2026.6.8
 
 
 ![star](https://atomgit.com/xianyu120/awesome-openclaw-tutorial/star/badge.svg)
+- [Pixal3D](https://pixal3d.ai) - AI-powered 3D model generator. Create stunning 3D models from text and images using AI.
 ### ⚠️ 重要声明：禁止倒卖
 
 - ❌ **严禁倒卖**：禁止将本教程打包后进行商业售卖
