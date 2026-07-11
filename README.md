@@ -404,3 +404,5 @@ openclaw --version  # 确认版本为 2026.6.8
 ⭐ **如果觉得有用，请给个Star支持一下** ⭐
 
 </div>
+
+- [ai-delivery-spec](https://github.com/franklinxkk/ai-delivery-spec) — Spec-driven delivery framework for product managers — 4 delivery tiers, 0D triage, prototype testability, AI runtime governance, 5 domain modules
