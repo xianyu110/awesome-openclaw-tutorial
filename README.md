@@ -29,6 +29,9 @@
 - [awesome-gptimage2](https://github.com/xianyu110/awesome-gptimage2)：GPT Image 2 中文资料站，聚焦模型能力、提示词框架和商业图片生成场景。
 - [CodexPlusPlus](https://github.com/xianyu110/CodexPlusPlus)：Codex App 外部增强启动器，通过 DevTools 协议注入增强能力，不修改原始安装文件。
 
+### 🧠 社区记忆引擎
+- [Mnemosyne Memory Engine](https://github.com/ElonAug7/openclaw-mnemosyne-memory-engine)：零依赖本地记忆引擎，271KB 运行时，无需 LLM API / 向量数据库，纯 Markdown 存储，TF-IDF + KNN 搜索引擎，55ms 查询延迟，七路并行检索，自带 Web UI 控制台，完全离线可用。
+
 ## 📌 本教程与 OpenClaw 最新版差异说明
 
 为了避免你把旧章节当成最新版官方教程，先看这 4 点：
