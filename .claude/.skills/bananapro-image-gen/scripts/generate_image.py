@@ -20,13 +20,13 @@ import re
 DEFAULT_API_KEY = ""  # 不要在代码中硬编码 API Key
 DEFAULT_BASE_URL = "https://apipro.maynor1024.live"
 DEFAULT_MODEL = "gemini-3-pro-image-preview"
-DEFAULT_API_FORMAT = "openai"  # "openai" 或 "gemini" 或 "minimax"
+DEFAULT_API_FORMAT = "openai"  # "openai", "gemini", or "minimax"
 
 SUPPORTED_RESOLUTIONS = ["1K", "2K", "4K"]
 SUPPORTED_API_FORMATS = ["openai", "gemini", "minimax"]
 
-# MiniMax 官方图片生成配置
-# 按区域选择接入点，请求体走 MiniMax 原生 image_generation schema
+# Official MiniMax image-generation configuration.
+# Select the endpoint by region and use the native image_generation schema.
 MINIMAX_IMAGE_ENDPOINTS = {
     "global_en": "https://api.minimax.io",
     "cn_zh": "https://api.minimaxi.com",
@@ -94,9 +94,9 @@ def build_minimax_payload(
     n=None,
     prompt_optimizer=None,
 ):
-    """构建 MiniMax 官方 image_generation 请求体
+    """Build an official MiniMax image_generation request payload.
 
-    必填字段：model、prompt；其余字段按 MiniMax 文生图 schema 可选。
+    Model and prompt are required; the remaining fields are optional.
     """
     payload = {
         "model": model,
@@ -118,27 +118,27 @@ def build_minimax_payload(
 
 
 def save_image_bytes(image_bytes, filename):
-    """将图片字节写入目标文件"""
+    """Write image bytes to the target file."""
     output_file = Path(filename)
     output_file.parent.mkdir(parents=True, exist_ok=True)
     with open(output_file, "wb") as f:
         f.write(image_bytes)
-    print(f"✅ 图片已成功生成并保存到: {filename}")
-    print(f"文件大小: {len(image_bytes) / 1024:.2f} KB")
+    print(f"Image generated and saved to: {filename}")
+    print(f"File size: {len(image_bytes) / 1024:.2f} KB")
 
 
 def parse_minimax_response(data, filename):
-    """解析 MiniMax 官方图片生成响应
+    """Parse an official MiniMax image-generation response.
 
-    校验 base_resp.status_code，并从 data.image_urls / data.image_base64 取图，
-    同时打印 metadata.success_count / metadata.failed_count。
+    Validate base_resp.status_code, read data.image_urls or data.image_base64,
+    and report metadata.success_count and metadata.failed_count.
     """
     base_resp = data.get("base_resp", {}) or {}
     status_code = base_resp.get("status_code")
     if status_code not in (0, None):
         status_msg = base_resp.get("status_msg", "")
-        print(f"错误: 接口返回状态码 {status_code} {status_msg}")
-        print(f"完整响应: {json.dumps(data, indent=2, ensure_ascii=False)[:500]}")
+        print(f"Error: API returned status code {status_code} {status_msg}")
+        print(f"Full response: {json.dumps(data, indent=2, ensure_ascii=False)[:500]}")
         sys.exit(1)
 
     resp_data = data.get("data", {}) or {}
@@ -149,22 +149,22 @@ def parse_minimax_response(data, filename):
     success_count = metadata.get("success_count")
     failed_count = metadata.get("failed_count")
     if success_count is not None or failed_count is not None:
-        print(f"生成成功数量: {success_count}，失败数量: {failed_count}")
+        print(f"Successful images: {success_count}; failed images: {failed_count}")
 
     image_bytes = None
     if image_urls:
         first_url = image_urls[0]
-        print(f"下载图片: {first_url}")
+        print(f"Downloading image: {first_url}")
         img_response = requests.get(first_url, timeout=30)
         img_response.raise_for_status()
         image_bytes = img_response.content
     elif image_base64_list:
-        print("解码 base64 图片数据")
+        print("Decoding base64 image data")
         image_bytes = base64.b64decode(image_base64_list[0])
 
     if image_bytes is None:
-        print("⚠️  未在响应中找到图片数据")
-        print(f"完整响应: {json.dumps(data, indent=2, ensure_ascii=False)[:500]}")
+        print("No image data found in the response")
+        print(f"Full response: {json.dumps(data, indent=2, ensure_ascii=False)[:500]}")
         return None
 
     save_image_bytes(image_bytes, filename)
@@ -189,16 +189,16 @@ def generate_image_with_chat(
     prompt_optimizer=None,
 ):
     """
-    使用 Chat Completions 格式生成图片
-    支持三种 API 格式：
+    Generate an image using one of three API formats:
+
     - openai: /v1/chat/completions
     - gemini: /v1beta/models/gemini-3-pro-image-preview:generateContent
-    - minimax: /v1/image_generation（MiniMax 官方图片生成 schema，按区域选择接入点）
+    - minimax: /v1/image_generation using the native MiniMax schema and region
     """
     api_key = get_api_key(api_key)
     api_format = api_format or DEFAULT_API_FORMAT
 
-    # 按 API 格式选择默认模型
+    # Select the default model for the requested API format.
     if model is None:
         model = MINIMAX_DEFAULT_MODEL if api_format == "minimax" else DEFAULT_MODEL
 
@@ -229,7 +229,7 @@ def generate_image_with_chat(
 
     # 根据 API 格式构建 payload
     if api_format == "minimax":
-        # MiniMax 官方图片生成格式，尺寸由 aspect_ratio / width / height 控制
+        # MiniMax image dimensions use aspect_ratio or width and height.
         payload = build_minimax_payload(
             prompt=prompt,
             model=model,
@@ -294,7 +294,7 @@ def generate_image_with_chat(
 
         # 根据 API 格式解析响应
         if api_format == "minimax":
-            # MiniMax 格式：校验 base_resp 并解析 data.image_urls / data.image_base64
+            # Validate MiniMax status and parse URL or base64 image data.
             return parse_minimax_response(data, filename)
         elif api_format == "gemini":
             # Gemini 格式：从 candidates 中提取图片
@@ -426,13 +426,13 @@ def main():
     parser.add_argument(
         "--model", "-m",
         default=None,
-        help="模型名称 (openai/gemini 默认: gemini-3-pro-image-preview; minimax 默认: image-01)"
+        help="Model name (openai/gemini default: gemini-3-pro-image-preview; minimax default: image-01)"
     )
     parser.add_argument(
         "--api-format", "-a",
         default=DEFAULT_API_FORMAT,
         choices=SUPPORTED_API_FORMATS,
-        help="API 格式: openai、gemini 或 minimax (默认: openai)"
+        help="API format: openai, gemini, or minimax (default: openai)"
     )
     parser.add_argument("--api-key", "-k", default=None, help="API 密钥")
     parser.add_argument("--base-url", "-u", default=None, help="API 基础 URL")
@@ -440,31 +440,31 @@ def main():
         "--region",
         default=None,
         choices=MINIMAX_SUPPORTED_REGIONS,
-        help="MiniMax 接入区域: global_en 或 cn_zh (默认: global_en)"
+        help="MiniMax region: global_en or cn_zh (default: global_en)"
     )
     parser.add_argument(
         "--response-format",
         default=None,
         choices=MINIMAX_OUTPUT_FORMATS,
-        help="MiniMax 输出格式: url 或 base64 (默认: url)"
+        help="MiniMax output format: url or base64 (default: url)"
     )
-    parser.add_argument("--aspect-ratio", default=None, help="MiniMax 宽高比, 如 1:1、16:9")
-    parser.add_argument("--width", type=int, default=None, help="MiniMax 图片宽度 (像素)")
-    parser.add_argument("--height", type=int, default=None, help="MiniMax 图片高度 (像素)")
-    parser.add_argument("--seed", type=int, default=None, help="MiniMax 随机种子")
-    parser.add_argument("--n", type=int, default=None, help="MiniMax 生成数量")
+    parser.add_argument("--aspect-ratio", default=None, help="MiniMax aspect ratio, such as 1:1 or 16:9")
+    parser.add_argument("--width", type=int, default=None, help="MiniMax image width in pixels")
+    parser.add_argument("--height", type=int, default=None, help="MiniMax image height in pixels")
+    parser.add_argument("--seed", type=int, default=None, help="MiniMax random seed")
+    parser.add_argument("--n", type=int, default=None, help="Number of MiniMax images to generate")
     parser.add_argument(
         "--prompt-optimizer",
         dest="prompt_optimizer",
         action="store_true",
         default=None,
-        help="启用 MiniMax 提示词优化"
+        help="Enable MiniMax prompt optimization"
     )
     parser.add_argument(
         "--no-prompt-optimizer",
         dest="prompt_optimizer",
         action="store_false",
-        help="关闭 MiniMax 提示词优化"
+        help="Disable MiniMax prompt optimization"
     )
 
     args = parser.parse_args()

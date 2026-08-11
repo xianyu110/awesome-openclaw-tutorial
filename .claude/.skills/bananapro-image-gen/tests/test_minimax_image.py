@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""针对 MiniMax 图片生成格式的离线单元测试（不发起真实网络请求）。"""
+"""Offline unit tests for the MiniMax image-generation format."""
 
 import base64
 import importlib.util
