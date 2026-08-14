@@ -66,7 +66,9 @@
 
 ---
 
-## 📊 教程导航（按学习路径）
+## 📊 教程导航
+
+- [Clickyy](https://github.com/jayamitkatariya/clickyyy) - Shake your cursor to summon an AI agent that sees your screen and clicks, types, drags, and acts for you on macOS. Open-source, MIT.（按学习路径）
 
 ### 🎯 零基础入门（必读）
 - 📖 [第1章：认识OpenClaw](docs/01-basics/01-introduction.md) - 5分钟了解核心价值
