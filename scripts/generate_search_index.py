@@ -56,9 +56,9 @@ def extract_keywords(content):
     list_items = re.findall(r'^[\s]*[-*]\s+\*\*([^*]+)\*\*', content, re.MULTILINE)
     keywords.extend(list_items)
 
-    # 清理和去重
+    # 清理并按首次出现顺序去重，确保索引可重复生成
     keywords = [k.strip() for k in keywords if k.strip()]
-    keywords = list(set(keywords))  # 去重
+    keywords = list(dict.fromkeys(keywords))
 
     return ' '.join(keywords[:20])  # 限制数量
 
