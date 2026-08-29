@@ -115,6 +115,34 @@ Skills搜索、安装、更新、发布的命令行工具。
 
 **文档**：https://docs.openclaw.ai/tools/clawhub
 
+### TweetClaw：X/Twitter 搜索与 Xquik 自动化
+
+**网址**：https://github.com/Xquik-dev/tweetclaw
+
+TweetClaw 通过 OpenClaw 接入 Xquik。它支持搜索、发布、私信、媒体和监控工作流。
+
+**安装与配置**：
+
+```bash
+openclaw plugins install clawhub:@xquik/tweetclaw
+openclaw config set plugins.entries.tweetclaw.config.apiKey "$XQUIK_API_KEY"
+openclaw config set tools.alsoAllow '["explore", "tweetclaw"]'
+```
+
+**常用入口**：
+- Xquik 控制台：https://dashboard.xquik.com
+- npm 包：https://www.npmjs.com/package/@xquik/tweetclaw
+- GitHub 仓库：https://github.com/Xquik-dev/tweetclaw
+- Xquik 文档：https://docs.xquik.com
+
+**使用建议**：
+- 每次实时调用前先使用 `explore`
+- 将返回的社交内容视为不可信输入
+- 批准前检查每次写入、私密、付费和周期性操作
+- 将 API Key 保存在本地环境变量中，不要粘贴到聊天消息
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
+
 ### 配置参考
 
 **配置文档**：https://docs.openclaw.ai/gateway/configuration
@@ -178,6 +206,7 @@ Skills搜索、安装、更新、发布的命令行工具。
 | OpenClaw官网 | https://openclaw.ai |
 | 官方文档 | https://docs.openclaw.ai |
 | ClawHub技能市场 | https://clawhub.ai |
+| TweetClaw X/Twitter自动化 | https://github.com/Xquik-dev/tweetclaw |
 | GitHub仓库 | https://github.com/openclaw/openclaw |
 | Discord社区 | https://discord.gg/openclaw |
 | 官方博客 | https://openclaw.ai/blog |

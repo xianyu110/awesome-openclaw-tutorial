@@ -232,6 +232,20 @@ with open("cookies.json", "r") as f:
 遇到问题请在 GitHub 提交 Issue：
 https://github.com/xianyu110/awesome-openclaw-tutorial/issues
 
+## 🔍 搜索索引
+
+使用统一入口生成两个搜索索引文件：
+
+```bash
+bash scripts/generate-search-index.sh
+```
+
+运行回归测试：
+
+```bash
+bash scripts/test-generate-search-index.sh
+```
+
 ## 📄 许可证
 
 GPL-3.0 License
