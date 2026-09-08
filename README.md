@@ -59,6 +59,7 @@
 | **企业级，需要高安全性** | [**JVSClaw**](tutorials/Openclaw史上最简单教程，小白一键部署.md#10jvsclaw阿里云无影) | **14天免费** + **6核12GB** + **端到端加密** | → 需邀请码 |
 | **想用浏览器操控** | [Kimi Claw](tutorials/Openclaw史上最简单教程，小白一键部署.md#3kimi-openclaw) | **Kimi K2.5** + **浏览器控制** | → 200元/月 |
 | **量化交易/多IM** | [腾讯 WorkBuddy](tutorials/Openclaw史上最简单教程，小白一键部署.md#4腾讯-openclawworkbuddy) | **桌面端Agent** + **多IM支持** | → 送5000积分 |
+| **海外用户，全托管免运维** | [OneClaw](https://www.oneclaw.net) | **浏览器一键部署** + **Telegram/WhatsApp/Discord 接入** + **模板库** | → 免服务器 |
 | **macOS原生体验** | [QClaw](tutorials/Openclaw史上最简单教程，小白一键部署.md#5qclaw) | **腾讯官方桌面客户端** + **全量公测** | → 免费 |
 | **Agent生态丰富** | [扣子 OpenClaw](tutorials/Openclaw史上最简单教程，小白一键部署.md#2扣子-openclaw) | **1800+Skills** | → 99元/月起 |
 
