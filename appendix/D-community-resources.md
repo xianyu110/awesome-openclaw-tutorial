@@ -120,6 +120,17 @@ Skills搜索、安装、更新、发布的命令行工具。
 **配置文档**：https://docs.openclaw.ai/gateway/configuration
 
 官方配置文件完整字段说明，支持在线查阅。
+### OrcaReplay
+
+录制与离线重放 OpenClaw 会话的第三方 CLI，进程外工作，不改 OpenClaw 配置。
+
+**安装**：
+
+    npm install -g orcareplay
+
+**仓库**：https://github.com/Continuum-AI-Corp/OrcaReplay
+
+**功能**：`orca record openclaw` 录下整次会话（模型请求、工具调用、退出码、文件改动），`orca replay` 把录像喂回去——不调用模型、不需要 API key 也能把同一次运行再跑一遍，便于复现问题或交给别人排查。注意重放只阻断模型侧出网，录下的工具调用仍会真的再执行一次，不是沙箱。
 
 ## E.4 推荐学习路径
 
