@@ -36,6 +36,9 @@
 
 > 🔄 **2026-09-10 更新说明**：本仓库当前按 **OpenClaw v2026.9.3（稳定版，2026-09-08 发布）** 校对；第 `1/2/5/7/8/10~15` 章已同步到 2026.9 主线。跨版本请先读 [`updates/2026-09-10-v2026.9.3.md`](updates/2026-09-10-v2026.9.3.md)，升级后执行 `openclaw doctor --fix`。
 
+### 🧠 社区记忆引擎
+- [Mnemosyne Memory Engine](https://github.com/ElonAug7/openclaw-mnemosyne-memory-engine)：零依赖本地记忆引擎，271KB 运行时，无需 LLM API / 向量数据库，纯 Markdown 存储，TF-IDF + KNN 搜索引擎，55ms 查询延迟，七路并行检索，自带 Web UI 控制台，完全离线可用。
+
 ## 📌 本教程与 OpenClaw 最新版差异说明
 
 为了避免你把旧章节当成最新版官方教程，先看这 4 点：
