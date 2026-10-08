@@ -1525,7 +1525,9 @@ https://moltbot-sandbox.xxxxxxxx.workers.dev/_admin/
 /model
 
 # 切换模型
-/model minimax/MiniMax-M2.1
+/model minimax/MiniMax-M3
+# Or choose the lower-cost MiniMax-M2.7 model
+/model minimax/MiniMax-M2.7
 ```
 
 #### 设置开机自启命令
@@ -1533,7 +1535,7 @@ https://moltbot-sandbox.xxxxxxxx.workers.dev/_admin/
 为了避免 Worker 重启后模型被重置，建议设置开机自启命令：
 
 ```bash
-set model minimax/MiniMax-M2.1
+set model minimax/MiniMax-M3
 ```
 
 #### 远程终端连接
