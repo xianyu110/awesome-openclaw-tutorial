@@ -594,9 +594,17 @@ OpenClaw最大的优势之一是**模型自由**：你不被绑定在某一家�
 | **豆包**        | Seed 2.0 Pro        | $0.47           | $2.37           | 自定义Provider | 批量处理、低成本             |
 | **百度文心**      | 文心 5.0              | \~$0.58         | \~$1.16         | 自定义（需适配）    | 百度云生态用户              |
 | **Kimi**      | Kimi K2.5           | $0.60           | $3.00           | 自定义Provider | 中文Agent、长上下文         |
-| **MiniMax**   | MiniMax M2.5        | $0.50           | $2.00           | 自定义Provider | SWE-bench高分、性价比      |
+| **MiniMax**   | MiniMax-M3.1-Flash / MiniMax-M3 | $0.15 / $0.30 | $0.60 / $1.20 | Custom provider | 1M context, reasoning |
 | **Ollama**    | Qwen3.5-Coder:32B   | 免费              | 免费              | 自动发布现       | 隐私敏感、零成本             |
 | **LM Studio** | Devstral-24B        | 免费              | 免费              | 自定义Provider | 本地GUI、模型测试           |
+
+#### MiniMax direct API notes
+
+For a new direct MiniMax provider configuration, prefer `MiniMax-M3.1-Flash`, with `MiniMax-M3` as the alternative. Both models have a 1M-token context window. Configure the model in your installed client's provider catalog before using the model-switching examples; availability through a gateway or subscription must be checked separately. Keep existing saved or custom model IDs unless you explicitly choose to change them.
+
+The direct OpenAI-compatible Base URL is `https://api.minimax.io/v1` globally or `https://api.minimaxi.com/v1` in China. For clients using the Anthropic-compatible protocol, use `https://api.minimax.io/anthropic` or `https://api.minimaxi.com/anthropic`, respectively.
+
+Prices above are USD per million tokens for the direct API. Flash input/output/cache-read prices are $0.15/$0.60/$0.015. M3 standard input/output/cache-read prices are $0.30/$1.20/$0.06 for request input up to 512k, and $0.60/$2.40/$0.12 above 512k; priority pricing is 1.5 times standard. See the official [model guide](https://platform.minimax.io/docs/guides/models-intro.md) and [pricing overview](https://platform.minimax.io/docs/pricing/overview.md).
 
 #### 配置核心概念
 

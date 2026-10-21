@@ -1524,8 +1524,10 @@ https://moltbot-sandbox.xxxxxxxx.workers.dev/_admin/
 # 查看当前模型
 /model
 
-# 切换模型
-/model minimax/MiniMax-M2.1
+# Select Flash after configuring the direct MiniMax provider
+/model minimax/MiniMax-M3.1-Flash
+# Or select MiniMax-M3
+/model minimax/MiniMax-M3
 ```
 
 #### 设置开机自启命令
@@ -1533,7 +1535,7 @@ https://moltbot-sandbox.xxxxxxxx.workers.dev/_admin/
 为了避免 Worker 重启后模型被重置，建议设置开机自启命令：
 
 ```bash
-set model minimax/MiniMax-M2.1
+set model minimax/MiniMax-M3.1-Flash
 ```
 
 #### 远程终端连接
