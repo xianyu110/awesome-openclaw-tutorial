@@ -69,6 +69,7 @@
 | **量化交易/多IM** | [腾讯 WorkBuddy](tutorials/Openclaw史上最简单教程，小白一键部署.md#4腾讯-openclawworkbuddy) | **桌面端Agent** + **多IM支持** | → 送5000积分 |
 | **macOS原生体验** | [QClaw](tutorials/Openclaw史上最简单教程，小白一键部署.md#5qclaw) | **腾讯官方桌面客户端** + **全量公测** | → 免费 |
 | **Agent生态丰富** | [扣子 OpenClaw](tutorials/Openclaw史上最简单教程，小白一键部署.md#2扣子-openclaw) | **1800+Skills** | → 99元/月起 |
+| **Windows 本地，想双击装好** | [**Rheia**](https://github.com/Alex991Lee/rheia) | **复用已有 WSL2+Ubuntu** + **3.5MB** + **MIT** | → 免费 |
 
 📖 **[查看完整一键部署教程 →](tutorials/Openclaw史上最简单教程，小白一键部署.md)**
 
